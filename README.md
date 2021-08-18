@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# ParkPals
-=======
 # ParkPals
 
 ## Overview
@@ -49,4 +46,4 @@ their dogs. Users can locate and commune with fellow dog enthusiasts based on th
 ## Project Tracker
 
 [ParkPals Trello Board](https://trello.com/b/1uO2vv7O/liftoff-project-board)
->>>>>>> hello-world
+
