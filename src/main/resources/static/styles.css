@@ -4,4 +4,24 @@
 
 .bg-cover {
   background-size: cover !important;
+  background-position:50% 50%;
 }
+
+.cursive {
+    font-family: 'Lobster', cursive;
+    color: crimson;
+    -webkit-text-stroke: 2px crimson;
+    letter-spacing: 6px;
+    font-size: 125px;
+}
+
+.navbar_font {
+    font-family: 'Lobster', cursive;
+    color: crimson;
+    letter-spacing: 2px;
+
+}
+
+
+
+
