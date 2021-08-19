@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8" />
-    <title></title>
-</head>
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: nav"></nav>
 <body>
-
+<div style="background-color: #ACACAC" class="page-holder bg-cover">
+    <div class="container text-center text-black py-5">
+        <h1 class="py-5">Login</h1>
+    </div>
+</div>
 </body>
 </html>
