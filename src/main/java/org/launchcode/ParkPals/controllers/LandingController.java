@@ -2,6 +2,7 @@ package org.launchcode.ParkPals.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LandingController {
@@ -10,5 +11,6 @@ public class LandingController {
     public String landing() {
         return "landing";
     }
+
 
 }
