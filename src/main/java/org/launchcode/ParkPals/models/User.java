@@ -3,15 +3,14 @@ package org.launchcode.ParkPals.models;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-public class User {
-    private int id;
-    private static int nextId = 1;
+public class User extends AbstractEntity {
 
     @NotNull
     @Size(min = 2, message = "Name is required")
@@ -27,14 +26,9 @@ public class User {
     }
 
     public User(String username, String password) {
+        super();
         this.username = username;
         this.pwHash = encoder.encode(password);
-        this.id = nextId;
-        nextId++;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getUsername() {

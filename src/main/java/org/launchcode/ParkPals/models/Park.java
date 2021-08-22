@@ -1,13 +1,12 @@
 package org.launchcode.ParkPals.models;
 
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Park {
-    private int id;
-    private static int nextId = 1;
+public class Park extends AbstractEntity {
 
     @NotBlank(message = "What is the name of the park?")
     @Size(min = 2, max = 50)
@@ -22,15 +21,10 @@ public class Park {
     private String parkDescription;
 
     public Park(String parkName, String parkLocation, String parkDescription) {
+        super();
         this.parkName = parkName;
         this.parkLocation = parkLocation;
         this.parkDescription = parkDescription;
-        this.id = nextId;
-        nextId++;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getParkName() {
