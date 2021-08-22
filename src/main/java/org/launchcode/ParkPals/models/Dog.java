@@ -4,6 +4,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class Dog {
+    private int id;
+    private static int nextId = 1;
+
     @NotBlank(message = "Need to know your dog's name.")
     @Size(min = 2, max = 20)
     private String dogName;
@@ -20,11 +23,17 @@ public class Dog {
     @Size(min = 2, max = 20)
     private String dogActivity;
 
+    public int getId() {
+        return id;
+    }
+
     public Dog(String dogName, String dogBreed, String dogTemperament, String dogActivity) {
         this.dogName = dogName;
         this.dogBreed = dogBreed;
         this.dogTemperament = dogTemperament;
         this.dogActivity = dogActivity;
+        this.id = nextId;
+        nextId++;
     }
 
     public String getDogName() {
