@@ -6,13 +6,17 @@ import javax.validation.constraints.Size;
 
 public class Dog extends AbstractEntity {
 
-    @NotBlank(message = "Need to know your dog's name.")
+    @NotBlank(message = "What is your dogs name?")
     @Size(min = 2, max = 20)
     private String dogName;
 
     @NotBlank(message = "What type of breed is your dog?")
     @Size(min = 2, max = 30)
-    private final String dogBreed;
+    private String dogBreed;
+
+    @NotBlank(message = "How old is your dog?")
+    @Size(min = 0, max = 30)
+    private int dogAge;
 
     @NotBlank(message = "What type of temperament does your dog have?")
     @Size(min = 2, max = 20)
@@ -22,13 +26,16 @@ public class Dog extends AbstractEntity {
     @Size(min = 2, max = 20)
     private String dogActivity;
 
-    public Dog(String dogName, String dogBreed, String dogTemperament, String dogActivity) {
+    public Dog(String dogName, String dogBreed, int dogAge, String dogTemperament, String dogActivity) {
         super();
         this.dogName = dogName;
         this.dogBreed = dogBreed;
+        this.dogAge = dogAge;
         this.dogTemperament = dogTemperament;
         this.dogActivity = dogActivity;
     }
+
+    public Dog() {};
 
     public String getDogName() {
         return dogName;
@@ -40,6 +47,14 @@ public class Dog extends AbstractEntity {
 
     public String getDogBreed() {
         return dogBreed;
+    }
+
+    public int getDogAge() {
+        return dogAge;
+    }
+
+    public void setDogAge(int dogAge) {
+        this.dogAge = dogAge;
     }
 
     public String getDogTemperament() {
