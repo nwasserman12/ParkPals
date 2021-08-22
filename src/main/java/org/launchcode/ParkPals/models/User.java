@@ -13,7 +13,25 @@ import java.util.Map;
 public class User extends AbstractEntity {
 
     @NotNull
-    @Size(min = 2, message = "Name is required")
+    @Size(min=1, max=30, message = "First name is required.")
+    private String firstName;
+
+    @NotNull
+    @Size(min=1, max=30, message = "Last name is required.")
+    private String lastName;
+
+    @NotNull
+    @Size(min=18, message = "Must be at least 18 to register.")
+    private int age;
+
+    @NotNull
+    @Size(min=5, message = "Please enter local 5-digit zip code")
+    private int zipCode;
+
+    private String bio;
+
+    @NotNull
+    @Size(min = 2, message = "Username is required.")
     private String username;
 
     @NotNull

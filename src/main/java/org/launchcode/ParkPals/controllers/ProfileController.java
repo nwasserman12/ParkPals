@@ -17,9 +17,9 @@ public class ProfileController {
     }
 
     @GetMapping("/add-dog")
-    public String displayCreateEventForm(Model model) {
+    public String displayAddDogForm(Model model) {
         model.addAttribute(new Dog());
-        return "events/create";
+        return "user/add-dog";
     }
 
 }
