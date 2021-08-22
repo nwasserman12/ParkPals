@@ -2,6 +2,7 @@ package org.launchcode.ParkPals.data;
 
 import org.launchcode.ParkPals.models.Park;
 
+import javax.persistence.Entity;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;

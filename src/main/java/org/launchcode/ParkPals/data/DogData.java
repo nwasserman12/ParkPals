@@ -1,5 +1,4 @@
 package org.launchcode.ParkPals.data;
-
 import org.launchcode.ParkPals.models.Dog;
 
 import java.util.Collection;
