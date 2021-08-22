@@ -8,38 +8,45 @@
         <h1 class="py-5">Add Dog</h1>
     </div>
 
-    <form method="post">
-        <div class="form-group">
-            <label>Name
-                <input th:field="${dog.name}" class="form-control">
-            </label>
-            <p class="error" th:errors="${event.name}"></p>
-        </div>
-        <div class="form-group">
-            <label>Description
-                <input th:field="${}" class="form-control">
-            </label>
-            <p class="error" th:errors="${}"></p>
-        </div>
-        <div class="form-group">
-            <label>Contact Email
-                <input th:field="${}" class="form-control">
-            </label>
-            <p class="error" th:errors="${}"></p>
-        </div>
-        <div class="form-group">
-            <label>Category
+    <div class="container text-center text-black py-5">
 
-                <p class="error" th:errors="${event.eventCategory}"></p>
-            </label>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-success">
-        </div>
-    </form>
+        <form method="post">
+            <div class="form-group">
+                <label>Name
+                    <input th:field="${dog.dogName}" class="form-control">
+                </label>
+                <p class="error" th:errors="${dog.dogName}"></p>
+            </div>
+            <div class="form-group">
+                <label>Breed
+                    <input th:field="${dog.dogBreed}" class="form-control">
+                </label>
+                <p class="error" th:errors="${dog.dogBreed}"></p>
+            </div>
+            <div class="form-group">
+                <label>Age
+                    <input th:field="${dog.dogAge}" class="form-control">
+                </label>
+                <p class="error" th:errors="${dog.dogAge}"></p>
+            </div>
+            <div class="form-group">
+                <label>Temperament
+                    <input th:field="${dog.dogTemperament}" class="form-control">
+                </label>
+                <p class="error" th:errors="${dog.dogTemperament}"></p>
+            </div>
+            <div class="form-group">
+                <label>Activity Level
+                    <input th:field="${dog.dogActivity}" class="form-control">
+                </label>
+                <p class="error" th:errors="${dog.dogActivity}"></p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Dog" class="btn btn-success">
+            </div>
+        </form>
 
-
-
+    </div>
 </div>
 </body>
 </html>
