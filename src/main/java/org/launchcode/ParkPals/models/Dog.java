@@ -1,15 +1,12 @@
 package org.launchcode.ParkPals.models;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Dog extends AbstractEntity {
 
     @NotBlank(message = "What is your dogs name?")

@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<nav th:replace="fragments :: nav"></nav>
-<body>
-<div style="background-color: #ACACAC" class="page-holder bg-cover">
-    <div class="container text-center text-black py-5">
-        <h1 class="py-5">Login</h1>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+    <div>
+        <label th:for="username">Username
+            <input class="form-control" th:field="${loginFormDTO.username}">
+        </label>
+        <p class="error" th:errors="${loginFormDTO.username}"></p>
     </div>
-</div>
+    <div>
+        <label>Password
+            <input class="form-control" th:field="${loginFormDTO.password}" type="password">
+        </label>
+        <p class="error" th:errors="${loginFormDTO.password}"></p>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Log In" />
+</form>
+
+<p>Don't have an account? <a href="/register">Register for one.</a></p>
+
 </body>
 </html>

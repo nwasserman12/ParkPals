@@ -33,10 +33,10 @@ public class User extends AbstractEntity {
     private String bio;
   
     @ManyToMany
-    private final List<Dog> dogs = new ArrayList<>();
+    private List<Dog> dogs = new ArrayList<>();
 
     @ManyToMany
-    private final List<Park> parks = new ArrayList<>();
+    private List<Park> parks = new ArrayList<>();
 
     @NotNull
     @Size(min = 2, message = "Username is required.")
