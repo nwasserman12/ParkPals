@@ -57,8 +57,6 @@ public class User extends AbstractEntity {
         this.age = age;
         this.zipCode = zipCode;
         this.bio = bio;
-        this.dogs = dogs;
-        this.parks = parks;
     }
 
     public User() {}
