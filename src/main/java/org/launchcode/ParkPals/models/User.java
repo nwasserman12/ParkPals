@@ -1,12 +1,15 @@
 package org.launchcode.ParkPals.models;
 
+import org.springframework.format.annotation.NumberFormat;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -21,6 +24,7 @@ public class User extends AbstractEntity {
     private String lastName;
 
     @NotNull
+    @NumberFormat
     @Size(min=18, message = "Must be at least 18 to register.")
     private int age;
 
@@ -29,6 +33,8 @@ public class User extends AbstractEntity {
     private int zipCode;
 
     private String bio;
+
+    private final List<Dog> dogs = new ArrayList<>();
 
     @NotNull
     @Size(min = 2, message = "Username is required.")

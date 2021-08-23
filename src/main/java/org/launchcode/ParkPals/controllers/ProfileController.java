@@ -30,7 +30,7 @@ public class ProfileController {
             return "user/add-dog";
         }
 
-        userRepository.save(newDog);
+//        repository.save(newDog);
         return "redirect:";
     }
 
