@@ -1,53 +1,64 @@
 package org.launchcode.ParkPals.models;
 
-import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Park extends AbstractEntity {
 
     @NotBlank(message = "What is the name of the park?")
     @Size(min = 2, max = 50)
-    private String parkName;
+    private String name;
 
     @NotBlank(message = "Where is the park located?")
     @Size(min = 2, max = 50)
-    private String parkLocation;
+    private String location;
 
     @NotBlank(message = "Give a short description of the park.")
     @Size(min = 2, max = 500)
-    private String parkDescription;
+    private String description;
 
-    public Park(String parkName, String parkLocation, String parkDescription) {
+    @ManyToMany(mappedBy = "parks")
+    private final List<User> users = new ArrayList<>();
+
+    public Park(String name, String location, String description) {
         super();
-        this.parkName = parkName;
-        this.parkLocation = parkLocation;
-        this.parkDescription = parkDescription;
+        this.name = name;
+        this.location = location;
+        this.description = description;
     }
 
-    public String getParkName() {
-        return parkName;
+    public Park() {}
+
+    public String getName() {
+        return name;
     }
 
-    public void setParkName(String parkName) {
-        this.parkName = parkName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getParkLocation() {
-        return parkLocation;
+    public String getLocation() {
+        return location;
     }
 
-    public void setParkLocation(String parkLocation) {
-        this.parkLocation = parkLocation;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getParkDescription() {
-        return parkDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setParkDescription(String parkDescription) {
-        this.parkDescription = parkDescription;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }
