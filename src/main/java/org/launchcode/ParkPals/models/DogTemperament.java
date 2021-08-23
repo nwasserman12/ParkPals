@@ -1,13 +1,13 @@
 package org.launchcode.ParkPals.models;
 
-public enum Temperament {
+public enum DogTemperament {
     AGGRESSIVE("Aggressive"),
     NEUTRAL("Neutral"),
     PASSIVE("Passive");
 
     private final String temperamentType;
 
-    Temperament(String temperamentType) {
+    DogTemperament(String temperamentType) {
         this.temperamentType = temperamentType;
     }
 
