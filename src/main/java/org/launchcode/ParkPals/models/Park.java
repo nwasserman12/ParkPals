@@ -1,59 +1,68 @@
 package org.launchcode.ParkPals.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Park {
+@Entity
+public class Park extends AbstractEntity {
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
 
     @NotBlank(message = "What is the name of the park?")
     @Size(min = 2, max = 50)
-    private String parkName;
+    private String name;
 
     @NotBlank(message = "Where is the park located?")
     @Size(min = 2, max = 50)
-    private String parkLocation;
+    private String location;
 
     @NotBlank(message = "Give a short description of the park.")
     @Size(min = 2, max = 500)
-    private String parkDescription;
+    private String description;
 
-    public Park(String parkName, String parkLocation, String parkDescription) {
-        this.parkName = parkName;
-        this.parkLocation = parkLocation;
-        this.parkDescription = parkDescription;
-        this.id = nextId;
-        nextId++;
+    @ManyToMany(mappedBy = "parks")
+    private final List<User> users = new ArrayList<>();
+
+    public Park(String name, String location, String description) {
+        this.name = name;
+        this.location = location;
+        this.description = description;
     }
 
-    public int getId() {
-        return id;
+    public Park() {}
+
+    public String getName() {
+        return name;
     }
 
-    public String getParkName() {
-        return parkName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setParkName(String parkName) {
-        this.parkName = parkName;
+    public String getLocation() {
+        return location;
     }
 
-    public String getParkLocation() {
-        return parkLocation;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public void setParkLocation(String parkLocation) {
-        this.parkLocation = parkLocation;
+    public String getDescription() {
+        return description;
     }
 
-    public String getParkDescription() {
-        return parkDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setParkDescription(String parkDescription) {
-        this.parkDescription = parkDescription;
+    public List<User> getUsers() {
+        return users;
     }
 }

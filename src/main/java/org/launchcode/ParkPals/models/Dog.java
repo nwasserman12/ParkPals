@@ -1,66 +1,79 @@
 package org.launchcode.ParkPals.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Dog {
+@Entity
+public class Dog extends AbstractEntity {
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
 
-    @NotBlank(message = "Need to know your dog's name.")
+    @NotBlank(message = "What is your dog's name?")
     @Size(min = 2, max = 20)
-    private String dogName;
+    private String name;
 
     @NotBlank(message = "What type of breed is your dog?")
     @Size(min = 2, max = 30)
-    private final String dogBreed;
-
-    @NotBlank(message = "What type of temperament does your dog have?")
-    @Size(min = 2, max = 20)
-    private String dogTemperament;
+    private String breed;
 
     @NotBlank(message = "How active is your dog?")
     @Size(min = 2, max = 20)
-    private String dogActivity;
+    private String activity;
 
-    public int getId() {
-        return id;
+    private Temperament type;
+
+    @ManyToMany(mappedBy = "dogs")
+    private final List<User> users = new ArrayList<>();
+
+    public Dog(String name, String breed, String activity, Temperament type) {
+        this.name = name;
+        this.breed = breed;
+        this.activity = activity;
+        this.type = type;
     }
 
-    public Dog(String dogName, String dogBreed, String dogTemperament, String dogActivity) {
-        this.dogName = dogName;
-        this.dogBreed = dogBreed;
-        this.dogTemperament = dogTemperament;
-        this.dogActivity = dogActivity;
-        this.id = nextId;
-        nextId++;
+    public Dog() {}
+
+    public String getName() {
+        return name;
     }
 
-    public String getDogName() {
-        return dogName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setDogName(String dogName) {
-        this.dogName = dogName;
+    public String getBreed() {
+        return breed;
     }
 
-    public String getDogBreed() {
-        return dogBreed;
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
-    public String getDogTemperament() {
-        return dogTemperament;
+    public String getActivity() {
+        return activity;
     }
 
-    public void setDogTemperament(String dogTemperament) {
-        this.dogTemperament = dogTemperament;
+    public void setActivity(String activity) {
+        this.activity = activity;
     }
 
-    public String getDogActivity() {
-        return dogActivity;
+    public Temperament getType() {
+        return type;
     }
 
-    public void setDogActivity(String dogActivity) {
-        this.dogActivity = dogActivity;
+    public void setType(Temperament type) {
+        this.type = type;
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }
