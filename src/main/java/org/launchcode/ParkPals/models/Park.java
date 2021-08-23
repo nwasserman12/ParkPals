@@ -1,8 +1,6 @@
 package org.launchcode.ParkPals.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -11,9 +9,6 @@ import java.util.List;
 
 @Entity
 public class Park extends AbstractEntity {
-    @Id
-    @GeneratedValue
-    private int id;
 
     @NotBlank(message = "What is the name of the park?")
     @Size(min = 2, max = 50)
@@ -31,6 +26,7 @@ public class Park extends AbstractEntity {
     private final List<User> users = new ArrayList<>();
 
     public Park(String name, String location, String description) {
+        super();
         this.name = name;
         this.location = location;
         this.description = description;
