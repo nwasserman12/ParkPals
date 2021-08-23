@@ -1,6 +1,10 @@
 package org.launchcode.ParkPals.controllers;
 
+import org.launchcode.ParkPals.data.DogRepository;
 import org.launchcode.ParkPals.models.Dog;
+import org.launchcode.ParkPals.models.DogActivity;
+import org.launchcode.ParkPals.models.DogTemperament;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -12,6 +16,9 @@ import javax.validation.Valid;
 @RequestMapping("user")
 public class ProfileController {
 
+    @Autowired
+    private DogRepository dogRepository;
+
     @GetMapping("/{username}")
     public String profile(Model model, @PathVariable String username) {
         return "user/profile";
@@ -20,6 +27,8 @@ public class ProfileController {
     @GetMapping("/add-dog")
     public String displayAddDogForm(Model model) {
         model.addAttribute(new Dog());
+        model.addAttribute("types", DogTemperament.values());
+        model.addAttribute("activityLevels", DogActivity.values());
         return "user/add-dog";
     }
 
@@ -27,11 +36,13 @@ public class ProfileController {
     public String processCreateEventForm(@ModelAttribute @Valid Dog newDog,
                                          Errors errors, Model model) {
         if(errors.hasErrors()) {
+            model.addAttribute("types", DogTemperament.values());
+            model.addAttribute("activityLevels", DogActivity.values());
             return "user/add-dog";
         }
 
-//        repository.save(newDog);
-        return "redirect:";
+        dogRepository.save(newDog);
+        return "redirect:/add-dog"; //add-dog is placeholder for user profile
     }
 
 
