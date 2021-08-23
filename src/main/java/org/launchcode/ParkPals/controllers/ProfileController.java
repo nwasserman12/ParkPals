@@ -36,6 +36,8 @@ public class ProfileController {
     public String processCreateEventForm(@ModelAttribute @Valid Dog newDog,
                                          Errors errors, Model model) {
         if(errors.hasErrors()) {
+            model.addAttribute("types", DogTemperament.values());
+            model.addAttribute("activityLevels", DogActivity.values());
             return "user/add-dog";
         }
 

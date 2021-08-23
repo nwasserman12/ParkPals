@@ -12,12 +12,10 @@ import java.util.List;
 public class Dog extends AbstractEntity {
 
     @NotBlank(message = "What is your dogs name?")
-
-    @Size(min = 2, max = 20)
+    @Size(max = 20, message = "Max of 20 characters.")
     private String name;
 
     @NotBlank(message = "What type of breed is your dog?")
-    @Size(min = 2, max = 30)
     private String breed;
 
     @NotNull(message = "How old is your dog?")
