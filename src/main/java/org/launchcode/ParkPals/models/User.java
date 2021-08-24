@@ -14,20 +14,16 @@ import java.util.List;
 public class User extends AbstractEntity {
 
     @NotNull
-    @Size(min=1, max=30, message = "First name is required.")
     private String firstName;
 
     @NotNull
-    @Size(min=1, max=30, message = "Last name is required.")
     private String lastName;
 
     @NotNull
     @NumberFormat
-    @Size(min=18, message = "Must be at least 18 to register.")
     private int age;
 
     @NotNull
-    @Size(min=5, message = "Please enter local 5-digit zip code")
     private int zipCode;
 
     private String bio;
