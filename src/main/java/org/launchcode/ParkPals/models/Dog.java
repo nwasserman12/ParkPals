@@ -68,13 +68,8 @@ public class Dog extends AbstractEntity {
     public DogActivity getActivity() {
         return activity;
     }
-<<<<<<< HEAD
-
-    public void setActivity(String activity) {
-=======
   
     public void setActivity(DogActivity activity) {
->>>>>>> dafb600c59fcb11a22d4721abe53c6a12c882e6a
         this.activity = activity;
     }
 
