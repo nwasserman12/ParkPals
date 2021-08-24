@@ -1,12 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: nav"></nav>
-<body>
-<div style="background-color: #ACACAC" class="page-holder bg-cover">
-    <div class="container text-center text-black py-5">
-        <h1 class="py-5">Login</h1>
+<body class="page-holder bg-cover" style="background: url(https://images.unsplash.com/photo-1511431833882-509a76113392?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1325&q=80)">
+
+<div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem; background-color: #ACACAC;">
+                <div class="row g-0">
+                    <div class="p-4 p-lg-5 text-black align-items-center text-center ">
+                        <form method="post">
+                            <div class="align-items-center text-center mb-3 pb-1">
+                                <i class="fas fa-paw" style="-webkit-text-stroke: 2px white; color: crimson; font-size: 50px; padding-right: 10px;"></i>
+                                <span class="cursive" style="font-size: 50px;"> Park<span style="color: white; -webkit-text-stroke: 2px white;">Pals</span></span>
+                            </div>
+                            <div class="form-outline mb-4 text-center">
+                                <label class="form-label" th:for="username">Username
+                                    <input class="form-control form-control-lg" th:field="${loginFormDTO.username}"/>
+                                </label>
+                                <p class="error" th:errors="${loginFormDTO.username}"></p>
+                            </div>
+                            <div class="form-outline mb-4 text-center">
+                                <label class="form-label">Password
+                                    <input class="form-control form-control-lg" th:field="${loginFormDTO.password}" type="password">
+                                </label>
+                                <p class="error" th:errors="${loginFormDTO.password}"></p>
+                            </div>
+                            <div class="pt-1 mb-4 text-center">
+                                <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+                                <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="/register" style="color: #393f81;">Register here</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
 </body>
 </html>
