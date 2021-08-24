@@ -17,11 +17,9 @@ public class RegisterFormDTO extends LoginFormDTO {
 
     @NotNull
     @NumberFormat
-    @Size(min=18, message = "Must be at least 18 to register.")
     private int age;
 
     @NotNull
-    @Size(min=5, message = "Please enter local 5-digit zip code")
     private int zipCode;
 
     private String verifyPassword;
