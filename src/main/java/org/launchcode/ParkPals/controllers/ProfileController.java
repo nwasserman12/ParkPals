@@ -42,7 +42,7 @@ public class ProfileController {
         }
 
         dogRepository.save(newDog);
-        return "redirect:/add-dog"; //add-dog is placeholder for user profile
+        return "redirect:/user/profile"; 
     }
 
 
