@@ -2,58 +2,53 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: nav"></nav>
+
 <body>
 <div style="background-color: #ACACAC" class="page-holder bg-cover">
-    <div class="container text-center text-black py-5">
-        <h1 class="py-5">Add Dog</h1>
-    </div>
-
-    <div class="container text-center text-black py-5">
-
-        <form class="row g-3" method="post">
-            <div class="col-md-4">
-                <label class="form-label">First name</label>
-                <input type="text" class="form-control" id="validationDefault01" value="Name" required>
+    <div class="container px-5 my-5 text-center">
+        <h1 class="cursive py-5" style="font-size: 75px; -webkit-text-stroke: 1px white; ">
+            <i class="fas fa-dog" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
+                Add Dog
+            <i class="fas fa-dog" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
+        </h1>
+        <form id="dogForm" method="post">
+            <div class="form-floating mb-3">
+                <input th:field="${dog.name}" class="form-control" id="name" type="text" placeholder="Name"/>
+                <label for="name">Name</label>
+                <p class="error" th:errors="${dog.name}"></p>
             </div>
-            <div class="col-md-4">
-                <label for="validationDefault02" class="form-label">Last name</label>
-                <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
+            <div class="form-floating mb-3">
+                <input th:field="${dog.breed}" class="form-control" id="breed" type="text" placeholder="Breed"/>
+                <label for="breed">Breed</label>
+                <p class="error" th:errors="${dog.breed}"></p>
             </div>
-            <div class="col-md-4">
-                <label for="validationDefaultUsername" class="form-label">Username</label>
-                <div class="input-group">
-                    <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                    <input type="text" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required>
-                </div>
+            <div class="form-floating mb-3">
+                <input th:field="${dog.age}" class="form-control" id="age" type="text" placeholder="Age"/>
+                <label for="age">Age</label>
+                <p class="error" th:errors="${dog.age}"></p>
             </div>
-            <div class="col-md-6">
-                <label for="validationDefault03" class="form-label">City</label>
-                <input type="text" class="form-control" id="validationDefault03" required>
-            </div>
-            <div class="col-md-3">
-                <label for="validationDefault04" class="form-label">State</label>
-                <select class="form-select" id="validationDefault04" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>...</option>
+            <div class="form-floating mb-3">
+                <select th:field="${dog.type}" class="form-select" id="temperament" aria-label="Temperament">
+                    <option th:each="type : ${types}"
+                            th:value="${type}"
+                            th:text="${type.temperamentType}"
+                    ></option>
                 </select>
+                <label for="temperament">Temperament</label>
             </div>
-            <div class="col-md-3">
-                <label for="validationDefault05" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="validationDefault05" required>
+            <div class="form-floating mb-3">
+                <select th:field="${dog.activity}" class="form-select" id="activityLevel" aria-label="Activity Level">
+                    <<option th:each="activity : ${activityLevels}"
+                             th:value="${activity}"
+                             th:text="${activity.activityLevel}"
+                ></option>
+                </select>
+                <label for="activityLevel">Activity Level</label>
             </div>
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                    <label class="form-check-label" for="invalidCheck2">
-                        Agree to terms and conditions
-                    </label>
-                </div>
-            </div>
-            <div class="col-12">
-                <button class="btn btn-primary" type="submit">Submit form</button>
+            <div class="d-grid">
+                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
             </div>
         </form>
-
     </div>
 </div>
 </body>

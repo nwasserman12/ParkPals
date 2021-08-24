@@ -1,7 +1,9 @@
 package org.launchcode.ParkPals.models;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,30 +12,28 @@ import java.util.List;
 public class Dog extends AbstractEntity {
 
     @NotBlank(message = "What is your dogs name?")
-
-    @Size(min = 2, max = 20)
+    @Size(max = 20, message = "Max of 20 characters.")
     private String name;
 
     @NotBlank(message = "What type of breed is your dog?")
-    @Size(min = 2, max = 30)
     private String breed;
 
-    @NotBlank(message = "How old is your dog?")
-    @Size(min = 0, max = 30)
+    @NotNull(message = "How old is your dog?")
     private int age;
 
-    @NotBlank(message = "How active is your dog?")
-    @Size(min = 2, max = 20)
-    private String activity;
+    @NotNull
+    private DogActivity activity;
 
-    private Temperament type;
+    @NotNull
+    private DogTemperament type;
 
     @ManyToMany(mappedBy = "dogs")
     private final List<User> users = new ArrayList<>();
 
-    public Dog(String name, String breed, String activity, Temperament type) {
+    public Dog(String name, String breed, int age, DogActivity activity, DogTemperament type) {
         this.name = name;
         this.breed = breed;
+        this.age = age;
         this.activity = activity;
         this.type = type;
     }
@@ -65,19 +65,19 @@ public class Dog extends AbstractEntity {
         this.age = age;
     }
 
-    public String getActivity() {
+    public DogActivity getActivity() {
         return activity;
     }
   
-    public void setActivity(String activity) {
+    public void setActivity(DogActivity activity) {
         this.activity = activity;
     }
 
-    public Temperament getType() {
+    public DogTemperament getType() {
         return type;
     }
 
-    public void setType(Temperament type) {
+    public void setType(DogTemperament type) {
         this.type = type;
     }
 

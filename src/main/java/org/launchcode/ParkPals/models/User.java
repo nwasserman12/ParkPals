@@ -48,7 +48,7 @@ public class User extends AbstractEntity {
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     
-    public User(String username, String password, String firstName, String lastName, int age, int zipCode, String bio, List<Dog> dogs, List<Park> parks) {
+    public User(String username, String password, String firstName, String lastName, int age, int zipCode, String bio) {
         super();
         this.username = username;
         this.pwHash = encoder.encode(password);
@@ -57,8 +57,6 @@ public class User extends AbstractEntity {
         this.age = age;
         this.zipCode = zipCode;
         this.bio = bio;
-        this.dogs = dogs;
-        this.parks = parks;
     }
 
     public User() {}
