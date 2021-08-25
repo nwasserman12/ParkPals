@@ -46,7 +46,7 @@ public class ProfileController {
     }
 
     @PostMapping("/add-dog")
-    public String processCreateEventForm(@ModelAttribute @Valid Dog newDog,
+    public String processCreateDogForm(@ModelAttribute @Valid Dog newDog,
                                          Errors errors, Model model) {
         if(errors.hasErrors()) {
             model.addAttribute("types", DogTemperament.values());
