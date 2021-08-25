@@ -2,10 +2,54 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: nav"></nav>
-<body>
-<div style="background-color: #ACACAC" class="page-holder bg-cover">
-    <div class="container text-center text-black py-5">
-        <h1 class="py-5">Register</h1>
+<body style="background-color: #ACACAC">
+<div class="page-holder bg-cover" style="padding: 20px;">
+    <div class="container px-5 my-5 text-center">
+        <h1 class="py-5" style="font-family: 'Lobster', cursive; color: crimson; -webkit-text-stroke: 2px crimson; letter-spacing: 6px; font-size: 75px; -webkit-text-stroke: 1px white; ">
+            <i class="fas fa-bone" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
+            Register
+            <i class="fas fa-bone" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
+        </h1>
+        <form method="post">
+            <div class="form-floating mb-3">
+                <input th:field="${registerFormDTO.username}" class="form-control" placeholder="Username"/>
+                <label>Username</label>
+                <p class="error" th:errors="${registerFormDTO.username}"></p>
+            </div>
+            <div class="form-floating mb-3">
+                <input th:field="${registerFormDTO.password}" class="form-control" type="password" placeholder="Password"/>
+                <label>Password</label>
+                <p class="error" th:errors="${registerFormDTO.password}"></p>
+            </div>
+            <div class="form-floating mb-3">
+                <input th:field="${registerFormDTO.verifyPassword}" class="form-control" type="password" placeholder="Verify Password"/>
+                <label>Verify Password</label>
+                <p class="error" th:errors="${registerFormDTO.verifyPassword}"></p>
+            </div>
+            <div class="form-floating mb-3">
+                <input th:field="${registerFormDTO.firstName}" class="form-control" placeholder="First Name"/>
+                <label>First Name</label>
+                <p class="error" th:errors="${registerFormDTO.firstName}"></p>
+            </div>
+            <div class="form-floating mb-3">
+                <input th:field="${registerFormDTO.lastName}" class="form-control" placeholder="Last Name"/>
+                <label>Last Name</label>
+                <p class="error" th:errors="${registerFormDTO.lastName}"></p>
+            </div>
+            <div class="form-floating mb-3">
+                <input th:field="${registerFormDTO.age}" class="form-control" type="number" placeholder="Age"/>
+                <label>Age</label>
+                <p class="error" th:errors="${registerFormDTO.age}"></p>
+            </div>
+            <div class="form-floating mb-3">
+                <input th:field="${registerFormDTO.zipCode}" class="form-control" placeholder="Zip Code"/>
+                <label>Zip Code</label>
+                <p class="error" th:errors="${registerFormDTO.zipCode}"></p>
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-primary btn-lg" type="submit">Create Account</button>
+            </div>
+        </form>
     </div>
 </div>
 </body>
