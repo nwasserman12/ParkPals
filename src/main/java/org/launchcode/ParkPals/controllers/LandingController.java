@@ -3,11 +3,12 @@ package org.launchcode.ParkPals.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LandingController {
 
-    @GetMapping
+    @RequestMapping("/hello")
     public String landing() {
         return "landing";
     }
