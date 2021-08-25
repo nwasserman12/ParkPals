@@ -31,6 +31,7 @@ public class ProfileController {
     @Autowired
     private AuthenticationController authenticationController;
 
+
     @GetMapping("{userId}")
     public String viewProfileById(@PathVariable Integer userId, Model model) {
         Optional optUser = userRepository.findById(userId);
