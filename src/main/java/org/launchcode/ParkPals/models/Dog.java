@@ -81,7 +81,7 @@ public class Dog extends AbstractEntity {
         this.type = type;
     }
 
-    
+        
 
     public User getUser() {
         return user;
