@@ -31,7 +31,7 @@ public class ProfileController {
     private AuthenticationController authenticationController;
 
     @GetMapping()
-    public String profile(Model model, HttpServletRequest request) {
+    public String userProfile(@RequestParam User user,  Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         model.addAttribute("user", authenticationController.getUserFromSession(session));
         return "user/profile";
