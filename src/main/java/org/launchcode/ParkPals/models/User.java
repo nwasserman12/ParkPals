@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -14,29 +15,25 @@ import java.util.List;
 public class User extends AbstractEntity {
 
     @NotNull
-    @Size(min=1, max=30, message = "First name is required.")
     private String firstName;
 
     @NotNull
-    @Size(min=1, max=30, message = "Last name is required.")
     private String lastName;
 
     @NotNull
     @NumberFormat
-    @Size(min=18, message = "Must be at least 18 to register.")
     private int age;
 
     @NotNull
-    @Size(min=5, message = "Please enter local 5-digit zip code")
     private int zipCode;
 
     private String bio;
   
     @ManyToMany
-    private List<Dog> dogs = new ArrayList<>();
+    private final List<Dog> dogs = new ArrayList<>();
 
     @ManyToMany
-    private List<Park> parks = new ArrayList<>();
+    private final List<Park> parks = new ArrayList<>();
 
     @NotNull
     @Size(min = 2, message = "Username is required.")
@@ -48,7 +45,7 @@ public class User extends AbstractEntity {
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     
-    public User(String username, String password, String firstName, String lastName, int age, int zipCode, String bio) {
+    public User(String username, String password, String firstName, String lastName, int age, int zipCode) {
         super();
         this.username = username;
         this.pwHash = encoder.encode(password);
@@ -56,7 +53,6 @@ public class User extends AbstractEntity {
         this.lastName = lastName;
         this.age = age;
         this.zipCode = zipCode;
-        this.bio = bio;
     }
 
     public User() {}

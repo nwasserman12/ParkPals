@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -54,6 +55,39 @@ public class AuthenticationController {
         return "register";
     }
 
+    @PostMapping("/register")
+    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
+                                          Errors errors, HttpServletRequest request,
+                                          Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Register");
+            return "register";
+        }
+
+        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
+
+        if (existingUser != null) {
+            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
+            model.addAttribute("title", "Register");
+            return "register";
+        }
+
+        String password = registerFormDTO.getPassword();
+        String verifyPassword = registerFormDTO.getVerifyPassword();
+        if (!password.equals(verifyPassword)) {
+            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
+            model.addAttribute("title", "Register");
+            return "register";
+        }
+
+        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getFirstName(), registerFormDTO.getLastName(), registerFormDTO.getAge(), registerFormDTO.getZipCode());
+        userRepository.save(newUser);
+        setUserInSession(request.getSession(), newUser);
+
+        return "user/profile";
+    }
+
     @GetMapping("/login")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
@@ -88,8 +122,17 @@ public class AuthenticationController {
         }
 
         setUserInSession(request.getSession(), theUser);
+        HttpSession session = request.getSession();
+        User user = getUserFromSession(session);
+        model.addAttribute("userId", user.getId());
 
-        return "redirect:";
+        return "redirect:/user/" + user.getId();
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:/login";
     }
 
     @GetMapping("/logout")

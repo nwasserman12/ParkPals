@@ -1,9 +1,9 @@
 package org.launchcode.ParkPals.models;
 
 public enum DogTemperament {
-    AGGRESSIVE("Aggressive"),
-    NEUTRAL("Neutral"),
-    PASSIVE("Passive");
+    REACTIVE("Reactive"),
+    SELECTIVE("Selective"),
+    FRIENDLY("Friendly");
 
     private final String temperamentType;
 
