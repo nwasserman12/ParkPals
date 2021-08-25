@@ -6,6 +6,7 @@ import org.launchcode.ParkPals.models.Dog;
 import org.launchcode.ParkPals.models.DogActivity;
 import org.launchcode.ParkPals.models.DogTemperament;
 import org.launchcode.ParkPals.models.User;
+import org.launchcode.ParkPals.models.dto.UserDogDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,30 +31,47 @@ public class ProfileController {
     @Autowired
     private AuthenticationController authenticationController;
 
-    @GetMapping()
-    public String profile(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        model.addAttribute("user", authenticationController.getUserFromSession(session));
-        return "user/profile";
+    @GetMapping("{userId}")
+    public String viewProfile(@PathVariable Integer userId, Model model) {
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
+            return "user/profile";
+        } else {
+            return "redirect:../";
+        }
+
     }
 
     @GetMapping("/add-dog")
-    public String displayAddDogForm(Model model) {
+    public String displayAddDogForm(@RequestParam Integer userId, Model model, HttpServletRequest request) {
+        Optional<User> result = userRepository.findById(userId);
+        User user = result.get();
+        UserDogDTO userDog = new UserDogDTO();
+        userDog.setUser(user);
         model.addAttribute(new Dog());
+        model.addAttribute("userDog", userDog);
         model.addAttribute("types", DogTemperament.values());
         model.addAttribute("activityLevels", DogActivity.values());
         return "user/add-dog";
     }
 
     @PostMapping("/add-dog")
-    public String processCreateDogForm(@ModelAttribute @Valid Dog newDog,
+    public String processCreateDogForm(@ModelAttribute @Valid UserDogDTO userDog, Dog newDog,
                                          Errors errors, Model model) {
-        if(errors.hasErrors()) {
+
+        if(!errors.hasErrors()) {
+            User user = userDog.getUser();
+            Dog dog = userDog.getDog();
+            if (!user.getDogs().contains(dog)){
+                user.addDog(dog);
+                userRepository.save(user);
+            }
             model.addAttribute("types", DogTemperament.values());
             model.addAttribute("activityLevels", DogActivity.values());
             return "user/add-dog";
         }
-
         dogRepository.save(newDog);
         return "redirect:/user";
     }

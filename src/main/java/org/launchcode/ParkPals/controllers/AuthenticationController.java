@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -121,8 +122,11 @@ public class AuthenticationController {
         }
 
         setUserInSession(request.getSession(), theUser);
+        HttpSession session = request.getSession();
+        User user = getUserFromSession(session);
+        model.addAttribute("userId", user.getId());
 
-        return "redirect:/user";
+        return "redirect:/user/" + user.getId();
     }
 
     @GetMapping("/logout")

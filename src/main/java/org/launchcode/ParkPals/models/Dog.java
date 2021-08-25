@@ -84,4 +84,5 @@ public class Dog extends AbstractEntity {
     public User getUser() {
         return user;
     }
+
 }
