@@ -32,7 +32,7 @@ public class ProfileController {
     private AuthenticationController authenticationController;
 
     @GetMapping("{userId}")
-    public String viewProfile(@PathVariable Integer userId, Model model) {
+    public String viewProfileById(@PathVariable Integer userId, Model model) {
         Optional optUser = userRepository.findById(userId);
         if (optUser.isPresent()) {
             User user = (User) optUser.get();
@@ -41,39 +41,39 @@ public class ProfileController {
         } else {
             return "redirect:../";
         }
-
     }
 
-    @GetMapping("/add-dog")
-    public String displayAddDogForm(@RequestParam Integer userId, Model model, HttpServletRequest request) {
+
+
+    @GetMapping("{userId}/add-dog")
+    public String displayAddDogForm(@PathVariable Integer userId, Model model) {
         Optional<User> result = userRepository.findById(userId);
         User user = result.get();
-        UserDogDTO userDog = new UserDogDTO();
-        userDog.setUser(user);
         model.addAttribute(new Dog());
-        model.addAttribute("userDog", userDog);
         model.addAttribute("types", DogTemperament.values());
         model.addAttribute("activityLevels", DogActivity.values());
+        model.addAttribute("user", user);
+        UserDogDTO userDog = new UserDogDTO();
+        userDog.setUser(user);
+        model.addAttribute("userDog", userDog);
         return "user/add-dog";
     }
 
-    @PostMapping("/add-dog")
-    public String processCreateDogForm(@ModelAttribute @Valid UserDogDTO userDog, Dog newDog,
-                                         Errors errors, Model model) {
-
-        if(!errors.hasErrors()) {
-            User user = userDog.getUser();
-            Dog dog = userDog.getDog();
-            if (!user.getDogs().contains(dog)){
-                user.addDog(dog);
-                userRepository.save(user);
-            }
+    @PostMapping("{userId}/add-dog")
+    public String processCreateDogForm(@PathVariable Integer userId, @ModelAttribute @Valid Dog newDog, UserDogDTO userDog,
+                                       Errors errors, Model model) {
+        Optional<User> result = userRepository.findById(userId);
+        User user = result.get();
+        if(errors.hasErrors()) {
             model.addAttribute("types", DogTemperament.values());
             model.addAttribute("activityLevels", DogActivity.values());
-            return "user/add-dog";
+            return "redirect:/user/" + user.getId();
         }
+        user.addDog(newDog);
         dogRepository.save(newDog);
-        return "redirect:/user";
+        userRepository.save(user);
+        model.addAttribute("user", user);
+        return "user/profile";
     }
 
 

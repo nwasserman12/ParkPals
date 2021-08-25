@@ -27,8 +27,8 @@ public class Dog extends AbstractEntity {
     @NotNull
     private DogTemperament type;
 
-    @ManyToOne
-    private User user;
+    @ManyToMany(mappedBy = "dogs")
+    private final List<User> users = new ArrayList<>();
 
     public Dog(String name, String breed, int age, DogActivity activity, DogTemperament type) {
         this.name = name;
@@ -81,8 +81,8 @@ public class Dog extends AbstractEntity {
         this.type = type;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUsers() {
+        return users;
     }
 
 }
