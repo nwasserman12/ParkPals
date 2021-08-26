@@ -11,6 +11,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 public class WebAppConfig implements WebMvcConfigurer {
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
+    }
+
     // Create spring-managed object to allow the app to access our filter
     @Bean
     public AuthenticationFilter authenticationFilter() {
