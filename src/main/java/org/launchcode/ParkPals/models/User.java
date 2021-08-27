@@ -25,6 +25,7 @@ public class User extends AbstractEntity {
     private int age;
 
     @NotNull
+    @NumberFormat
     private int zipCode;
 
     private String bio;
