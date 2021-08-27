@@ -16,7 +16,6 @@ public class RegisterFormDTO extends LoginFormDTO {
     private String lastName;
 
     @NotNull
-    @NumberFormat
     private int age;
 
     @NotNull
