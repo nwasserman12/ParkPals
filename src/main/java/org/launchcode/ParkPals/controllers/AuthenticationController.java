@@ -84,8 +84,11 @@ public class AuthenticationController {
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getFirstName(), registerFormDTO.getLastName(), registerFormDTO.getAge(), registerFormDTO.getZipCode());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
+        HttpSession session = request.getSession();
+        User user = getUserFromSession(session);
+        model.addAttribute("userId", user.getId());
 
-        return "user/profile";
+        return "redirect:/user/" + user.getId();
     }
 
     @GetMapping("/login")
