@@ -6,6 +6,8 @@ import org.launchcode.ParkPals.models.Dog;
 import org.launchcode.ParkPals.models.DogActivity;
 import org.launchcode.ParkPals.models.DogTemperament;
 import org.launchcode.ParkPals.models.User;
+import org.launchcode.ParkPals.models.dto.EditFormDTO;
+import org.launchcode.ParkPals.models.dto.LoginFormDTO;
 import org.launchcode.ParkPals.models.dto.UserDogDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -78,10 +80,9 @@ public class ProfileController {
     }
 
     @GetMapping("{userId}/edit")
-    public String displayEditForm(@PathVariable Integer userId, Model model){
-        Optional<User> result = userRepository.findById(userId);
-        User user = result.get();
-
+    public String displayEditForm(Model model){
+        model.addAttribute(new EditFormDTO());
+        model.addAttribute("title", "Edit Profile");
         return "user/edit";
     }
 
