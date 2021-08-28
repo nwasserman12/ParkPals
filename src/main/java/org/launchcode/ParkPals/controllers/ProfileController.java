@@ -77,5 +77,13 @@ public class ProfileController {
         return "user/profile";
     }
 
+    @GetMapping("{userId}/edit")
+    public String displayEditForm(@PathVariable Integer userId, Model model){
+        Optional<User> result = userRepository.findById(userId);
+        User user = result.get();
+        return "user/edit";
+    }
+
+
 
 }
