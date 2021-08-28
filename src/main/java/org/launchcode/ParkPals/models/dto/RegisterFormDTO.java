@@ -21,6 +21,9 @@ public class RegisterFormDTO extends LoginFormDTO {
     @NotNull
     private int zipCode;
 
+    @Size(max=500, message = "Must not exceed 500 characters")
+    private String bio;
+
     private String verifyPassword;
 
     public String getFirstName() {
@@ -53,6 +56,14 @@ public class RegisterFormDTO extends LoginFormDTO {
 
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public String getVerifyPassword() {
