@@ -87,11 +87,19 @@ public class ProfileController {
     }
 
     //TODO: Post mapping
-//    @PostMapping("{userId}/edit")
-//    public String processEditForm(){
-//        return "user/profile";
-//    }
-
+    @PostMapping("{userId}/edit")
+    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request,
+                                  Model model){
+        Optional<User> result = userRepository.findById(userId);
+        User user = result.get();
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Edit Profile");
+            return "user/edit";
+        }
+        userRepository.save(user);
+        model.addAttribute("user", user);
+        return "user/profile";
+    }
 
 
 }
