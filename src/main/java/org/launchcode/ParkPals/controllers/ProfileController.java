@@ -31,6 +31,14 @@ public class ProfileController {
     @Autowired
     private AuthenticationController authenticationController;
 
+    @GetMapping
+    public String userProfile(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute("user", user);
+        return "user/profile";
+    }
+
 
     @GetMapping("{userId}")
     public String viewProfileById(@PathVariable Integer userId, Model model) {
