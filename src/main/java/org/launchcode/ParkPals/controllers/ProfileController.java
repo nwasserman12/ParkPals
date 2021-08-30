@@ -6,6 +6,8 @@ import org.launchcode.ParkPals.models.Dog;
 import org.launchcode.ParkPals.models.DogActivity;
 import org.launchcode.ParkPals.models.DogTemperament;
 import org.launchcode.ParkPals.models.User;
+import org.launchcode.ParkPals.models.dto.EditFormDTO;
+import org.launchcode.ParkPals.models.dto.LoginFormDTO;
 import org.launchcode.ParkPals.models.dto.UserDogDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -90,6 +92,7 @@ public class ProfileController {
         return "user/profile";
     }
 
+
     @GetMapping("{userId}/dog/{dogId}")
     public String viewDogProfileById(@PathVariable Integer userId, @PathVariable Integer dogId, Model model) {
         Optional optUser = userRepository.findById(userId);
@@ -108,6 +111,28 @@ public class ProfileController {
         } else {
             return "redirect:../";
         }
+
+    @GetMapping("{userId}/edit")
+    public String displayEditForm(Model model){
+        model.addAttribute(new EditFormDTO());
+        model.addAttribute("title", "Edit Profile");
+        return "user/edit";
+    }
+
+    //TODO: Post mapping
+    @PostMapping("{userId}/edit")
+    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request,
+                                  Model model){
+        Optional<User> result = userRepository.findById(userId);
+        User user = result.get();
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Edit Profile");
+            return "user/edit";
+        }
+        userRepository.save(user);
+        model.addAttribute("user", user);
+        return "user/profile";
+
     }
 
 }
