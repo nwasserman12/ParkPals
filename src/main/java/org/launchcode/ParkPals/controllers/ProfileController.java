@@ -71,10 +71,31 @@ public class ProfileController {
             return "redirect:/user/" + user.getId();
         }
         user.addDog(newDog);
+        newDog.addUser(user);
         dogRepository.save(newDog);
         userRepository.save(user);
         model.addAttribute("user", user);
         return "user/profile";
+    }
+
+    @GetMapping("{userId}/dog/{dogId}")
+    public String viewDogProfileById(@PathVariable Integer userId, @PathVariable Integer dogId, Model model) {
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            Optional optDog = dogRepository.findById(dogId);
+            User user = (User) optUser.get();
+            if(optDog.isPresent() && !user.getDogs().contains(optDog)) {
+                Dog dog = (Dog) optDog.get();
+                model.addAttribute("dog", dog);
+                model.addAttribute("user", user);
+                return "user/dog-profile";
+            } else {
+                return "redirect:../";
+            }
+
+        } else {
+            return "redirect:../";
+        }
     }
 
 

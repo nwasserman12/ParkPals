@@ -40,7 +40,8 @@
                             <h5 class="labels">Dogs</h5>
                             <table class="table table-striped">
                                 <tr th:each="dog : ${user.dogs}">
-                                    <td><a th:href="'/user/?dogId=' + ${dog.id}" th:text="${dog.name}"></a></td>
+                                    <td><a th:href="@{/user/{userId}/dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" th:text="${dog.name}"></a></td>
+
                                 </tr>
                             </table>
                         </div>

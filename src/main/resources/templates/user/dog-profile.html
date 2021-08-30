@@ -2,37 +2,39 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: nav"></nav>
-<body>
+<body style="background-color: #ACACAC">
 
-<div class="container">
-    <div class="jumbotron"><img src="https://bootsnipp.com/bootstrap-builder/libs/builder/icons/image.svg" height="128" width="128" style="">
-        <h1 class="display-3" style="text-align: center;">Jumbotron heading</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p></p>
-        <div class="container" style=""></div>
-        <div class="row" style="border: 1px dashed rgb(66, 133, 244); text-decoration-line: none;"><div class="col-sm-4">
-            <h5 style="padding-top: 5px; padding-bottom: 0px; height: 20px;">Age</h5>
-            <p class="lead"></p><p class="lead" style="padding-top: 0px;">${dog.age}</p>
-        </div>
-        <div class="col-sm-4 col-5">
-            <h5 style="height: 24px; font-weight: 600; padding-top: 5px; padding-bottom: 5px;">Activity Level</h5>
-            <p class="lead" style="padding-bottom: 1px; padding-top: 5px;">${dog.activity}</p>
-        </div>
-        <div class="col-sm-4" style="text-decoration-color: rgb(255, 255, 255);"><h5 contenteditable="true" spellcheckker="false" style="padding-top: 5px;">Temperament</h5>
-            <p class="lead">${dog.type}</p>
-        </div>
-        </div>
-    </div>
-
-    <div class="row marketing">
-        <div class="col-lg-6">
-            <div class="card-body" style="text-align: center;">
-                <h4 class="card-title" style="text-align: center;">Card title</h4>
-                <a href="#" class="btn btn-outline-dark" style="text-align: center; float: none;">Go somewhere</a>
+<div class="page-holder bg-cover" style="padding: 20px;">
+    <div class="container rounded bg-white mt-3 mb-3">
+        <div class="row text-center">
+            <div class="jumbotron">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5 mt-3" style="text-align: center;"><i class="fas fa-dog" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i></div>
+                <h1 class="display-3" style="text-align: center;" th:text="${dog.name}">Dog Name</h1>
+                <p class="lead" style="font-size: 30px;" th:text="${dog.breed}">Dog Breed</p>
+                <div class="container" style=""></div>
+                <div class="row border border-4 mx-3">
+                    <div class="col-sm-4">
+                        <h5 style="padding-top: 5px; padding-bottom: 0px; height: 20px;">Age</h5>
+                        <p class="lead"></p><p class="lead" style="padding-top: 0px;" th:text="${dog.age} + ' Year(s) Old'">Age</p>
+                    </div>
+                    <div class="col-sm-4 col-5">
+                        <h5 style="height: 24px; font-weight: 600; padding-top: 5px; padding-bottom: 5px;">Activity Level</h5>
+                        <p class="lead" style="padding-bottom: 1px; padding-top: 5px;" th:text="${dog.activity}">Activity Level</p>
+                    </div>
+                    <div class="col-sm-4" style="text-decoration-color: rgb(255, 255, 255);"><h5 contenteditable="true" spellcheckker="false" style="padding-top: 5px;">Temperament</h5>
+                        <p class="lead" th:text="${dog.type}">Temperament</p>
+                    </div>
+                </div>
+                <div class="card-body" style="text-align: center;">
+                    <h4 class="card-title" style="text-align: center;" th:text="'Owner: ' + ${dog.users[0].username}">Owner</h4>
+                    <a th:href="@{/user/{id}(id=${user.id})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Visit Profile</a>
+                </div>
             </div>
         </div>
     </div>
 
 </div>
+
+
 </body>
 </html>
