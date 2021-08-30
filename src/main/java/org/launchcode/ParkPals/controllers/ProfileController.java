@@ -98,7 +98,7 @@ public class ProfileController {
         if (optUser.isPresent()) {
             Optional optDog = dogRepository.findById(dogId);
             User user = (User) optUser.get();
-            if(optDog.isPresent() && !user.getDogs().contains(optDog)) {
+            if (optDog.isPresent() && !user.getDogs().contains(optDog)) {
                 Dog dog = (Dog) optDog.get();
                 model.addAttribute("dog", dog);
                 model.addAttribute("user", user);
@@ -110,29 +110,29 @@ public class ProfileController {
         } else {
             return "redirect:../";
         }
-
-    @GetMapping("{userId}/edit")
-    public String displayEditForm(Model model){
-        model.addAttribute(new EditFormDTO());
-        model.addAttribute("title", "Edit Profile");
-        return "user/edit";
     }
 
-    //TODO: Post mapping
-    @PostMapping("{userId}/edit")
-    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request,
-                                  Model model){
-        Optional<User> result = userRepository.findById(userId);
-        User user = result.get();
-        if (errors.hasErrors()) {
+        @GetMapping("{userId}/edit")
+        public String displayEditForm (Model model){
+            model.addAttribute(new EditFormDTO());
             model.addAttribute("title", "Edit Profile");
             return "user/edit";
         }
-        userRepository.save(user);
-        model.addAttribute("user", user);
-        return "user/profile";
 
-    }
+        //TODO: Post mapping
+        @PostMapping("{userId}/edit")
+        public String processEditForm (@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO
+        editFormDTO, Errors errors, HttpServletRequest request,
+                Model model){
+            Optional<User> result = userRepository.findById(userId);
+            User user = result.get();
+            if (errors.hasErrors()) {
+                model.addAttribute("title", "Edit Profile");
+                return "user/edit";
+            }
+            userRepository.save(user);
+            model.addAttribute("user", user);
+            return "user/profile";
 
-
+        }
 }
