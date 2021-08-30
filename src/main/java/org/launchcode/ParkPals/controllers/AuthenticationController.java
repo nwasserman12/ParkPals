@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -83,8 +84,11 @@ public class AuthenticationController {
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getFirstName(), registerFormDTO.getLastName(), registerFormDTO.getAge(), registerFormDTO.getZipCode());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
+        HttpSession session = request.getSession();
+        User user = getUserFromSession(session);
+        model.addAttribute("userId", user.getId());
 
-        return "redirect:";
+        return "redirect:/user/" + user.getId();
     }
 
     @GetMapping("/login")
@@ -121,8 +125,11 @@ public class AuthenticationController {
         }
 
         setUserInSession(request.getSession(), theUser);
+        HttpSession session = request.getSession();
+        User user = getUserFromSession(session);
+        model.addAttribute("userId", user.getId());
 
-        return "redirect:";
+        return "redirect:/user/" + user.getId();
     }
 
     @GetMapping("/logout")

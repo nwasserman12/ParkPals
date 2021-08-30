@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -24,15 +25,16 @@ public class User extends AbstractEntity {
     private int age;
 
     @NotNull
+    @NumberFormat
     private int zipCode;
 
     private String bio;
   
     @ManyToMany
-    private List<Dog> dogs = new ArrayList<>();
+    private final List<Dog> dogs = new ArrayList<>();
 
     @ManyToMany
-    private List<Park> parks = new ArrayList<>();
+    private final List<Park> parks = new ArrayList<>();
 
     @NotNull
     @Size(min = 2, message = "Username is required.")

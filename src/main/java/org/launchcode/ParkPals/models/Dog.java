@@ -40,7 +40,7 @@ public class Dog extends AbstractEntity {
 
     public Dog() {}
 
-  
+
     public String getName() {
         return name;
     }
@@ -56,7 +56,7 @@ public class Dog extends AbstractEntity {
     public void setBreed(String breed) {
         this.breed = breed;
     }
-  
+
     public int getAge() {
         return age;
     }
@@ -84,4 +84,5 @@ public class Dog extends AbstractEntity {
     public List<User> getUsers() {
         return users;
     }
+
 }
