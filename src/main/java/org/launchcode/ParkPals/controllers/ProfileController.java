@@ -33,25 +33,36 @@ public class ProfileController {
     @Autowired
     private AuthenticationController authenticationController;
 
+    @GetMapping
+    public String userProfile(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute("user", user);
+        return "user/profile";
+    }
+
 
     @GetMapping("{userId}")
-    public String viewProfileById(@PathVariable Integer userId, Model model) {
+    public String viewProfileById(@PathVariable Integer userId, Model model, HttpServletRequest request) {
         Optional optUser = userRepository.findById(userId);
+        HttpSession session = request.getSession();
+        User loggedUser = authenticationController.getUserFromSession(session);
         if (optUser.isPresent()) {
             User user = (User) optUser.get();
             model.addAttribute("user", user);
+            model.addAttribute("loggedUser", loggedUser);
             return "user/profile";
         } else {
-            return "redirect:../";
+            return "redirect:/";
         }
     }
 
 
 
-    @GetMapping("{userId}/add-dog")
-    public String displayAddDogForm(@PathVariable Integer userId, Model model) {
-        Optional<User> result = userRepository.findById(userId);
-        User user = result.get();
+    @GetMapping("add-dog")
+    public String displayAddDogForm(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
         model.addAttribute(new Dog());
         model.addAttribute("types", DogTemperament.values());
         model.addAttribute("activityLevels", DogActivity.values());
@@ -62,22 +73,43 @@ public class ProfileController {
         return "user/add-dog";
     }
 
-    @PostMapping("{userId}/add-dog")
-    public String processCreateDogForm(@PathVariable Integer userId, @ModelAttribute @Valid Dog newDog, UserDogDTO userDog,
-                                       Errors errors, Model model) {
-        Optional<User> result = userRepository.findById(userId);
-        User user = result.get();
+    @PostMapping("add-dog")
+    public String processAddDogForm(@ModelAttribute @Valid Dog newDog, UserDogDTO userDog,
+                                       Errors errors, Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
         if(errors.hasErrors()) {
             model.addAttribute("types", DogTemperament.values());
             model.addAttribute("activityLevels", DogActivity.values());
             return "redirect:/user/" + user.getId();
         }
         user.addDog(newDog);
+        newDog.addUser(user);
         dogRepository.save(newDog);
         userRepository.save(user);
         model.addAttribute("user", user);
         return "user/profile";
     }
+
+
+    @GetMapping("{userId}/dog/{dogId}")
+    public String viewDogProfileById(@PathVariable Integer userId, @PathVariable Integer dogId, Model model) {
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            Optional optDog = dogRepository.findById(dogId);
+            User user = (User) optUser.get();
+            if(optDog.isPresent() && !user.getDogs().contains(optDog)) {
+                Dog dog = (Dog) optDog.get();
+                model.addAttribute("dog", dog);
+                model.addAttribute("user", user);
+                return "user/dog-profile";
+            } else {
+                return "redirect:../";
+            }
+
+        } else {
+            return "redirect:../";
+        }
 
     @GetMapping("{userId}/edit")
     public String displayEditForm(Model model){
@@ -99,6 +131,7 @@ public class ProfileController {
         userRepository.save(user);
         model.addAttribute("user", user);
         return "user/profile";
+
     }
 
 
