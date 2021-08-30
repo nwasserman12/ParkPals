@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-3 border-right text-center px-5 my-5">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5"><i class="fas fa-user-circle" style="font-size: 100px;"></i></div>
-                <a class="btn btn-primary btn-lg" th:href="@{/user/{id}/add-dog(id=${user.id})}" role="button">Add Dog</a>
+                <div th:if="${loggedUser == user}"><a class="btn btn-primary btn-lg" th:href="@{/user/add-dog}" role="button">Add Dog</a></div>
             </div>
             <div class="col-md-5 border-right">
                 <div class="p-3 py-5">
@@ -40,7 +40,8 @@
                             <h5 class="labels">Dogs</h5>
                             <table class="table table-striped">
                                 <tr th:each="dog : ${user.dogs}">
-                                    <td><a th:href="'/user/?dogId=' + ${dog.id}" th:text="${dog.name}"></a></td>
+                                    <td><a th:href="@{/user/{userId}/dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" th:text="${dog.name}"></a></td>
+
                                 </tr>
                             </table>
                         </div>
