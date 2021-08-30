@@ -46,10 +46,10 @@ public class ProfileController {
 
 
 
-    @GetMapping("{userId}/add-dog")
-    public String displayAddDogForm(@PathVariable Integer userId, Model model) {
-        Optional<User> result = userRepository.findById(userId);
-        User user = result.get();
+    @GetMapping("add-dog")
+    public String displayAddDogForm(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
         model.addAttribute(new Dog());
         model.addAttribute("types", DogTemperament.values());
         model.addAttribute("activityLevels", DogActivity.values());
@@ -60,11 +60,11 @@ public class ProfileController {
         return "user/add-dog";
     }
 
-    @PostMapping("{userId}/add-dog")
-    public String processCreateDogForm(@PathVariable Integer userId, @ModelAttribute @Valid Dog newDog, UserDogDTO userDog,
-                                       Errors errors, Model model) {
-        Optional<User> result = userRepository.findById(userId);
-        User user = result.get();
+    @PostMapping("add-dog")
+    public String processAddDogForm(@ModelAttribute @Valid Dog newDog, UserDogDTO userDog,
+                                       Errors errors, Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
         if(errors.hasErrors()) {
             model.addAttribute("types", DogTemperament.values());
             model.addAttribute("activityLevels", DogActivity.values());
