@@ -1,12 +1,9 @@
 package org.launchcode.ParkPals.models.dto;
 
-import org.springframework.format.annotation.NumberFormat;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class RegisterFormDTO extends LoginFormDTO {
-
+public class EditFormDTO {
     @NotNull
     @Size(min=1, max=30, message = "First name is required.")
     private String firstName;
@@ -23,8 +20,6 @@ public class RegisterFormDTO extends LoginFormDTO {
 
     @Size(max=500, message = "Must not exceed 500 characters")
     private String bio;
-
-    private String verifyPassword;
 
     public String getFirstName() {
         return firstName;
@@ -64,14 +59,6 @@ public class RegisterFormDTO extends LoginFormDTO {
 
     public void setBio(String bio) {
         this.bio = bio;
-    }
-
-    public String getVerifyPassword() {
-        return verifyPassword;
-    }
-
-    public void setVerifyPassword(String verifyPassword) {
-        this.verifyPassword = verifyPassword;
     }
 
 }
