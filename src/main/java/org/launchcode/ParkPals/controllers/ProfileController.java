@@ -41,14 +41,17 @@ public class ProfileController {
 
 
     @GetMapping("{userId}")
-    public String viewProfileById(@PathVariable Integer userId, Model model) {
+    public String viewProfileById(@PathVariable Integer userId, Model model, HttpServletRequest request) {
         Optional optUser = userRepository.findById(userId);
+        HttpSession session = request.getSession();
+        User loggedUser = authenticationController.getUserFromSession(session);
         if (optUser.isPresent()) {
             User user = (User) optUser.get();
             model.addAttribute("user", user);
+            model.addAttribute("loggedUser", loggedUser);
             return "user/profile";
         } else {
-            return "redirect:../";
+            return "redirect:/";
         }
     }
 
