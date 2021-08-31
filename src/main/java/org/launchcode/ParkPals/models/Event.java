@@ -33,12 +33,13 @@ public class Event extends AbstractEntity {
     @ElementCollection
     private List<User> attendees = new ArrayList<>();
 
-    public Event(String name, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament) {
+    public Event(String name, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament, List<User> attendees) {
         this.name = name;
         this.park = park;
         this.date = date;
         this.desiredActivity = desiredActivity;
         this.desiredTemperament = desiredTemperament;
+        this.attendees = attendees;
     }
 
     public Event() {}

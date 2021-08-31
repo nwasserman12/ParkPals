@@ -34,7 +34,7 @@ public class User extends AbstractEntity {
     private final List<Dog> dogs = new ArrayList<>();
 
     @OneToMany
-    private final List<Event> userEvents = new ArrayList<>();
+    private final List<Event> events = new ArrayList<>();
 
     @NotNull
     @Size(min = 2, message = "Username is required.")
@@ -108,6 +108,14 @@ public class User extends AbstractEntity {
 
     public void addDog(Dog dog) {
         this.dogs.add(dog);
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void addEvents(Event event) {
+        this.events.add(event);
     }
 
     public boolean isMatchingPassword(String password) {

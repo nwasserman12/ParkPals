@@ -1,11 +1,9 @@
 package org.launchcode.ParkPals.controllers;
 
 import org.launchcode.ParkPals.data.DogRepository;
+import org.launchcode.ParkPals.data.EventRepository;
 import org.launchcode.ParkPals.data.UserRepository;
-import org.launchcode.ParkPals.models.Dog;
-import org.launchcode.ParkPals.models.DogActivity;
-import org.launchcode.ParkPals.models.DogTemperament;
-import org.launchcode.ParkPals.models.User;
+import org.launchcode.ParkPals.models.*;
 import org.launchcode.ParkPals.models.dto.EditFormDTO;
 import org.launchcode.ParkPals.models.dto.LoginFormDTO;
 import org.launchcode.ParkPals.models.dto.UserDogDTO;
@@ -30,6 +28,9 @@ public class ProfileController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
 
     @Autowired
     private AuthenticationController authenticationController;
@@ -132,6 +133,34 @@ public class ProfileController {
         model.addAttribute("user", user);
         return "user/profile";
 
+    }
+
+    @GetMapping("create-event")
+    public String displayCreateEventForm(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute(new Event());
+        model.addAttribute("types", DogTemperament.values());
+        model.addAttribute("activityLevels", DogActivity.values());
+        model.addAttribute("user", user);
+        return "event/create-event";
+    }
+
+    @PostMapping("create-event")
+    public String processCreateEventForm(@ModelAttribute @Valid Event newEvent,
+                                    Errors errors, Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        if(errors.hasErrors()) {
+            model.addAttribute("types", DogTemperament.values());
+            model.addAttribute("activityLevels", DogActivity.values());
+            return "redirect:/user/create-event";
+        }
+        user.addEvents(newEvent);
+        newEvent.addAttendees(user);
+        eventRepository.save(newEvent);
+        model.addAttribute("user", user);
+        return "redirect:/home";
     }
 
 }
