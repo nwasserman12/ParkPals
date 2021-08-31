@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: nav"></nav>
+<body style="background-color: #ACACAC">
+
+<div class="page-holder bg-cover" style="padding: 20px;">
+    <div class="container rounded bg-white mt-3 mb-3">
+        <div class="container-fluid my-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered ">
+                        <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Park
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                # of Attendees
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="table-stripped" th:each="event : ${events}">
+                            <td>Id</td>
+                            <td>Name</td>
+                            <td>Park</td>
+                            <td>Date</td>
+                            <td># of Attendees</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

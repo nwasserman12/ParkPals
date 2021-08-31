@@ -2,12 +2,58 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: nav"></nav>
-<body>
-<div style="background-color: #ACACAC" class="page-holder bg-cover">
-    <div class="container text-center text-black py-5">
-        <h1 class="py-5">Profile</h1>
-        <a class="btn btn-primary btn-lg" href="add-dog" role="button">Add Dog</a>
+<body style="background-color: #ACACAC" >
+<div class="page-holder bg-cover" style="padding: 20px;">
+    <div class="container rounded bg-white mt-3 mb-3">
+        <div class="row">
+            <div class="col-md-3 border-right text-center px-5 my-5">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><i class="fas fa-user-circle" style="font-size: 100px;"></i></div>
+
+                <div th:if="${loggedUser == user}"><a class="btn btn-primary btn-lg" th:href="@{/user/add-dog}" role="button">Add Dog</a></div>
+                <a class="btn btn-primary btn-lg" th:href="@{/user/{id}/edit(id=${user.id})}" role="button">Edit Profile</a>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="text-right" th:text="${user.username}"></h3>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <h5 class="labels">Name</h5>
+                            <p th:text="${user.firstName + ' ' + user.lastName}"></p>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="labels">Age</h5>
+                            <p th:text="${user.age}"></p>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="labels">Zip Code</h5>
+                            <p th:text="${user.zipCode}"></p>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <h5 class="labels">Bio</h5>
+                            <p th:text="${user.bio}"></p>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <h5 class="labels">Dogs</h5>
+                            <table class="table table-striped">
+                                <tr th:each="dog : ${user.dogs}">
+                                    <td><a th:href="@{/user/{userId}/dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" th:text="${dog.name}"></a></td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+</div>
 
 </div>
 </body>
