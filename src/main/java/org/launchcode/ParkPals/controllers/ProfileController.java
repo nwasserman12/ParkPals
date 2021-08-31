@@ -33,7 +33,7 @@ public class ProfileController {
     @Autowired
     private AuthenticationController authenticationController;
 
-    @GetMapping
+    @GetMapping("profile")
     public String userProfile(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -98,7 +98,7 @@ public class ProfileController {
         if (optUser.isPresent()) {
             Optional optDog = dogRepository.findById(dogId);
             User user = (User) optUser.get();
-            if(optDog.isPresent() && !user.getDogs().contains(optDog)) {
+            if (optDog.isPresent() && !user.getDogs().contains(optDog)) {
                 Dog dog = (Dog) optDog.get();
                 model.addAttribute("dog", dog);
                 model.addAttribute("user", user);
@@ -110,6 +110,7 @@ public class ProfileController {
         } else {
             return "redirect:../";
         }
+    }
 
     @GetMapping("{userId}/edit")
     public String displayEditForm(Model model){
@@ -128,6 +129,11 @@ public class ProfileController {
             model.addAttribute("title", "Edit Profile");
             return "user/edit";
         }
+        user.setFirstName(editFormDTO.getFirstName());
+        user.setLastName(editFormDTO.getLastName());
+        user.setAge(editFormDTO.getAge());
+        user.setZipCode(editFormDTO.getZipCode());
+        user.setBio(editFormDTO.getBio());
         userRepository.save(user);
         model.addAttribute("user", user);
         return "user/profile";
