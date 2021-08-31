@@ -108,9 +108,9 @@ public class ProfileController {
                 return "redirect:../";
             }
 
-        } else {
-            return "redirect:../";
         }
+        return "redirect:../";
+    }
 
     @GetMapping("{userId}/edit")
     public String displayEditForm(Model model){
@@ -121,8 +121,7 @@ public class ProfileController {
 
     //TODO: Post mapping
     @PostMapping("{userId}/edit")
-    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request,
-                                  Model model){
+    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request, Model model){
         Optional<User> result = userRepository.findById(userId);
         User user = result.get();
         if (errors.hasErrors()) {
