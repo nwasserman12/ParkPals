@@ -33,8 +33,8 @@ public class User extends AbstractEntity {
     @ManyToMany
     private final List<Dog> dogs = new ArrayList<>();
 
-    @ManyToMany
-    private final List<Park> parks = new ArrayList<>();
+    @OneToMany
+    private final List<Event> userEvents = new ArrayList<>();
 
     @NotNull
     @Size(min = 2, message = "Username is required.")
@@ -106,16 +106,8 @@ public class User extends AbstractEntity {
         return dogs;
     }
 
-    public List<Park> getParks() {
-        return parks;
-    }
-
     public void addDog(Dog dog) {
         this.dogs.add(dog);
-    }
-
-    public void addPark(Park park) {
-        this.parks.add(park);
     }
 
     public boolean isMatchingPassword(String password) {
