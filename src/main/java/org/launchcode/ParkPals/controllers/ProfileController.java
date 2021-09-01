@@ -110,6 +110,7 @@ public class ProfileController {
             }
 
         }
+
         return "redirect:../";
     }
 
@@ -119,7 +120,7 @@ public class ProfileController {
         model.addAttribute("title", "Edit Profile");
         return "user/edit";
     }
-git ad
+
     @PostMapping("{userId}/edit")
     public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request, Model model){
         Optional<User> result = userRepository.findById(userId);
@@ -167,4 +168,5 @@ git ad
         return "redirect:/home";
     }
 
+  
 }
