@@ -90,7 +90,7 @@ public class ProfileController {
         dogRepository.save(newDog);
         userRepository.save(user);
         model.addAttribute("user", user);
-        return "user/profile";
+        return "redirect:/user/{userId}/edit(userId=${user.getId()})";
     }
 
 
@@ -114,18 +114,20 @@ public class ProfileController {
     }
 
     @GetMapping("{userId}/edit")
-    public String displayEditForm(Model model){
+    public String displayEditForm(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
         model.addAttribute(new EditFormDTO());
-        model.addAttribute("title", "Edit Profile");
+        model.addAttribute("user", user);
         return "user/edit";
     }
-git ad
+
     @PostMapping("{userId}/edit")
     public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request, Model model){
         Optional<User> result = userRepository.findById(userId);
         User user = result.get();
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Edit Profile");
+            model.addAttribute("user", user);
             return "user/edit";
         }
         user.setFirstName(editFormDTO.getFirstName());
@@ -135,36 +137,10 @@ git ad
         user.setBio(editFormDTO.getBio());
         userRepository.save(user);
         model.addAttribute("user", user);
-        return "user/profile";
-
+        return "redirect:/user/{userId}";
     }
 
-    @GetMapping("create-event")
-    public String displayCreateEventForm(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User user = authenticationController.getUserFromSession(session);
-        model.addAttribute(new Event());
-        model.addAttribute("types", DogTemperament.values());
-        model.addAttribute("activityLevels", DogActivity.values());
-        model.addAttribute("user", user);
-        return "event/create-event";
-    }
 
-    @PostMapping("create-event")
-    public String processCreateEventForm(@ModelAttribute @Valid Event newEvent,
-                                    Errors errors, Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User user = authenticationController.getUserFromSession(session);
-        if(errors.hasErrors()) {
-            model.addAttribute("types", DogTemperament.values());
-            model.addAttribute("activityLevels", DogActivity.values());
-            return "redirect:/user/create-event";
-        }
-        user.addEvents(newEvent);
-        newEvent.addAttendees(user);
-        eventRepository.save(newEvent);
-        model.addAttribute("user", user);
-        return "redirect:/home";
-    }
+
 
 }
