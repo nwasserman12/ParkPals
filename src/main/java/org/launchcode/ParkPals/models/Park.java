@@ -1,7 +1,8 @@
 package org.launchcode.ParkPals.models;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ public class Park extends AbstractEntity {
     @Size(min = 2, max = 500)
     private String description;
 
-    @ManyToMany(mappedBy = "parks")
-    private final List<User> users = new ArrayList<>();
+    @OneToMany
+    private List<Event> events;
 
     public Park(String name, String location, String description) {
         super();
@@ -58,7 +59,11 @@ public class Park extends AbstractEntity {
         this.description = description;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void addEvents(Event event) {
+        this.events.add(event);
     }
 }

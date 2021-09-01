@@ -1,11 +1,9 @@
 package org.launchcode.ParkPals.controllers;
 
 import org.launchcode.ParkPals.data.DogRepository;
+import org.launchcode.ParkPals.data.EventRepository;
 import org.launchcode.ParkPals.data.UserRepository;
-import org.launchcode.ParkPals.models.Dog;
-import org.launchcode.ParkPals.models.DogActivity;
-import org.launchcode.ParkPals.models.DogTemperament;
-import org.launchcode.ParkPals.models.User;
+import org.launchcode.ParkPals.models.*;
 import org.launchcode.ParkPals.models.dto.EditFormDTO;
 import org.launchcode.ParkPals.models.dto.LoginFormDTO;
 import org.launchcode.ParkPals.models.dto.UserDogDTO;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -31,9 +30,12 @@ public class ProfileController {
     private UserRepository userRepository;
 
     @Autowired
+    private EventRepository eventRepository;
+
+    @Autowired
     private AuthenticationController authenticationController;
 
-    @GetMapping
+    @GetMapping("profile")
     public String userProfile(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -107,32 +109,64 @@ public class ProfileController {
                 return "redirect:../";
             }
 
-        } else {
-            return "redirect:../";
         }
+
+        return "redirect:../";
     }
 
-        @GetMapping("{userId}/edit")
-        public String displayEditForm (Model model){
-            model.addAttribute(new EditFormDTO());
+    @GetMapping("{userId}/edit")
+    public String displayEditForm(Model model){
+        model.addAttribute(new EditFormDTO());
+        model.addAttribute("title", "Edit Profile");
+        return "user/edit";
+    }
+
+    @PostMapping("{userId}/edit")
+    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request, Model model){
+        Optional<User> result = userRepository.findById(userId);
+        User user = result.get();
+        if (errors.hasErrors()) {
             model.addAttribute("title", "Edit Profile");
             return "user/edit";
         }
+        user.setFirstName(editFormDTO.getFirstName());
+        user.setLastName(editFormDTO.getLastName());
+        user.setAge(editFormDTO.getAge());
+        user.setZipCode(editFormDTO.getZipCode());
+        user.setBio(editFormDTO.getBio());
+        userRepository.save(user);
+        model.addAttribute("user", user);
+        return "user/profile";
 
-        //TODO: Post mapping
-        @PostMapping("{userId}/edit")
-        public String processEditForm (@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO
-        editFormDTO, Errors errors, HttpServletRequest request,
-                Model model){
-            Optional<User> result = userRepository.findById(userId);
-            User user = result.get();
-            if (errors.hasErrors()) {
-                model.addAttribute("title", "Edit Profile");
-                return "user/edit";
-            }
-            userRepository.save(user);
-            model.addAttribute("user", user);
-            return "user/profile";
+    }
 
+    @GetMapping("create-event")
+    public String displayCreateEventForm(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute(new Event());
+        model.addAttribute("types", DogTemperament.values());
+        model.addAttribute("activityLevels", DogActivity.values());
+        model.addAttribute("user", user);
+        return "event/create-event";
+    }
+
+    @PostMapping("create-event")
+    public String processCreateEventForm(@ModelAttribute @Valid Event newEvent,
+                                    Errors errors, Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        if(errors.hasErrors()) {
+            model.addAttribute("types", DogTemperament.values());
+            model.addAttribute("activityLevels", DogActivity.values());
+            return "redirect:/user/create-event";
         }
+        user.addEvents(newEvent);
+        newEvent.addAttendees(user);
+        eventRepository.save(newEvent);
+        model.addAttribute("user", user);
+        return "redirect:/home";
+    }
+
+  
 }
