@@ -124,8 +124,8 @@ public class ProfileController {
 
     @PostMapping("{userId}/edit")
     public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request, Model model){
-        Optional<User> result = userRepository.findById(userId);
-        User user = result.get();
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
         if (errors.hasErrors()) {
             model.addAttribute("user", user);
             return "user/edit";
