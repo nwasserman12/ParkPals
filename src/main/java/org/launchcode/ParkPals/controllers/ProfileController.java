@@ -114,17 +114,17 @@ public class ProfileController {
         return "redirect:../";
     }
 
-    @GetMapping("edit-dog")
-    public String displayEditDogForm(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User user = authenticationController.getUserFromSession(session);
-        model.addAttribute("types", DogTemperament.values());
-        model.addAttribute("activityLevels", DogActivity.values());
-        model.addAttribute("user", user);
-        UserDogDTO userDog = new UserDogDTO();
-        model.addAttribute("userDog", userDog);
-        return "user/edit-dog";
-    }
+//    @GetMapping("edit-dog")
+//    public String displayEditDogForm(Model model, HttpServletRequest request) {
+//        HttpSession session = request.getSession();
+//        User user = authenticationController.getUserFromSession(session);
+//        model.addAttribute("types", DogTemperament.values());
+//        model.addAttribute("activityLevels", DogActivity.values());
+//        model.addAttribute("user", user);
+//        UserDogDTO userDog = new UserDogDTO();
+//        model.addAttribute("userDog", userDog);
+//        return "user/edit-dog";
+//    }
 
     @GetMapping("{userId}/edit")
     public String displayEditForm(Model model){
