@@ -11,7 +11,7 @@
             Create Event
             <i class="fas fa-dog" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
         </h1>
-        <form th:action="@{user/home/results}" method = "post">
+        <form th:action="@{user/results}" method = "post">
             <h2>Find Park:</h2>
             <p class="lead">Pick a location for your event!</p>
             <div class="input-group">
@@ -37,9 +37,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="table-stripped" th:each="event : ${events}">
-                        <td>Name</td>
-                        <td>Location</td>
+                    <tr class="table-stripped" th:each="event : ${results}">
+                        <td th:text="event.name">Name</td>
+                        <td th:text="event.formatted_address">Location</td>
                     </tr>
                     </tbody>
                 </table>

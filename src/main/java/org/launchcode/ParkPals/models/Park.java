@@ -1,15 +1,15 @@
 package org.launchcode.ParkPals.models;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Park extends AbstractEntity {
+
+    private static final String URL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog%20parks%20in%20{zipCode}&type=park";
 
     @NotBlank(message = "What is the name of the park?")
     @Size(min = 2, max = 50)
@@ -66,4 +66,6 @@ public class Park extends AbstractEntity {
     public void addEvents(Event event) {
         this.events.add(event);
     }
+
+
 }

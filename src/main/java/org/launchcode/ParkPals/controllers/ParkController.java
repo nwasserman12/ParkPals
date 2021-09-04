@@ -1,9 +1,10 @@
 package org.launchcode.ParkPals.controllers;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Controller;
 
-@RequestMapping("/parks")
+@Controller
 public class ParkController {
+
 
 }

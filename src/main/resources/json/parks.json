@@ -1,0 +1,995 @@
+{
+  "html_attributions": [],
+  "next_page_token": "Aap_uEBYwM64e_b3Pa3tx6Pd2_CHJgSiQbqledYvJmmfBDa8knIMKuq4vOhzI0hnkcftpJrgDllyM2KaUZslRuhPtoamcOumRZZEiAaDETdXi33TGhDOwWnU-8MaGqvpTQ6o0KB42oPzIW6DmokcITTWkH5B02I12mZurrwNkk8U7HdBpreTrg3NVB8fTK3qczjrnmU47rsEmi6IPUUFCYF3rjPYp7jHYcOA7QGWTg-IN6Z3-aSErMg2D4x_8yasF0Q6zfs3MMcOXeGaL7YI7U0C_NM2dHPBXUMg8EjXqh-RSrAZzHWayB75vafJDDvs0z_rp7mezojiCDOp6872KzfTroEaMaqMjwFMcvIY2W3J5yaWEIMylDHSx918gJQLVxuBNlXqnC5lIkNMrfUQdPlBhsgTIelQ-g",
+  "results": [
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "7351 Hampton Ave, St. Louis, MO 63109, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.5731717,
+          "lng": -90.30512200000001
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.57442677989272,
+            "lng": -90.30357132010728
+          },
+          "southwest": {
+            "lat": 38.57172712010728,
+            "lng": -90.30627097989273
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Southwest City Dog Park (Members Only)",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/114971910982409182995\">Omar Packard</a>"
+          ],
+          "photo_reference": "Aap_uEDJGeQjcYyra6PDZfvC689hiYqrz4akWulwoMukW_sgLH_xjbdPBtcFdmjV84nzLa8BrNwftAB6pEdYn7cIhsBTqukfFUw1AOVF2MnmLaK5HRTV-m6RlzBAeEHqm7mxrbY1F7qVCYD66r12X7dyrEPmKtlC63xxOVakIOpCYjw0Hh1L",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJnck47APK2IcRwweqa_uONBc",
+      "plus_code": {
+        "compound_code": "HMFV+7X St. Louis, Missouri",
+        "global_code": "86CFHMFV+7X"
+      },
+      "rating": 4.5,
+      "reference": "ChIJnck47APK2IcRwweqa_uONBc",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 138
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "11333 St John Church Rd, St. Louis, MO 63123, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.5140033,
+          "lng": -90.3378692
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.51551682989272,
+            "lng": -90.33647007010728
+          },
+          "southwest": {
+            "lat": 38.51281717010728,
+            "lng": -90.33916972989272
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "St. Johns Community Dog Park",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 1138,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/110201073586122621233\">A Google User</a>"
+          ],
+          "photo_reference": "Aap_uEA-SgmB2GvJYx8HrpmOhDJVQ9n26g8Eka5el1Wh_v3JJ9bsunJW-SMcORil1drpqnbJi8sWXfhLbjOpvFhMggc6jNVrbSjdZJ0wBBcLJZ_igpxgU97cWU64TWZBax7oTEroDhX23VYZfCR-FzugLwjXs0G-A1TuSjvjricTMYcM3PTy",
+          "width": 1375
+        }
+      ],
+      "place_id": "ChIJ7SSbIqzJ2IcRqU5rauACqmg",
+      "plus_code": {
+        "compound_code": "GM76+JV St. Louis, Missouri",
+        "global_code": "86CFGM76+JV"
+      },
+      "rating": 4.7,
+      "reference": "ChIJ7SSbIqzJ2IcRqU5rauACqmg",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 55
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "7200 Hampton Ave, St. Louis, MO 63109, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.5733606,
+          "lng": -90.30392139999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.57476857989273,
+            "lng": -90.30263112010728
+          },
+          "southwest": {
+            "lat": 38.57206892010728,
+            "lng": -90.30533077989271
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Willmore Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 5312,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/114211190782701821856\">Nikki Digar</a>"
+          ],
+          "photo_reference": "Aap_uED6AEmS6YxjYnO_ctxG3e8JbzA9TWhd_OoamKj13iaBUsn2TQEtWUpir1GiMfuWfdVrN1VkLntWaKmKtpJBxtJxlRh3nOcpuGKCyhjbb1RNXV5eVnzuNR1s47ujWttdZv781vMTpUZzWuEc0RUcFHtgPu4JzY1N4mM3NU4j28uo0oqS",
+          "width": 2988
+        }
+      ],
+      "place_id": "ChIJi1G7W1S02IcRaPjGHOZx6Ts",
+      "plus_code": {
+        "compound_code": "HMFW+8C St. Louis, Missouri",
+        "global_code": "86CFHMFW+8C"
+      },
+      "rating": 4.5,
+      "reference": "ChIJi1G7W1S02IcRaPjGHOZx6Ts",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 1030
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "12343 Eddie And Park Rd, St. Louis, MO 63127, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.5459159,
+          "lng": -90.39988389999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.54721952989272,
+            "lng": -90.39857282010728
+          },
+          "southwest": {
+            "lat": 38.54451987010728,
+            "lng": -90.40127247989271
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Kitun Park (Membership Only)",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 4032,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/104903329332441397006\">Saul Robinson</a>"
+          ],
+          "photo_reference": "Aap_uECj4cpBblelV6yjQHmXubSpQKHmZd75p_ipTwrVhLF5ztYyRXjukfLVTJb9JUXGJ6WDHU6iwFIs8nKuw1RBqJJkQoou4KjHumBqcQJnKnhCaRkEpwW2jVgnzS18LCM0WVlHn4J8_v26r2LMSFNuOY3XbF81KFUOeEiDL0jIVAY20rUk",
+          "width": 3024
+        }
+      ],
+      "place_id": "ChIJUQ-F6ezO2IcR6T2OhTacplE",
+      "plus_code": {
+        "compound_code": "GJW2+92 St. Louis, Missouri",
+        "global_code": "86CFGJW2+92"
+      },
+      "rating": 4.4,
+      "reference": "ChIJUQ-F6ezO2IcR6T2OhTacplE",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 40
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "5705 S Lindbergh Blvd, St. Louis, MO 63123, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.5196062,
+          "lng": -90.3527725
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.52095547989273,
+            "lng": -90.35114987010728
+          },
+          "southwest": {
+            "lat": 38.51825582010729,
+            "lng": -90.35384952989271
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Bohrer County Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111410410935705702327\">Alex Fischer</a>"
+          ],
+          "photo_reference": "Aap_uEB1egG99p6d48dXKGBb4NMzh-HKKBZFQsGb7ZnrUT9Ft2XJD_jZW7-vIgEAvvpDF9XL9zPiLYjhG2roLh_jFE09Ulc4yrXzPbP3feqwWAwyYEb9KRNSMcbMQe3MGm5fz_j_wZFDfUJ4IA3-IUh15vJFxcUNJq7BHxY9caWdwjGDsFdb",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJw1kQlebI2IcRNjlDUg9QshU",
+      "plus_code": {
+        "compound_code": "GJ9W+RV St. Louis, Missouri",
+        "global_code": "86CFGJ9W+RV"
+      },
+      "rating": 4.4,
+      "reference": "ChIJw1kQlebI2IcRNjlDUg9QshU",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 327
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "4359 Chouteau Ave, St. Louis, MO 63110, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.630056,
+          "lng": -90.2576936
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.63132697989272,
+            "lng": -90.25637187010729
+          },
+          "southwest": {
+            "lat": 38.62862732010728,
+            "lng": -90.25907152989272
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Forest Park members only Southeast Dog Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 4160,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/116052434554209974694\">Mike Wiegenstein</a>"
+          ],
+          "photo_reference": "Aap_uEB5U_AJUhm8QCnVouWZPR6LKWmftllRuc3oqOdraQjtT-bGlc7mPOXhH6xZZHu6YJSgOAFBqGrPCndwaHNMLfHZ3P-_Ow0om1geGyHpp3jHC-kRFB4ioYkXFvgZoLuyTlFIihv0szd95iUycfnuUZGqu2IJ-q7gsQ8rvIi9AxnlnCi4",
+          "width": 3120
+        }
+      ],
+      "place_id": "ChIJHfN2-R212IcRhOtLhPMQr_k",
+      "plus_code": {
+        "compound_code": "JPJR+2W St. Louis, Missouri",
+        "global_code": "86CFJPJR+2W"
+      },
+      "rating": 3.9,
+      "reference": "ChIJHfN2-R212IcRhOtLhPMQr_k",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 55
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "7351 Hampton Ave, St. Louis, MO 63116, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.567128,
+          "lng": -90.29583099999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.56850587989272,
+            "lng": -90.29438812010727
+          },
+          "southwest": {
+            "lat": 38.56580622010728,
+            "lng": -90.29708777989272
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Willmore Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2340,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113581472427416301214\">Rae Cailliach</a>"
+          ],
+          "photo_reference": "Aap_uEBmWxipCyu0VjHYI_fx_G3ksQu29eTbfsALF-FLi82Mmni6_5WWflwopr3akITN28JuY4e5Hsv4wyO1KXWdp3LxqxkNt16uFzMxzaGhLwTAupMzRIwISYdXCD8x-LFc4tsHUEnhQR8cEWLkchVoygOJPeB7FVgfurYfS3uPKrC1IUcX",
+          "width": 4160
+        }
+      ],
+      "place_id": "ChIJPxE-wQC22IcR13K2qtggtOY",
+      "plus_code": {
+        "compound_code": "HP83+VM St. Louis, Missouri",
+        "global_code": "86CFHP83+VM"
+      },
+      "rating": 4.4,
+      "reference": "ChIJPxE-wQC22IcR13K2qtggtOY",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 35
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "2499 Marshall Rd, St. Louis, MO 63122, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.555473,
+          "lng": -90.45997699999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.55672732989272,
+            "lng": -90.45859362010728
+          },
+          "southwest": {
+            "lat": 38.55402767010727,
+            "lng": -90.46129327989273
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Treecourt Unleashed Dog Adventure Park | Dog Park | (Registration Required)",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 425,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/101047348183521242717\">Treecourt Unleashed Dog Adventure Park</a>"
+          ],
+          "photo_reference": "Aap_uECqtd6z8Ba5IgcS6O3QsS7Ek3-jzkBQwdtgO9QOtobZPfV5sUJnwLJpTfF0dtDBmmR2jEmnSpouMPQRVo5sUfikSArVRWBcqTD0YPuTQMfkAuflf6iZPXLYdEtLmFX5JEvmF0pYA_bsc_cMY4UbZNykI023yPEt5FmoVhKucnLiiXbw",
+          "width": 720
+        }
+      ],
+      "place_id": "ChIJ7_QohO_R2IcRYpjuLBrQwPQ",
+      "plus_code": {
+        "compound_code": "HG4R+52 St. Louis, Missouri",
+        "global_code": "86CFHG4R+52"
+      },
+      "rating": 4.4,
+      "reference": "ChIJ7_QohO_R2IcRYpjuLBrQwPQ",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 133
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "4101 Cleveland Ave, St. Louis, MO 63110, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.6117381,
+          "lng": -90.2515851
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.61297577989271,
+            "lng": -90.25025212010728
+          },
+          "southwest": {
+            "lat": 38.61027612010727,
+            "lng": -90.25295177989271
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Shaw Membership Only Dog Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2988,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/114394596812753994412\">Kimberly Lowell</a>"
+          ],
+          "photo_reference": "Aap_uEB_g_5ZmRHgmOhhZScXLjDBqDYdzZyGEHxA64hIDoaU0NgdeLjUMjd6Heg-bFJQGWUVKfDM14I-P_TmQKz6o-ogMOD9Bywe1KptMyjzRI4qF8G6ilpIKktkbhO7tJiaqPI0xHynqLFdRkAjm4qbDM6WBipZsXBkcVx0ebRf8Ny6HPZb",
+          "width": 5312
+        }
+      ],
+      "place_id": "ChIJ43rcT3G12IcRN6W5mgYLDd4",
+      "plus_code": {
+        "compound_code": "JP6X+M9 St. Louis, Missouri",
+        "global_code": "86CFJP6X+M9"
+      },
+      "rating": 4.1,
+      "reference": "ChIJ43rcT3G12IcRN6W5mgYLDd4",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 15
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "2301-2499 Ohio Ave, St. Louis, MO 63104, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.6076943,
+          "lng": -90.2257853
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.60922747989272,
+            "lng": -90.22459262010727
+          },
+          "southwest": {
+            "lat": 38.60652782010727,
+            "lng": -90.22729227989272
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Fox Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 9248,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/112154247812973475555\">A Google User</a>"
+          ],
+          "photo_reference": "Aap_uEAHKFvnBiipPvl8muSaidVx9jnAXXtZ--YFbpgacWS-NEvERiXVWwSB-SlfzMtT2oteJ0r6z4iAbxpJuMItsfQyV8KIXzO0A2vPcG1OA9-bAaFmfgraSvFInnchd4bD1QlMdMIds8rHWbpyq1f9yLoBdJiry9rAsd00wRxPRc2yTWge",
+          "width": 6936
+        }
+      ],
+      "place_id": "ChIJu90dDn-02IcR5lyjbVKSdgk",
+      "plus_code": {
+        "compound_code": "JQ5F+3M St. Louis, Missouri",
+        "global_code": "86CFJQ5F+3M"
+      },
+      "rating": 4.3,
+      "reference": "ChIJu90dDn-02IcR5lyjbVKSdgk",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 200
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "9801 Green Park Rd, St. Louis, MO 63123, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.5304833,
+          "lng": -90.33836479999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.53171385000001,
+            "lng": -90.33765455
+          },
+          "southwest": {
+            "lat": 38.52679164999999,
+            "lng": -90.34049555
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Officer Blake C. Snyder Memorial Park",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/108532975419171655072\">Scott Long</a>"
+          ],
+          "photo_reference": "Aap_uEBVnOqvkg4JkbsKinKKcjtloULlZcz9YsZ_DIPzoZ_XBI_Ysr3R2cjUzhWtz_zIDlEB5ifjBMYPcVno_Iwh2g35n4uWOPuZ9enBk8v-u5dqKgY_mLCwuuYJ5ONua_uRVld_mllu34icJvEFqjrAVgsdGu5KyKYsfcb4QiMG_JVdmI5C",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJq1AohADJ2IcRgdLxTCQr83A",
+      "plus_code": {
+        "compound_code": "GMJ6+5M St. Louis, Missouri",
+        "global_code": "86CFGMJ6+5M"
+      },
+      "rating": 4.6,
+      "reference": "ChIJq1AohADJ2IcRgdLxTCQr83A",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 466
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "4444 Spring Dr, Affton, MO 63123, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.5433811,
+          "lng": -90.3033966
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.54489532989273,
+            "lng": -90.30188517010728
+          },
+          "southwest": {
+            "lat": 38.54219567010728,
+            "lng": -90.30458482989272
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "County Ohlendorf Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/104441968380603589592\">jatiearney</a>"
+          ],
+          "photo_reference": "Aap_uEC3U3vz0hPvaM7FAMUobvmDNEFsb3ThKTVw1cimiftgJVG7m1CG5L93bDEJNgu2uPeePjHmO_5h5Iud4qkopIxKG0LjSlPRCdpl1TvptnfFGf-qjWn3BN4lsdHEyRpd6Df5qt2SBS21JzDcp4j3DgQdGPWi6bAg0-MBsngcV_qZS6Ch",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJ0VpZut7J2IcR5_Uh1gZAwa8",
+      "plus_code": {
+        "compound_code": "GMVW+9J Affton, Missouri",
+        "global_code": "86CFGMVW+9J"
+      },
+      "rating": 4.3,
+      "reference": "ChIJ0VpZut7J2IcR5_Uh1gZAwa8",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 118
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "St Charles St & 13th Street, St. Louis, MO 63103, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.6314342,
+          "lng": -90.19929879999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.63278402989272,
+            "lng": -90.19794897010728
+          },
+          "southwest": {
+            "lat": 38.63008437010727,
+            "lng": -90.20064862989271
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Lucas Dog Park (membership only)",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111160531212215284440\">Jin Zou</a>"
+          ],
+          "photo_reference": "Aap_uEAr1UzElSzWzdLeIAGZXj05BhHIKAaUEqyw41lcAaU5wY3YqG-wQ3jvwt-vt-ca_vuLvqG_Td-sGhTMxyXgGPTEObDGCmEHBwNrGQcOm0vWaKIragdFvcA3-LXDDx_hFRLcWVS9vqFXalR5bsgmZF-4WlmSKchogcme0XLsv-juJON4",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJAQy4KBaz2IcRn7vbh1xVKWI",
+      "plus_code": {
+        "compound_code": "JRJ2+H7 St. Louis, Missouri",
+        "global_code": "86CFJRJ2+H7"
+      },
+      "rating": 3.5,
+      "reference": "ChIJAQy4KBaz2IcRn7vbh1xVKWI",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 50
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Pernod Ave & Jamieson Avenue, St. Louis, MO 63139, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.5967699,
+          "lng": -90.3073971
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.59811972989272,
+            "lng": -90.30604727010729
+          },
+          "southwest": {
+            "lat": 38.59542007010728,
+            "lng": -90.30874692989272
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Lindenwood Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113748937160269029540\">A Google User</a>"
+          ],
+          "photo_reference": "Aap_uECKWMWkGk-WNWKnZomej_dOg2Ti2XFh92eBiVgqAVZC7QTCYgTi2sSNhQFljq392ytf3OTIVQQHJ0r7473JIMzzdKyevyBjwyijB8XA0UWB483ByLpj-N_3uR3HeyAlE0vFU5fd6H1Prn6mw2NrELQQhGjvDgBt6MJ_vDjFCHiKR3hQ",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJsRnxuXHK2IcRFw0VOWwO_9s",
+      "plus_code": {
+        "compound_code": "HMWV+P2 St. Louis, Missouri",
+        "global_code": "86CFHMWV+P2"
+      },
+      "rating": 4.6,
+      "reference": "ChIJsRnxuXHK2IcRFw0VOWwO_9s",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 229
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "1675 S Mason Rd, St. Louis, MO 63131, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.611562,
+          "lng": -90.487962
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.61291182989273,
+            "lng": -90.48661217010728
+          },
+          "southwest": {
+            "lat": 38.61021217010729,
+            "lng": -90.48931182989273
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Tails & Trails Dog Park at Queeny Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/106381698248811456269\">Gabriel Murphy</a>"
+          ],
+          "photo_reference": "Aap_uEB-fcZAlUNVZyTX-a__w2S1nLvtqrGAkGHQoYAUTsLWE1xMy5LHjG67jdZEDwzvhRAv_w1QYn-uGCESjMJSBzQY6rbduyRJT8iA9eG-xid_R1i0e49N4-zEMSG50ELSyo9_bchJB4rp9uvn5D1sizW7JdMcrONURIgWvBS7lDd37oo",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJJ3AQvirT2IcR2uVFcX4Oeus",
+      "plus_code": {
+        "compound_code": "JG66+JR St. Louis, Missouri",
+        "global_code": "86CFJG66+JR"
+      },
+      "rating": 4.4,
+      "reference": "ChIJJ3AQvirT2IcR2uVFcX4Oeus",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 61
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "8301 Mathilda Ave, Affton, MO 63123, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.56060799999999,
+          "lng": -90.31226199999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.56196017989272,
+            "lng": -90.31093357010728
+          },
+          "southwest": {
+            "lat": 38.55926052010728,
+            "lng": -90.31363322989273
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Mathilda Welmering Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/116192680241336416745\">Horacio Trejo</a>"
+          ],
+          "photo_reference": "Aap_uEBnvHC-4oS6JuHXYVw3upLY6VH1MgTfMJpZySIVPUp5ZUdjB4netjlPnbs6Y7XQLFa_9i9-Et0i4vZzH8829kaVEP_13QGBCFtmUtslL9Lzhk7F4uSZMdGyAAkM1I3Za4m_VOOI5E14wClyiZ7MQ-jwLKzyrpmXzfhVR0bsFR3TqYk",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJ8SlqdPHJ2IcRZjnPJXQzYsE",
+      "plus_code": {
+        "compound_code": "HM6Q+63 Affton, Missouri",
+        "global_code": "86CFHM6Q+63"
+      },
+      "rating": 4.3,
+      "reference": "ChIJ8SlqdPHJ2IcRZjnPJXQzYsE",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 138
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "St. Louis, MO 63123, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.5397079,
+          "lng": -90.31280919999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.54075922989272,
+            "lng": -90.31147487010728
+          },
+          "southwest": {
+            "lat": 38.53805957010727,
+            "lng": -90.31417452989272
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "St. George Park",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 2620,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113096674498369043865\">A Google User</a>"
+          ],
+          "photo_reference": "Aap_uEAf2TU-5yZAMELAYl-PW0fXq10RepzDyPOpuWKLIV9IVeXGfIhUq8nFpEoGRj64rWnLigmAGEkVftmTwAXOvsSa3Iq-ovtHMLtALY40Q0n73_SJ5t_8SjveUc1DfzFEIyo0aHk69-dj-8Q0llSGS657mGDlS5qI1drZ-F8Cr7GOTJjY",
+          "width": 4656
+        }
+      ],
+      "place_id": "ChIJTVso1rLJ2IcRaX5zptxI4Tw",
+      "plus_code": {
+        "compound_code": "GMQP+VV St. Louis, Missouri",
+        "global_code": "86CFGMQP+VV"
+      },
+      "rating": 4,
+      "reference": "ChIJTVso1rLJ2IcRaX5zptxI4Tw",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 9
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "1 N Grand Blvd, St. Louis, MO 63103, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.6373649,
+          "lng": -90.2322042
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.63879047989272,
+            "lng": -90.23105782010728
+          },
+          "southwest": {
+            "lat": 38.63609082010728,
+            "lng": -90.23375747989272
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "SLU Dog Park & Sculpture Garden",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2448,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/107085785256847560745\">German Sanchez</a>"
+          ],
+          "photo_reference": "Aap_uEDHT_SWCuvH-IoaOWekLt-L28kOucYC3RgsuDQ-eVFV6lLOqQrcnd6eFpvBtZ_JFFNt5ok1nojSf6KVMO8-5Hel-3x01aGr4Gx2xtaFGiZsi7fZK5sUSdEHcMX9lGFeN0MnNSuBMKmK2PjeVp-Wmd92n93YdPXhU25OihDEFMdRdQR_",
+          "width": 3264
+        }
+      ],
+      "place_id": "ChIJ4-58m6S02IcRkeGFU6mNDH8",
+      "plus_code": {
+        "compound_code": "JQP9+W4 St. Louis, Missouri",
+        "global_code": "86CFJQP9+W4"
+      },
+      "rating": 3.9,
+      "reference": "ChIJ4-58m6S02IcRkeGFU6mNDH8",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 124
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "236 Fannie Ave, St. Louis, MO 63125, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.5417873,
+          "lng": -90.27261449999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.54261522989272,
+            "lng": -90.27162847010726
+          },
+          "southwest": {
+            "lat": 38.53991557010728,
+            "lng": -90.27432812989271
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Lemay Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 1520,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/108615310430668679266\">Jonathan Corbett</a>"
+          ],
+          "photo_reference": "Aap_uEAKyzPquWymHNTdOrBu1erAVnwSq500KFr9BfbsfkFHysmqpBl03E7OQDxXHZjcwOKe501ZMSRZ2D3HbgsMO2CNAING6aUofAIt9HwsjMLJYL8KFd9u7mWPuVW8errLnn-eB3KqBGJ_v7iaNlIH5crMCvxkP7FiAfWz_Ow3eqovnAQn",
+          "width": 2688
+        }
+      ],
+      "place_id": "ChIJOR3xl0S22IcRXNk8HVXkvf0",
+      "plus_code": {
+        "compound_code": "GPRG+PX St. Louis, Missouri",
+        "global_code": "86CFGPRG+PX"
+      },
+      "rating": 4.1,
+      "reference": "ChIJOR3xl0S22IcRXNk8HVXkvf0",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 280
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "8754 Brentshire Walk, Brentwood, MO 63144, United States",
+      "geometry": {
+        "location": {
+          "lat": 38.6102949,
+          "lng": -90.34734979999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 38.61181912989272,
+            "lng": -90.34594327010727
+          },
+          "southwest": {
+            "lat": 38.60911947010728,
+            "lng": -90.34864292989272
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Norm West Brentwood Dog Park",
+      "place_id": "ChIJCfzh2SvL2IcRIBF2TXTu8-E",
+      "plus_code": {
+        "compound_code": "JM63+43 Brentwood, Missouri",
+        "global_code": "86CFJM63+43"
+      },
+      "rating": 4,
+      "reference": "ChIJCfzh2SvL2IcRIBF2TXTu8-E",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 1
+    }
+  ],
+  "status": "OK"
+}
