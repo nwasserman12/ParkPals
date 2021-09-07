@@ -19,9 +19,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'mysql:mysql-connector-java'
 	implementation 'org.springframework.security:spring-security-crypto'
-	implementation 'mysql:mysql-connector-java'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.projectlombok:lombok:1.18.18'
+	annotationProcessor 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'com.google.maps:google-maps-services:0.19.0'
+	implementation 'org.slf4j:slf4j-simple:2.0.0-alpha5'
+
+
 }
 
 test {

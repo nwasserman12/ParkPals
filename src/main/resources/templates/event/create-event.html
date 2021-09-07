@@ -23,7 +23,7 @@
                 <p class="error" th:errors="${event.park}"></p>
             </div>
             <div class="form-floating mb-3">
-                <input th:field="${event.date}" class="form-control" id="age" type="text" placeholder="Age"/>
+                <input th:field="${event.date}" class="form-control" id="age" type="date" placeholder="Age"/>
                 <label for="age">Date</label>
                 <p class="error" th:errors="${event.date}"></p>
             </div>
@@ -46,8 +46,12 @@
                 <label for="activityLevel">Desired Activity Level</label>
             </div>
             <div class="form-floating mb-3" >
-                <input class="form-check-input" type="checkbox" th:field="${event.attendees}" th:each="dog : ${user.dogs}" th:text="${dog.name}" th:value="${dog}">
-                <label for="activityLevel">Included dogs</label>
+                <ul>
+                    <li th:each="dog : ${user.dogs}">
+                        <input class="form-check-input" type="checkbox" th:value="${dog}" name="Attendees" />
+                        <label th:text="${dog}"></label>
+                    </li>
+                </ul>
             </div>
             <div class="d-grid">
                 <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Create Event</button>

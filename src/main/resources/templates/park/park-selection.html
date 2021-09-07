@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: nav"></nav>
+
+<body style="background-color: #ACACAC">
+<div class="page-holder bg-cover" style="padding: 20px;">
+    <div class="container px-5 my-5 text-center">
+        <h1 class="cursive-5" style="font-family: 'Lobster', cursive; color: crimson; -webkit-text-stroke: 2px crimson; letter-spacing: 6px; font-size: 75px; ">
+            <i class="fas fa-dog" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
+            Create Event
+            <i class="fas fa-dog" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
+        </h1>
+        <form method = "post">
+            <h2>Find Park:</h2>
+            <p class="lead">Pick a location for your event!</p>
+            <div class="input-group">
+                <div class="form-outline">
+                    <input type="text" name="searchTerm" id="searchTerm" />
+                </div>
+                <button type="submit" value="Search" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered ">
+                    <thead>
+                    <tr>
+                        <th>
+                            Create Event
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Location
+                        </th>
+                        <th>
+                            Rating
+                        </th>
+                        <th>
+                            Total Ratings
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table-stripped" th:each="park : ${results}">
+                        <td><a class="btn btn-primary btn-lg" th:href="@{/user/{userid}/create-event(userId=${user.id})}" role="button">Create</a></td>
+                        <td><a th:href="@{~/park/{placeId}/details(placeId=${park.getPlaceId()})}" th:text="${park.name}"></a></td>
+                        <td th:text="${park.formattedAddress}">Location</td>
+                        <td th:text="${park.rating}">Rating(?/5)</td>
+                        <td th:text="${park.userRatingsTotal}">Total Ratings</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

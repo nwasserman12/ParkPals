@@ -24,13 +24,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{~/user/home}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{~/user/{userId}(userId=${user.id})}">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Create Event</a>
+                    <a class="nav-link" th:href="@{~/user/{userId}(userId=${#session.getAttribute('userId')})}">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Parks</a>

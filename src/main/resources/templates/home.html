@@ -7,6 +7,18 @@
 <div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container rounded bg-white mt-3 mb-3">
         <div class="container-fluid my-5">
+            <form th:action="@{user/home/results}" method = "post">
+                <h2>Events:</h2>
+                <div class="input-group">
+                    <div class="form-outline">
+                        <input type="search" class="form-control" />
+
+                    </div>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered ">
@@ -16,13 +28,13 @@
                                 ID
                             </th>
                             <th>
-                                Name
-                            </th>
-                            <th>
-                                Park
-                            </th>
-                            <th>
                                 Date
+                            </th>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Description
                             </th>
                             <th>
                                 # of Attendees
@@ -45,7 +57,5 @@
     </div>
 
 </div>
-
-
 </body>
 </html>

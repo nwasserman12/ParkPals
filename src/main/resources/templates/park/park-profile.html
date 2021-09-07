@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: nav"></nav>
+<body style="background-color: #ACACAC">
+
+<div class="page-holder bg-cover" style="padding: 20px;">
+    <div class="container rounded bg-white mt-3 mb-3">
+        <div class="row text-center">
+            <div class="jumbotron">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5 mt-3" style="text-align: center;"><i class="fas fa-tree" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i></div>
+                <h1 class="display-3" style="text-align: center;" th:text="${park.name}">Park Name</h1>
+                <p class="lead" style="font-size: 30px;" th:text="${park.address}">Park Address</p>
+                <div class="container" style=""></div>
+                <div class="row border border-4 mx-3">
+                    <div class="col-sm-4">
+                        <h5 style="padding-top: 5px; padding-bottom: 0px; height: 20px;">Rating</h5>
+                        <p class="lead"></p><p class="lead" style="padding-top: 0px;" th:text="${park.rating} + '/5'">Rating</p>
+                    </div>
+                    <div class="col-sm-4 col-5">
+                        <h5 style="height: 24px; font-weight: 600; padding-top: 5px; padding-bottom: 5px;">Total Google Ratings</h5>
+                        <p class="lead" style="padding-bottom: 1px; padding-top: 5px;" th:text="${park.userRatingsTotal}">Total Ratings</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" style="text-align: center;">
+                <h4 class="card-title" style="text-align: center;"></h4>
+                <a th:href="@{/parks}" class="btn btn-outline-dark" style="text-align: center; float: none;">Create Event</a>
+                <a th:href="@{/parks}" class="btn btn-outline-dark" style="text-align: center; float: none;">Back</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
