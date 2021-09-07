@@ -39,11 +39,6 @@ public class GooglePlacesController {
         GooglePlacesResult result = objectMapper.readValue(responseBody.string(), GooglePlacesResult.class);
         List<GooglePlacesObject> objects = result.getResults();
 
-//        for(int i = 0; i < result.getResults().size(); i++) {
-//            GooglePlacesObject object_id = objects.indexO;
-//            Park park = new Park();
-//        }
-
         for(GooglePlacesObject park : objects) {
             Park optPark = parkRepository.findByPlaceId(park.getPlaceId());
             if(optPark == null) {

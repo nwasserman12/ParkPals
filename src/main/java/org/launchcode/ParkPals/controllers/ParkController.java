@@ -1,6 +1,7 @@
 package org.launchcode.ParkPals.controllers;
 
 
+import org.launchcode.ParkPals.data.ParkRepository;
 import org.launchcode.ParkPals.models.User;
 import org.launchcode.ParkPals.models.googleplaces.GooglePlacesObject;
 import org.launchcode.ParkPals.models.googleplaces.GooglePlacesResult;
@@ -17,6 +18,9 @@ import java.util.List;
 
 @Controller
 public class ParkController {
+
+    @Autowired
+    private ParkRepository parkRepository;
 
     @Autowired
     private AuthenticationController authenticationController;
@@ -38,6 +42,12 @@ public class ParkController {
         GooglePlacesResult results = googlePlacesController.getParks(searchTerm);
         model.addAttribute("results", results.getResults());
         return "park/park-selection";
+    }
+
+    @GetMapping("park/{placeId}/details")
+    public String displayParkDetails(@PathVariable String placeId, Model model) {
+        model.addAttribute("park", parkRepository.findByPlaceId(placeId));
+        return "park/park-profile";
     }
 
 
