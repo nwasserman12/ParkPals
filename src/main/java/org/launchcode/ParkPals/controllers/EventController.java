@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("create-event")
+@RequestMapping("user")
 public class EventController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class EventController {
     @Autowired
     EventRepository eventRepository;
 
-    @GetMapping("create-event")
+    @GetMapping("{id}/create-event")
     public String displayCreateEventForm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -39,7 +39,7 @@ public class EventController {
         return "event/create-event";
     }
 
-    @PostMapping("create-event")
+    @PostMapping("{id}/create-event")
     public String processCreateEventForm(@ModelAttribute @Valid Event newEvent,
                                          Errors errors, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -50,7 +50,7 @@ public class EventController {
             return "redirect:/user/create-event";
         }
         user.addEvents(newEvent);
-        newEvent.addAttendees(user);
+        newEvent.addUserAttendees(user);
         eventRepository.save(newEvent);
         model.addAttribute("user", user);
         return "redirect:/home";

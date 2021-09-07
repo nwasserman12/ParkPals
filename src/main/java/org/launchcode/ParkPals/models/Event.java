@@ -31,15 +31,18 @@ public class Event extends AbstractEntity {
     private DogTemperament desiredTemperament;
 
     @ElementCollection
-    private List<User> attendees = new ArrayList<>();
+    private List<User> userAttendees = new ArrayList<>();
 
-    public Event(String name, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament, List<User> attendees) {
+    @ElementCollection
+    private List<Dog> dogAttendees = new ArrayList<>();
+
+    public Event(String name, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament, List<Dog> dogAttendees) {
         this.name = name;
         this.park = park;
         this.date = date;
         this.desiredActivity = desiredActivity;
         this.desiredTemperament = desiredTemperament;
-        this.attendees = attendees;
+        this.dogAttendees = dogAttendees;
     }
 
     public Event() {}
@@ -92,11 +95,16 @@ public class Event extends AbstractEntity {
         this.desiredTemperament = desiredTemperament;
     }
 
-    public List<User> getAttendees() {
-        return attendees;
+    public List<User> getUserAttendees() {
+        return userAttendees;
     }
 
-    public void addAttendees(User user) {
-        this.attendees.add(user);
+    public void addUserAttendees(User user) {
+        this.userAttendees.add(user);
     }
+
+    public List<Dog> getDogAttendees() {
+        return dogAttendees;
+    }
+
 }
