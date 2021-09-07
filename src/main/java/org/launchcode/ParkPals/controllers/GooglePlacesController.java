@@ -37,22 +37,21 @@ public class GooglePlacesController {
         ResponseBody responseBody = client.newCall(request).execute().body();
         ObjectMapper objectMapper = new ObjectMapper();
         GooglePlacesResult result = objectMapper.readValue(responseBody.string(), GooglePlacesResult.class);
+        List<GooglePlacesObject> objects = result.getResults();
 
 //        for(int i = 0; i < result.getResults().size(); i++) {
-//            List<GooglePlacesObject> objects = result.getResults();
-//            GooglePlacesObject object_id = objects[i].
+//            GooglePlacesObject object_id = objects.indexO;
 //            Park park = new Park();
 //        }
 
-//        for(GooglePlacesObject park : result.getResults()) {
-//            String placeId = park.getPlaceId();
-//            Park parkByPlaceId = parkRepository.findByPlaceId(placeId);
-//            Park newPark = new Park(park.getBusinessStatus(), park.getPlaceId(), park.getName(), park.getFormattedAddress(), park.getRating(), park.getUserRatingsTotal());
-//            if(parkByPlaceId == null) {
-//                parkRepository.save(newPark);
-//            }
-//
-//        }
+        for(GooglePlacesObject park : objects) {
+            Park optPark = parkRepository.findByPlaceId(park.getPlaceId());
+            if(optPark == null) {
+                Park newPark = new Park(park.getBusinessStatus(), park.getPlaceId(), park.getName(), park.getFormattedAddress(), park.getRating(), park.getUserRatingsTotal());
+                parkRepository.save(newPark);
+            }
+
+        }
         return result;
     }
 }

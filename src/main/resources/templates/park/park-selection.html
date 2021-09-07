@@ -47,7 +47,7 @@
                     </thead>
                     <tbody>
                     <tr class="table-stripped" th:each="park : ${results}">
-                        <td><a class="btn btn-primary btn-lg" th:href="@{/user/{id}/create-event(id=${user.id})}" role="button">Create</a></td>
+                        <td><a class="btn btn-primary btn-lg" th:href="@{/user/{userid}/create-event(userId=${user.id})}" role="button">Create</a></td>
                         <td th:text="${park.name}">Name</td>
                         <td th:text="${park.formattedAddress}">Location</td>
                         <td th:text="${park.rating}">Rating(?/5)</td>
