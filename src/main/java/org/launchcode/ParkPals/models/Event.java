@@ -1,8 +1,12 @@
 package org.launchcode.ParkPals.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,17 +15,17 @@ import java.util.List;
 @Entity
 public class Event extends AbstractEntity {
 
-    @NotNull
-    private String name;
+    @NotBlank(message = "Your event needs a name!")
+    private String title;
 
-    @NotNull
     @ManyToOne
     private User creator;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Park park;
 
-    @NotNull
+    @NotNull(message = "Please enter a date for your event!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     @NotNull
@@ -36,8 +40,8 @@ public class Event extends AbstractEntity {
     @ElementCollection
     private List<Dog> dogAttendees = new ArrayList<>();
 
-    public Event(String name, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament, List<Dog> dogAttendees) {
-        this.name = name;
+    public Event(String title, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament, List<Dog> dogAttendees) {
+        this.title = title;
         this.park = park;
         this.date = date;
         this.desiredActivity = desiredActivity;
@@ -47,12 +51,12 @@ public class Event extends AbstractEntity {
 
     public Event() {}
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public User getCreator() {
@@ -69,6 +73,10 @@ public class Event extends AbstractEntity {
 
     public void setPark(Park park) {
         this.park = park;
+    }
+
+    public String getParkName() {
+        return park.getName();
     }
 
     public Date getDate() {

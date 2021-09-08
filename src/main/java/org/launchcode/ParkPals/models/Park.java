@@ -2,10 +2,13 @@ package org.launchcode.ParkPals.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,8 +26,8 @@ public class Park extends AbstractEntity {
 
     private Integer userRatingsTotal;
 
-    @OneToMany
-    private List<Event> events;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Event> events = new ArrayList<>();
 
     public Park(String businessStatus, String placeId, String name, String address, Integer rating, Integer userRatingsTotal) {
         super();
@@ -62,11 +65,11 @@ public class Park extends AbstractEntity {
         this.events.add(event);
     }
 
-    public String getPlace_id() {
+    public String getPlaceId() {
         return placeId;
     }
 
-    public void setPlace_id(String placeId) {
+    public void setPlaceId(String placeId) {
         this.placeId = placeId;
     }
 

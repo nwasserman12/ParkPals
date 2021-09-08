@@ -12,20 +12,30 @@
                 <div class="input-group">
                     <div class="form-outline">
                         <input type="search" class="form-control" />
-
                     </div>
                     <button type="button" class="btn btn-primary">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
             </form>
+            <a class="btn btn-primary btn-lg" th:href="@{~/user/{userId}/create-event/parks(userId=${#session.getAttribute('userId')})}" role="button">Create Event</a>
+
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered ">
                         <thead>
                         <tr>
                             <th>
+                                +
+                            </th>
+                            <th>
                                 ID
+                            </th>
+                            <th>
+                                Event Creator
+                            </th>
+                            <th>
+                                Park
                             </th>
                             <th>
                                 Date
@@ -34,20 +44,19 @@
                                 Title
                             </th>
                             <th>
-                                Description
-                            </th>
-                            <th>
                                 # of Attendees
                             </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="table-stripped" th:each="event : ${events}">
-                            <td>Id</td>
-                            <td>Name</td>
-                            <td>Park</td>
-                            <td>Date</td>
-                            <td># of Attendees</td>
+                        <tr class="table-stripped" th:each="event : ${event}">
+                            <td><a class="btn btn-primary btn-sml" th:value="${event.getId()}" role="button">+</a></td>
+                            <td th:text="${event.getId()}">Id</td>
+                            <td th:text="${event.getCreator().getUsername()}">Creator Username</td>
+                            <td th:text="${event.getPark()}">Park</td>
+                            <td th:text="${event.getDate()}">Date</td>
+                            <td th:text="${event.getTitle()}">Title</td>
+                            <td th:text="${event.getUserAttendees().size()}"># of Attendees</td>
                         </tr>
                         </tbody>
                     </table>

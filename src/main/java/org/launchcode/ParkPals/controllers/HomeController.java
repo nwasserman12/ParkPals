@@ -1,6 +1,7 @@
 package org.launchcode.ParkPals.controllers;
 
 import org.launchcode.ParkPals.data.EventRepository;
+import org.launchcode.ParkPals.data.ParkRepository;
 import org.launchcode.ParkPals.models.DogActivity;
 import org.launchcode.ParkPals.models.DogTemperament;
 import org.launchcode.ParkPals.models.Event;
@@ -23,9 +24,12 @@ public class HomeController {
     AuthenticationController authenticationController;
 
     @Autowired
+    ParkRepository parkRepository;
+
+    @Autowired
     EventRepository eventRepository;
 
-    @RequestMapping("home")
+    @RequestMapping("{userId}/home")
     public String home(Model model) {
         model.addAttribute("event", eventRepository.findAll());
         return "home";
