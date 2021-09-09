@@ -138,6 +138,7 @@ public class ProfileController {
         user.setBio(editFormDTO.getBio());
         userRepository.save(user);
         model.addAttribute("user", user);
+
         return "redirect:/user/{userId}";
     }
 
