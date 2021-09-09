@@ -3,10 +3,8 @@ package org.launchcode.ParkPals.controllers;
 
 import org.launchcode.ParkPals.data.ParkRepository;
 import org.launchcode.ParkPals.models.User;
-import org.launchcode.ParkPals.models.googleplaces.GooglePlacesObject;
 import org.launchcode.ParkPals.models.googleplaces.GooglePlacesResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,13 +26,16 @@ public class ParkController {
     @Autowired
     private GooglePlacesController googlePlacesController;
 
-    @GetMapping("/parks")
-    public String displayParkSearch(Model model) {
+    @GetMapping("user/{userId}/create-event/parks")
+    public String displayParkSearch(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute("user", user);
 
         return "park/park-selection";
     }
 
-    @PostMapping("/parks")
+    @PostMapping("user/{userId}/create-event/parks")
     public String processParkSearch(@RequestParam String searchTerm, Model model, HttpServletRequest request) throws IOException {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);

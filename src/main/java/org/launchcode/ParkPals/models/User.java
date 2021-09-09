@@ -3,6 +3,7 @@ package org.launchcode.ParkPals.models;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -32,7 +33,7 @@ public class User extends AbstractEntity {
     @ManyToMany
     private final List<Dog> dogs = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private final List<Event> events = new ArrayList<>();
 
     @NotNull

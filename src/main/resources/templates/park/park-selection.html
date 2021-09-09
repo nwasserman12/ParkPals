@@ -14,13 +14,13 @@
         <form method = "post">
             <h2>Find Park:</h2>
             <p class="lead">Pick a location for your event!</p>
-            <div class="input-group">
-                <div class="form-outline">
+            <div>
+                <div class="form-outline text-center">
                     <input type="text" name="searchTerm" id="searchTerm" />
+                    <button type="submit" value="Search" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
-                <button type="submit" value="Search" class="btn btn-primary">
-                    <i class="fas fa-search"></i>
-                </button>
             </div>
         </form>
         <div class="row">
@@ -29,7 +29,7 @@
                     <thead>
                     <tr>
                         <th>
-                            Create Event
+                            Create
                         </th>
                         <th>
                             Name
@@ -47,7 +47,7 @@
                     </thead>
                     <tbody>
                     <tr class="table-stripped" th:each="park : ${results}">
-                        <td><a class="btn btn-primary btn-lg" th:href="@{/user/{userid}/create-event(userId=${user.id})}" role="button">Create</a></td>
+                        <td><a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/user/{userId}/create-event/{placeId}/details(userId=${user.id}, placeId=${park.getPlaceId()})}" role="button">+</a></td>
                         <td><a th:href="@{~/park/{placeId}/details(placeId=${park.getPlaceId()})}" th:text="${park.name}"></a></td>
                         <td th:text="${park.formattedAddress}">Location</td>
                         <td th:text="${park.rating}">Rating(?/5)</td>

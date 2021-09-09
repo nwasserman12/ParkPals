@@ -13,18 +13,18 @@
         </h1>
         <form id="eventForm" method="post">
             <div class="form-floating mb-3">
-                <input th:field="${event.name}" class="form-control" id="name" type="text" placeholder="Event Name"/>
-                <label for="name">Name</label>
-                <p class="error" th:errors="${event.name}"></p>
-            </div>
-            <div class="form-floating mb-3">
-                <input th:field="${event.park}" class="form-control" id="breed" type="text" placeholder="Park"/>
-                <label for="breed">Park</label>
+                <input disabled th:field="${event.park}" class="form-control" id="breed" type="text" placeholder="Park"/>
+                <label th:text="${park.getName()}">Park</label>
                 <p class="error" th:errors="${event.park}"></p>
             </div>
             <div class="form-floating mb-3">
-                <input th:field="${event.date}" class="form-control" id="age" type="date" placeholder="Age"/>
-                <label for="age">Date</label>
+                <input th:field="${event.title}" class="form-control" id="title" type="text" placeholder="Event Name"/>
+                <label for="title">Name</label>
+                <p class="error" th:errors="${event.title}"></p>
+            </div>
+            <div class="form-floating mb-3">
+                <input th:field="${event.date}" class="form-control" type="date" placeholder="Date"/>
+                <label>Date</label>
                 <p class="error" th:errors="${event.date}"></p>
             </div>
             <div class="form-floating mb-3">
@@ -34,7 +34,7 @@
                             th:text="${type.temperamentType}"
                     ></option>
                 </select>
-                <label for="temperament">Desired Temperament</label>
+                <label for="temperament">Desired Dog Temperament</label>
             </div>
             <div class="form-floating mb-3">
                 <select th:field="${event.desiredActivity}" class="form-select" id="activityLevel" aria-label="Activity Level">
@@ -43,15 +43,18 @@
                              th:text="${activity.activityLevel}"
                 ></option>
                 </select>
-                <label for="activityLevel">Desired Activity Level</label>
+                <label for="activityLevel">Desired Dog Activity Level</label>
             </div>
             <div class="form-floating mb-3" >
-                <ul>
-                    <li th:each="dog : ${user.dogs}">
-                        <input class="form-check-input" type="checkbox" th:value="${dog}" name="Attendees" />
-                        <label th:text="${dog}"></label>
-                    </li>
-                </ul>
+                <label class="form-check-label">
+                    Dogs Attending Event
+                </label>
+                <div class="form-check" th:field="${event.dogAttendees}" th:each="dog : ${user.getDogs()}">
+                    <input class="form-check-input" type="checkbox"
+                           th:text="${dog.getName()}"
+                           th:value="${dog.getId()}"
+                    >
+                </div>
             </div>
             <div class="d-grid">
                 <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Create Event</button>

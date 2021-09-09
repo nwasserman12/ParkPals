@@ -4,7 +4,8 @@ package org.launchcode.ParkPals.models;
 public enum DogActivity {
     LOW("Low"),
     MODERATE("Moderate"),
-    HIGH("High");
+    HIGH("High"),
+    ALL("All");
 
     private final String activityLevel;
 
