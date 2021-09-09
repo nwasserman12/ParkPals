@@ -90,7 +90,7 @@ public class ProfileController {
         dogRepository.save(newDog);
         userRepository.save(user);
         model.addAttribute("user", user);
-        return "user/profile";
+        return "redirect:/user/" + user.getId();
     }
 
 
@@ -136,7 +136,7 @@ public class ProfileController {
         user.setBio(editFormDTO.getBio());
         userRepository.save(user);
         model.addAttribute("user", user);
-        return "user/profile";
+        return "redirect:/user/" + user.getId();
 
     }
 
