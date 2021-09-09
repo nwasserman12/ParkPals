@@ -1,19 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-
-<div th:replace="fragments :: nav"></div>
 <body style="background-color: #ACACAC">
-<div class="page-holder bg-cover">
-    <div class="container px-5 my-5 text-center">
-        <h1 class="cursive py-5" style="font-size: 75px; -webkit-text-stroke: 1px white; ">
-            <i class="fas fa-bone" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
-            Register
-            <i class="fas fa-bone" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
-        </h1>
-    </div>
-</div>
-
 <div class="page-holder bg-cover">
     <div class="container px-12  text-center">
         <div>
@@ -22,8 +10,6 @@
                 Register
                 <i class="fas fa-bone" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
             </h1>
-        </div>
-
         <form method="post">
             <div class="col-md-7 form-floating mb-3" style="display: inline-block;">
                 <input th:field="${registerFormDTO.username}" class="form-control" placeholder="Username"/>

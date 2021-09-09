@@ -1,5 +1,6 @@
 package org.launchcode.ParkPals.models.dto;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -13,12 +14,14 @@ public class EditFormDTO {
     private String lastName;
 
     @NotNull
+    @Min(value=18, message="Must be at least 18 to register.")
     private int age;
 
     @NotNull
+    @Min(value=10000, message="6-digit zip code required.")
     private int zipCode;
 
-    @Size(max=500, message = "Must not exceed 500 characters")
+    @Size(max=500, message = "Must not exceed 500 characters.")
     private String bio;
 
     public String getFirstName() {

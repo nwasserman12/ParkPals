@@ -1,47 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: nav"></nav>
 <body style="background-color: #ACACAC">
-<div class="page-holder bg-cover">
-    <div class="container px-12  text-center">
-        <div>
-            <h1 class="py-3" style="font-family: 'Lobster', cursive; color: crimson; -webkit-text-stroke: 2px crimson; letter-spacing: 6px; font-size: 75px; -webkit-text-stroke: 1px white; ">
-                <i class="fas fa-bone" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
-                Edit Profile
-                <i class="fas fa-bone" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
-            </h1>
+<div class="page-holder bg-cover" style="padding: 20px;">
+  <div class="container rounded bg-white mt-3 mb-3">
+    <div class="row">
+        <div class="col-md-3 border-right text-center px-5 my-5">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><i class="fas fa-user-circle" style="font-size: 100px;"></i></div>
+          <div><a class="btn btn-primary btn-lg" th:href="@{/user/add-dog}" role="button">Add Dog</a></div>
         </div>
-        <form method="post">
-            <div class="col-md-7 form-floating mb-3" style="display: inline-block;" >
-                <input th:field="${editFormDTO.firstName}" class="form-control" placeholder="First Name"/>
-                <label>First Name</label>
-                <p class="error" th:errors="${editFormDTO.firstName}"></p>
+        <div class="col-md-5 border-right">
+          <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h3 class="text-right" th:text="'Edit: ' + ${user.username}"></h3>
             </div>
-            <div class="col-md-7 form-floating mb-3" style="display: inline-block;">
-                <input th:field="${editFormDTO.lastName}" class="form-control" placeholder="Last Name"/>
-                <label>Last Name</label>
-                <p class="error" th:errors="${editFormDTO.lastName}"></p>
-            </div>
-            <div class="col-md-7 form-floating mb-3" style="display: inline-block;">
-                <input th:field="${editFormDTO.age}" class="form-control" placeholder="Age"/>
-                <label>Age</label>
-                <p class="error" th:errors="${editFormDTO.age}"></p>
-            </div>
-            <div class="col-md-7 form-floating mb-3" style="display: inline-block;">
-                <input th:field="${editFormDTO.zipCode}" class="form-control" placeholder="Zip Code"/>
-                <label>Zip Code</label>
-                <p class="error" th:errors="${editFormDTO.zipCode}"></p>
-            </div>
-            <div class="col-md-7 form-floating mb-3" style="display: inline-block;">
-                <input th:field="${editFormDTO.bio}" class="form-control" placeholder="Bio"/>
-                <label>Bio</label>
-                <p class="error" th:errors="${editFormDTO.bio}"></p>
-            </div>
-            <div class="text-center">
+            <form method="post" th:object="${user}">
+              <div class="row mt-3">
+                <div class="col-md-3">
+                  <h5 class="labels">First Name</h5>
+                  <input th:field="${user.firstName}" class="form-control"/>
+                  <p class="error" th:errors="${editFormDTO.firstName}"></p>
+                </div>
+                <div class="col-md-3">
+                  <h5 class="labels">Last Name</h5>
+                 <input th:field="${user.lastName}" class="form-control"/>
+                  <p class="error" th:errors="${editFormDTO.lastName}"></p>
+                </div>
+                <div class="col-md-3">
+                  <h5 class="labels">Age</h5>
+                  <input th:field="${user.age}" class="form-control"/>
+                  <p class="error" th:errors="${editFormDTO.age}"></p>
+                </div>
+                <div class="col-md-3">
+                  <h5 class="labels">Zip Code</h5>
+                  <input th:field="${user.zipCode}" class="form-control"/>
+                  <p class="error" th:errors="${editFormDTO.zipCode}"></p>
+               </div>
+             </div>
+              <div class="row mt-3">
+                <div class="col-md-12">
+                  <h5 class="labels">Bio</h5>
+                  <input th:field="${user.bio}" class="form-control"/>
+                  <p class="error" th:errors="${editFormDTO.bio}"></p>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12">
+                  <h5 class="labels">Dogs</h5>
+                  <table class="table table-striped">
+                    <tr th:each="dog : ${user.dogs}">
+                      <td><a th:text="${dog.name}"></a></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
                 <button class="btn btn-primary btn-lg" type="submit">Save Changes</button>
-            </div>
-        </form>
+            </form>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+</div>
+
 </div>
 </body>
 </html>

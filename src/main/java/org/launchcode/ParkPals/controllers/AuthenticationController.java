@@ -86,7 +86,7 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), newUser);
         HttpSession session = request.getSession();
         User user = getUserFromSession(session);
-        model.addAttribute("userId", user.getId());
+        session.setAttribute("userId", user.getId());
 
         return "redirect:/user/" + user.getId();
     }
@@ -94,7 +94,6 @@ public class AuthenticationController {
     @GetMapping("/login")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
-        model.addAttribute("title", "Log In");
         return "login";
     }
 
@@ -104,7 +103,6 @@ public class AuthenticationController {
                                    Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Log In");
             return "login";
         }
 
@@ -112,7 +110,6 @@ public class AuthenticationController {
 
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The username and password are invalid");
-            model.addAttribute("title", "Log In");
             return "login";
         }
 
@@ -127,8 +124,7 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), theUser);
         HttpSession session = request.getSession();
         User user = getUserFromSession(session);
-        model.addAttribute("userId", user.getId());
-
+        session.setAttribute("userId", user.getId());
         return "redirect:/user/" + user.getId();
     }
 
