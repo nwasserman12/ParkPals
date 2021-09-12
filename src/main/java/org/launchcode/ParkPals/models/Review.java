@@ -1,5 +1,7 @@
 package org.launchcode.ParkPals.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -11,14 +13,15 @@ import java.util.List;
 @Entity
 public class Review extends AbstractEntity{
 
-    @NotNull
+
     @ManyToOne
     private User reviewer;
 
     @ManyToOne
     private Park park;
 
-    @NotNull
+    @NotNull(message= "What is today's date")
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
     private Date reviewDate;
 
     @NotNull
@@ -27,6 +30,7 @@ public class Review extends AbstractEntity{
     @NotNull
     @Size(max=500, message = "Must not exceed 500 Characters")
     private String description;
+
 
     public Review(User reviewer, Park park, Date reviewDate, ReviewStars numberOfStars, String description) {
         this.reviewer = reviewer;

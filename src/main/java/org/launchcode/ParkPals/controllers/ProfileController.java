@@ -114,22 +114,6 @@ public class ProfileController {
         return "redirect:../";
     }
 
-//    @GetMapping("{userId}/dog/{dogId}/edit-dog")
-//    public String displayEditDogForm(@PathVariable Integer userId, @PathVariable Integer dogId, Model model) {
-//        Optional optUser = userRepository.findById(userId);
-//        if (optUser.isPresent()) {
-//            Optional optDog = dogRepository.findById(dogId);
-//            User user = (User) optUser.get();
-//            if (optDog.isPresent() && !user.getDogs().contains(optDog)) {
-//                Dog dog = (Dog) optDog.get();
-//                UserDogDTO userDog = new UserDogDTO();
-//                model.addAttribute("userDog", userDog);
-//                model.addAttribute("types", DogTemperament.values());
-//                model.addAttribute("activityLevels", DogActivity.values());
-//            }
-//        }
-//        return "user/edit-dog";
-//    }
 
     @GetMapping("{userId}/edit")
     public String displayEditForm(Model model){
