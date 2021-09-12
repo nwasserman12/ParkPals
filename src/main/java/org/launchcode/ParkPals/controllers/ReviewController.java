@@ -35,7 +35,7 @@ public class ReviewController {
         return "review/review";
     }
 
-    @GetMapping("{id}/create-review/{placeId}/details")
+    @GetMapping("{userId}/create-review")
     public String displayCreateReviewForm(@PathVariable Integer id, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
