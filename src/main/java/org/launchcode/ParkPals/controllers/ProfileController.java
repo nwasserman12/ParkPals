@@ -114,6 +114,7 @@ public class ProfileController {
         return "redirect:../";
     }
 
+
     @GetMapping("{userId}/edit")
     public String displayEditForm(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
