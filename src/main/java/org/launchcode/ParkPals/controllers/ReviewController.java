@@ -2,8 +2,6 @@ package org.launchcode.ParkPals.controllers;
 
 import org.launchcode.ParkPals.data.ParkRepository;
 import org.launchcode.ParkPals.data.ReviewRepository;
-import org.launchcode.ParkPals.models.DogActivity;
-import org.launchcode.ParkPals.models.DogTemperament;
 import org.launchcode.ParkPals.models.Review;
 import org.launchcode.ParkPals.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
