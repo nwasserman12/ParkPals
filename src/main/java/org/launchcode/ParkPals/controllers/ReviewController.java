@@ -2,8 +2,7 @@ package org.launchcode.ParkPals.controllers;
 
 import org.launchcode.ParkPals.data.ParkRepository;
 import org.launchcode.ParkPals.data.ReviewRepository;
-import org.launchcode.ParkPals.models.Review;
-import org.launchcode.ParkPals.models.User;
+import org.launchcode.ParkPals.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,16 +32,15 @@ public class ReviewController {
         return "review/review";
     }
 
-    @GetMapping("{userId}/create-review")
-    public String displayCreateReviewForm(@PathVariable Integer id, Model model, HttpServletRequest request) {
+    @GetMapping("{userId}/review/create-review")
+    public String displayCreateReviewForm(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
         model.addAttribute(new Review());
+        model.addAttribute("stars", ReviewStars.values());
         model.addAttribute("user", user);
-        model.addAttribute("park", parkRepository.findById(id));
         return "review/create-review";
     }
-
 
 
 }
