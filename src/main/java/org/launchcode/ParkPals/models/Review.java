@@ -21,7 +21,7 @@ public class Review extends AbstractEntity{
     private Park park;
 
     @NotNull(message= "What is today's date")
-    @DateTimeFormat(pattern = "MM-dd-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date reviewDate;
 
     @NotNull

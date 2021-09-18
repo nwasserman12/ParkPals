@@ -55,7 +55,7 @@ public class ReviewController {
             model.addAttribute("stars", ReviewStars.values());
             model.addAttribute("user", user);
             model.addAttribute("park", park);
-            return "redirect:/review/create-review";
+            return "review/create-review";
         }
         newReview.setPark(park);
         newReview.setReviewer(user);
