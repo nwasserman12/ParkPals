@@ -29,6 +29,8 @@ public class User extends AbstractEntity {
     private int zipCode;
 
     private String bio;
+
+    private String photo;
   
     @ManyToMany
     private final List<Dog> dogs = new ArrayList<>();
@@ -96,6 +98,14 @@ public class User extends AbstractEntity {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getUsername() {
