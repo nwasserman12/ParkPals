@@ -6,20 +6,14 @@ import okhttp3.Request;
 import okhttp3.ResponseBody;
 import org.launchcode.ParkPals.data.ParkRepository;
 import org.launchcode.ParkPals.models.Park;
-import org.launchcode.ParkPals.models.User;
 import org.launchcode.ParkPals.models.googleplaces.GooglePlacesObject;
 import org.launchcode.ParkPals.models.googleplaces.GooglePlacesResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 public class GooglePlacesController {
@@ -45,7 +39,6 @@ public class GooglePlacesController {
                 Park newPark = new Park(park.getBusinessStatus(), park.getPlaceId(), park.getName(), park.getFormattedAddress(), park.getRating(), park.getUserRatingsTotal());
                 parkRepository.save(newPark);
             }
-
         }
         return result;
     }

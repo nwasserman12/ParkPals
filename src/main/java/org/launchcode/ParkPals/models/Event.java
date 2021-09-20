@@ -1,16 +1,16 @@
 package org.launchcode.ParkPals.models;
 
+import org.launchcode.ParkPals.data.ParkRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class Event extends AbstractEntity {
@@ -34,10 +34,10 @@ public class Event extends AbstractEntity {
     @NotNull
     private DogTemperament desiredTemperament;
 
-    @ElementCollection
+    @ManyToMany
     private List<User> userAttendees = new ArrayList<>();
 
-    @ElementCollection
+    @ManyToMany
     private List<Dog> dogAttendees = new ArrayList<>();
 
     public Event(String title, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament, List<Dog> dogAttendees) {
@@ -76,7 +76,9 @@ public class Event extends AbstractEntity {
     }
 
     public String getParkName() {
-        return park.getName();
+        Park park = this.park;
+        String name = park.getName();
+        return name;
     }
 
     public Date getDate() {
@@ -113,6 +115,10 @@ public class Event extends AbstractEntity {
 
     public List<Dog> getDogAttendees() {
         return dogAttendees;
+    }
+
+    public void addDogAttendee(Dog dog) {
+        this.dogAttendees.add(dog);
     }
 
 }

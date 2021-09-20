@@ -35,7 +35,7 @@ public class User extends AbstractEntity {
     @ManyToMany
     private final List<Dog> dogs = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private final List<Event> events = new ArrayList<>();
 
     @NotNull

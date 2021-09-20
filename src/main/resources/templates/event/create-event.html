@@ -11,7 +11,7 @@
             Create Event
             <i class="fas fa-dog" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
         </h1>
-        <form id="eventForm" method="post">
+        <form method="post">
             <div class="form-floating mb-3">
                 <input disabled th:field="${event.park}" class="form-control" id="breed" type="text" placeholder="Park"/>
                 <label th:text="${park.getName()}">Park</label>
@@ -46,14 +46,12 @@
                 <label for="activityLevel">Desired Dog Activity Level</label>
             </div>
             <div class="form-floating mb-3" >
-                <label class="form-check-label">
-                    Dogs Attending Event
-                </label>
-                <div class="form-check" th:field="${event.dogAttendees}" th:each="dog : ${user.getDogs()}">
+                <div class="form-check" th:field="*{event.dogAttendees}" th:each="dog : ${user.getDogs()}">
                     <input class="form-check-input" type="checkbox"
                            th:text="${dog.getName()}"
-                           th:value="${dog.getId()}"
+                           th:value="${dog}"
                     >
+
                 </div>
             </div>
             <div class="d-grid">

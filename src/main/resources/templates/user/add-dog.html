@@ -2,9 +2,6 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: nav"></nav>
-<body>
-<div style="background-color: #ACACAC" class="page-holder bg-cover">
-
 <body style="background-color: #ACACAC">
 <div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container px-5 my-5 text-center">
@@ -31,19 +28,17 @@
             </div>
             <div class="form-floating mb-3">
                 <select th:field="${dog.type}" class="form-select" id="temperament" aria-label="Temperament">
-                    <option th:each="type : ${types}"
-                            th:value="${type}"
-                            th:text="${type.temperamentType}"
-                    ></option>
+                    <option th:value="${types[0]}" th:text="${types[0].temperamentType}"></option>
+                    <option th:value="${types[1]}" th:text="${types[1].temperamentType}"></option>
+                    <option th:value="${types[2]}" th:text="${types[2].temperamentType}"></option>
                 </select>
                 <label for="temperament">Temperament</label>
             </div>
             <div class="form-floating mb-3">
                 <select th:field="${dog.activity}" class="form-select" id="activityLevel" aria-label="Activity Level">
-                    <<option th:each="activity : ${activityLevels}"
-                             th:value="${activity}"
-                             th:text="${activity.activityLevel}"
-                ></option>
+                    <option th:value="${activityLevels[0]}" th:text="${activityLevels[0].activityLevel}"></option>
+                    <option th:value="${activityLevels[1]}" th:text="${activityLevels[1].activityLevel}"></option>
+                    <option th:value="${activityLevels[2]}" th:text="${activityLevels[2].activityLevel}"></option>
                 </select>
                 <label for="activityLevel">Activity Level</label>
             </div>

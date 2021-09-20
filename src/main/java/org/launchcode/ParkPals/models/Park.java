@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -26,7 +27,7 @@ public class Park extends AbstractEntity {
 
     private Integer userRatingsTotal;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Event> events = new ArrayList<>();
 
     public Park(String businessStatus, String placeId, String name, String address, Integer rating, Integer userRatingsTotal) {

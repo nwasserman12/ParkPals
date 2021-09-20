@@ -2,6 +2,7 @@ package org.launchcode.ParkPals.models.googleplaces;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.launchcode.ParkPals.models.AbstractEntity;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GooglePlacesObject {
