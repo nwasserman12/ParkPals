@@ -60,6 +60,7 @@ public class EventController {
         user.addEvents(event);
         park.addEvents(event);
         event.addUserAttendees(user);
+        event.setPark(park);
         event.setCreator(user);
         eventRepository.save(event);
         return "redirect:/user/{userId}/home(userId=${user.getId()})";

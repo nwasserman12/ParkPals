@@ -1,5 +1,7 @@
 package org.launchcode.ParkPals.models;
 
+import org.launchcode.ParkPals.data.ParkRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class Event extends AbstractEntity {
@@ -73,7 +76,9 @@ public class Event extends AbstractEntity {
     }
 
     public String getParkName() {
-        return park.getName();
+        Park park = this.park;
+        String name = park.getName();
+        return name;
     }
 
     public Date getDate() {
