@@ -2,6 +2,7 @@ package org.launchcode.ParkPals.controllers;
 
 
 import org.launchcode.ParkPals.data.ParkRepository;
+import org.launchcode.ParkPals.models.Park;
 import org.launchcode.ParkPals.models.User;
 import org.launchcode.ParkPals.models.googleplaces.GooglePlacesResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ParkController {
@@ -47,7 +48,8 @@ public class ParkController {
 
     @GetMapping("park/{placeId}/details")
     public String displayParkDetails(@PathVariable String placeId, Model model) {
-        model.addAttribute("park", parkRepository.findByPlaceId(placeId));
+        Park park = parkRepository.findByPlaceId(placeId);
+        model.addAttribute("park", park);
         return "park/park-profile";
     }
 

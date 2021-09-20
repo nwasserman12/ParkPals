@@ -2,10 +2,7 @@ package org.launchcode.ParkPals.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -34,10 +31,10 @@ public class Event extends AbstractEntity {
     @NotNull
     private DogTemperament desiredTemperament;
 
-    @ElementCollection
+    @ManyToMany
     private List<User> userAttendees = new ArrayList<>();
 
-    @ElementCollection
+    @ManyToMany
     private List<Dog> dogAttendees = new ArrayList<>();
 
     public Event(String title, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament, List<Dog> dogAttendees) {
@@ -113,6 +110,10 @@ public class Event extends AbstractEntity {
 
     public List<Dog> getDogAttendees() {
         return dogAttendees;
+    }
+
+    public void addDogAttendee(Dog dog) {
+        this.dogAttendees.add(dog);
     }
 
 }
