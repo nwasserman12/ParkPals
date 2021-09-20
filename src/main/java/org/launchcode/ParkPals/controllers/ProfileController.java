@@ -114,6 +114,7 @@ public class ProfileController {
         return "redirect:../";
     }
 
+
     @GetMapping("{userId}/edit")
     public String displayEditForm(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -138,6 +139,7 @@ public class ProfileController {
         user.setBio(editFormDTO.getBio());
         userRepository.save(user);
         model.addAttribute("user", user);
+
         return "redirect:/user/{userId}";
     }
 

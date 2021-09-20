@@ -43,7 +43,7 @@ public class EventController {
     }
 
     @PostMapping("{id}/create-event/{placeId}/details")
-    public String processCreateEventForm(@ModelAttribute @Valid Event event, @PathVariable String placeId,
+    public String processCreateEventForm(@ModelAttribute @Valid Event event, @PathVariable String placeId, Dog[] dogsAttending,
                                          Errors errors, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);

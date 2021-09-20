@@ -46,11 +46,12 @@
                 <label for="activityLevel">Desired Dog Activity Level</label>
             </div>
             <div class="form-floating mb-3" >
-                <div class="form-check" th:field="${event.dogAttendees}" th:each="dog : ${user.getDogs()}">
+                <div class="form-check" th:field="*{event.dogAttendees}" th:each="dog : ${user.getDogs()}">
                     <input class="form-check-input" type="checkbox"
                            th:text="${dog.getName()}"
                            th:value="${dog}"
                     >
+
                 </div>
             </div>
             <div class="d-grid">
