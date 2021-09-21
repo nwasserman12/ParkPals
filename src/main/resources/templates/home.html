@@ -50,8 +50,8 @@
                         <tr class="table-stripped" th:each="event : ${event}">
                             <td><a class="btn btn-primary btn-sml" th:value="${event.getId()}" role="button">+</a></td>
                             <td th:text="${event.getId()}">Id</td>
-                            <td th:text="${event.getCreator().getUsername()}">Creator Username</td>
-                            <td th:text="${event.getParkName()}">Park</td>
+                            <td><a th:href="@{~/user/{userId}(userId=${event.getCreator().getId()})}" th:text="${event.getCreator().getUsername()}"></a></td>
+                            <td><a th:href="@{~/park/{placeId}/details(placeId=${event.getPark().getPlaceId()})}" th:text="${event.getParkName()}"></a></td>
                             <td th:text="${event.getDate()}">Date</td>
                             <td th:text="${event.getTitle()}">Title</td>
                             <td th:text="${event.getUserAttendees().size()}"># of Attendees</td>
