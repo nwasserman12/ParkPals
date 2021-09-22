@@ -60,7 +60,7 @@ public class ReviewController {
         review.setPark(park);
         review.setReviewer(user);
         reviewRepository.save(review);
-        return "redirect:/{userId}/review";
+        return "redirect:/user/{userId}/review";
     }
 
 }

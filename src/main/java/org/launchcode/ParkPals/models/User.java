@@ -132,13 +132,13 @@ public class User extends AbstractEntity {
         this.events.add(event);
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void addReviews(Review review) {
-        this.reviews.add(review);
-    }
+//    public List<Review> getReviews() {
+//        return reviews;
+//    }
+//
+//    public void addReviews(Review review) {
+//        this.reviews.add(review);
+//    }
 
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
