@@ -38,6 +38,9 @@ public class User extends AbstractEntity {
     @ManyToMany
     private final List<Event> events = new ArrayList<>();
 
+    @ManyToMany
+    private final List<Review> reviews = new ArrayList<>();
+
     @NotNull
     @Size(min = 2, message = "Username is required.")
     private String username;
@@ -124,9 +127,18 @@ public class User extends AbstractEntity {
         return events;
     }
 
+
     public void addEvents(Event event) {
         this.events.add(event);
     }
+
+//    public List<Review> getReviews() {
+//        return reviews;
+//    }
+//
+//    public void addReviews(Review review) {
+//        this.reviews.add(review);
+//    }
 
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);

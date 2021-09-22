@@ -58,6 +58,12 @@ public class Review extends AbstractEntity{
         this.park = park;
     }
 
+    public String getParkName() {
+        Park park = this.park;
+        String name = park.getName();
+        return name;
+    }
+
     public Date getReviewDate() {
         return reviewDate;
     }
