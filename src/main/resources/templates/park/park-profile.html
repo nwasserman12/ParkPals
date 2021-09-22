@@ -29,6 +29,37 @@
                 <a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/user/{userId}/review/create-review/{placeId}(userId=${#session.getAttribute('userId')}, placeId=${park.getPlaceId()})}" role="button">Create Review</a>
                 <a th:href="@{/user/{userId}/home(userId=${#session.getAttribute('userId')})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Home</a>
             </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <h5 class="labels">Reviews</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>
+                                Stars
+                            </th>
+                            <th>
+                                Park
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                Date of Review
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="table-stripped" th:each="review : ${reviews}">
+                            <td th:text="${review.getNumberOfStars()}">Stars</td>
+                            <td><a th:href="@{~/park/{placeId}/details(placeId=${review.getPark().getPlaceId()})}" th:text="${review.getParkName()}"></a></td>
+                            <td th:text="${review.getDescription()}">Description</td>
+                            <td th:text="${review.getReviewDate()}">Date of Review</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 

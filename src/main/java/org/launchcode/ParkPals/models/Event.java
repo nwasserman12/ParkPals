@@ -25,7 +25,7 @@ public class Event extends AbstractEntity {
     private Park park;
 
     @NotNull(message = "Please enter a date for your event!")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date date;
 
     @NotNull
