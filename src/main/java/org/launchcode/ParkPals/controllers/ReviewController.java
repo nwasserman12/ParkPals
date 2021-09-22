@@ -45,20 +45,21 @@ public class ReviewController {
         return "review/create-review";
     }
 
-    @PostMapping("{userId}/review/create-review")
-    public String processCreateReviewForm(@ModelAttribute @Valid Review newReview, @ModelAttribute Park park,
+    @PostMapping("{userId}/review/create-review/{placeId}")
+    public String processCreateReviewForm(@ModelAttribute @Valid Review review, @PathVariable String placeId,
                                           Errors errors, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
+        Park park = parkRepository.findByPlaceId(placeId);
         if(errors.hasErrors()) {
             model.addAttribute("stars", ReviewStars.values());
             model.addAttribute("user", user);
             model.addAttribute("park", park);
             return "review/create-review";
         }
-        newReview.setPark(park);
-        newReview.setReviewer(user);
-        reviewRepository.save(newReview);
+        review.setPark(park);
+        review.setReviewer(user);
+        reviewRepository.save(review);
         return "redirect:/review/review";
     }
 
