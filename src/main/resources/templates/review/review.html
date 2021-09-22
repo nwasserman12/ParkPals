@@ -29,9 +29,6 @@
                             Park
                         </th>
                         <th>
-                            Location
-                        </th>
-                        <th>
                             Description
                         </th>
                         <th>
@@ -41,10 +38,8 @@
                     </thead>
                     <tbody>
                     <tr class="table-stripped" th:each="review : ${review}">
-                        <td></td>
                         <td th:text="${review.getNumberOfStars()}">Stars</td>
-                        <td th:text="${review.getPark()}">Park</td>
-                        <td th:text="${review.getLocation()}">Location</td>
+                        <td><a th:href="@{~/park/{placeId}/details(placeId=${review.getPark().getPlaceId()})}" th:text="${review.getParkName()}"></a></td>
                         <td th:text="${review.getDescription()}">Description</td>
                         <td th:text="${review.getReviewDate()}">Date of Review</td>
                     </tr>
