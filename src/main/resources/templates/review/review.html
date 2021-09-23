@@ -35,8 +35,9 @@
                     </tr>
                     </tbody>
                 </table>
-
-            </div>
+                <div>
+                    <a class="btn btn-primary btn-sml" th:href="@{/user/{userId}/create-event/parks(userId=${#session.getAttribute('userId')})}" role="button">Find a Park</a>
+                </div>
         </div>
     </div>
 </div>
