@@ -21,7 +21,7 @@ public class Event extends AbstractEntity {
     @ManyToOne
     private User creator;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Park park;
 
     @NotNull(message= "What is today's date")
@@ -34,10 +34,10 @@ public class Event extends AbstractEntity {
     @NotNull
     private DogTemperament desiredTemperament;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "events" )
     private List<User> userAttendees = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "events")
     private List<Dog> dogAttendees = new ArrayList<>();
 
     public Event(String title, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament) {

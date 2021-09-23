@@ -3,10 +3,7 @@ package org.launchcode.ParkPals.models;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -32,10 +29,11 @@ public class User extends AbstractEntity {
 
     private String photo;
   
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private final List<Dog> dogs = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable
     private final List<Event> events = new ArrayList<>();
 
     @ManyToMany
@@ -130,6 +128,10 @@ public class User extends AbstractEntity {
 
     public void addEvents(Event event) {
         this.events.add(event);
+    }
+
+    public void deleteEvents(Event event) {
+        this.events.remove(event);
     }
 
 //    public List<Review> getReviews() {

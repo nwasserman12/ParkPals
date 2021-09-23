@@ -125,12 +125,20 @@ public class ProfileController {
     }
 
     @PostMapping("{userId}/edit")
-    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request, Model model){
+    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, @RequestParam(required = false) int[] eventIds, Errors errors, HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
         if (errors.hasErrors()) {
             model.addAttribute("user", user);
             return "user/edit";
+        }
+        if (eventIds != null) {
+            for (int id : eventIds) {
+                Optional<Event> optionalEvent = eventRepository.findById(id);
+                Event event = optionalEvent.get();
+                user.deleteEvents(event);
+                eventRepository.delete(event);
+            }
         }
         user.setFirstName(editFormDTO.getFirstName());
         user.setLastName(editFormDTO.getLastName());

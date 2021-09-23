@@ -2,10 +2,7 @@ package org.launchcode.ParkPals.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,7 +24,8 @@ public class Park extends AbstractEntity {
 
     private Integer userRatingsTotal;
 
-    @ManyToMany
+    @OneToMany
+    @JoinColumn(name="park_id")
     private List<Event> events = new ArrayList<>();
 
     public Park(String businessStatus, String placeId, String name, String address, Integer rating, Integer userRatingsTotal) {
