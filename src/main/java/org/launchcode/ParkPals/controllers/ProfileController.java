@@ -188,25 +188,4 @@ public class ProfileController {
         return "redirect:/user/" + user.getId();
     }
 
-    @GetMapping("edit-dog-profile/{dogId}")
-    public String editDogProfile(@PathVariable Integer dogId, Model model) {
-        Optional<Dog> dog = dogRepository.findById(dogId);
-        model.addAttribute("dog", dog);
-        model.addAttribute("types", DogTemperament.values());
-        model.addAttribute("activityLevels", DogActivity.values());
-        return "user/edit-dog-profile";
-    }
-
-    @PostMapping("edit-dog-profile/{dogId}")
-    public String processEditDogProfile(@ModelAttribute @Valid Dog dog,
-                                    Errors errors, Model model, HttpServletRequest request) {
-        User user = authenticationController.getUserFromSession(request.getSession());
-        if(errors.hasErrors()) {
-            model.addAttribute("types", DogTemperament.values());
-            model.addAttribute("activityLevels", DogActivity.values());
-            return "redirect:/user/" + user.getId();
-        }
-        dogRepository.save(dog);
-        return "redirect:/user/" + user.getId() + "/edit-dog";
-    }
 }
