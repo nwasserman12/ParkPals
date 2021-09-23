@@ -41,6 +41,7 @@
                             <table class="table table-striped">
                                 <tr th:each="dog : ${user.dogs}">
                                     <td><a th:href="@{/user/{userId}/dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" th:text="${dog.name}"></a></td>
+                                    <td><a th:href="@{/user/{userId}/edit-dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" th:if="${loggedUser.equals(user)}" class="btn btn-outline-dark" style="text-align: center; float: none;">Edit</a></td>
                                 </tr>
                             </table>
                         </div>

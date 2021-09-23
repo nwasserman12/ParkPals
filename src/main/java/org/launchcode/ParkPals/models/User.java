@@ -126,8 +126,7 @@ public class User extends AbstractEntity {
     public List<Event> getEvents() {
         return events;
     }
-
-
+    
     public void addEvents(Event event) {
         this.events.add(event);
     }
