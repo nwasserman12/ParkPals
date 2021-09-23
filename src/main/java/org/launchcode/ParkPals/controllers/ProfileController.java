@@ -76,21 +76,21 @@ public class ProfileController {
     }
 
     @PostMapping("add-dog")
-    public String processAddDogForm(@ModelAttribute @Valid Dog newDog, UserDogDTO userDog,
+    public String processAddDogForm(@ModelAttribute @Valid Dog newDog,
                                        Errors errors, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
         if(errors.hasErrors()) {
             model.addAttribute("types", DogTemperament.values());
             model.addAttribute("activityLevels", DogActivity.values());
-            return "redirect:/user/" + user.getId();
+            return "user/add-dog";
         }
         user.addDog(newDog);
         newDog.addUser(user);
         dogRepository.save(newDog);
         userRepository.save(user);
-        model.addAttribute("user", user);
-        return "redirect:/user/{userId}/edit(userId=${#session.getAttribute('userId')})";
+        model.addAttribute("userId", user.getId());
+        return "redirect:/user/{userId}/edit";
     }
 
 
