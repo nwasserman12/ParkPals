@@ -58,11 +58,17 @@ public class ParkController {
         Iterable<Review> allReviews = reviewRepository.findAll();
         List<Review> parkSpecificReviews = new ArrayList<>();
         Park park = parkRepository.findByPlaceId(placeId);
+        Integer totalSumOfRatings = park.getRating();
+        Integer totalNumOfRatings = 1;
         for(Review review : allReviews) {
             if(review.getPark().equals(park)) {
                 parkSpecificReviews.add(review);
+                totalSumOfRatings += review.getNumberOfStars().getStarValue();
+                totalNumOfRatings += 1;
             }
         }
+        Integer ratingAverage = totalSumOfRatings / totalNumOfRatings;
+        model.addAttribute("ratingAverage", ratingAverage + "/5");
         model.addAttribute("reviews", parkSpecificReviews);
         model.addAttribute("park", park);
         return "park/park-profile";

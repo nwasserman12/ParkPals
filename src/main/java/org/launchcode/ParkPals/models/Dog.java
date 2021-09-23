@@ -30,6 +30,9 @@ public class Dog extends AbstractEntity {
     @ManyToMany(mappedBy = "dogs")
     private final List<User> users = new ArrayList<>();
 
+    @ManyToMany
+    private final List<Event> events = new ArrayList<>();
+
     public Dog(String name, String breed, int age, DogActivity activity, DogTemperament type) {
         this.name = name;
         this.breed = breed;

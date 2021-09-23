@@ -24,8 +24,8 @@ public class Event extends AbstractEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     private Park park;
 
-    @NotNull(message = "Please enter a date for your event!")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @NotNull(message= "What is today's date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     @NotNull
@@ -40,13 +40,12 @@ public class Event extends AbstractEntity {
     @ManyToMany
     private List<Dog> dogAttendees = new ArrayList<>();
 
-    public Event(String title, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament, List<Dog> dogAttendees) {
+    public Event(String title, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament) {
         this.title = title;
         this.park = park;
         this.date = date;
         this.desiredActivity = desiredActivity;
         this.desiredTemperament = desiredTemperament;
-        this.dogAttendees = dogAttendees;
     }
 
     public Event() {}
@@ -119,6 +118,10 @@ public class Event extends AbstractEntity {
 
     public void addDogAttendee(Dog dog) {
         this.dogAttendees.add(dog);
+    }
+
+    public String dateToString() {
+        return this.date.toString().substring(0, 10);
     }
 
 }

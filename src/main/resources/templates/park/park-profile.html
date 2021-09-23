@@ -11,15 +11,40 @@
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5 mt-3" style="text-align: center;"><i class="fas fa-tree" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i></div>
                 <h1 class="display-3" style="text-align: center;" th:text="${park.name}">Park Name</h1>
                 <p class="lead" style="font-size: 30px;" th:text="${park.address}">Park Address</p>
+                <h5 style="height: 24px; font-weight: 600; padding-top: 5px; padding-bottom: 5px;">Average Park Rating</h5>
+                <p class="lead" style="padding-bottom: 1px; padding-top: 5px;" th:text="${ratingAverage}">Total Ratings</p>
                 <div class="container" style=""></div>
                 <div class="row border border-4 mx-3">
-                    <div class="col-sm-4">
-                        <h5 style="padding-top: 5px; padding-bottom: 0px; height: 20px;">Rating</h5>
-                        <p class="lead"></p><p class="lead" style="padding-top: 0px;" th:text="${park.rating} + '/5'">Rating</p>
-                    </div>
-                    <div class="col-sm-4 col-5">
-                        <h5 style="height: 24px; font-weight: 600; padding-top: 5px; padding-bottom: 5px;">Total Google Ratings</h5>
-                        <p class="lead" style="padding-bottom: 1px; padding-top: 5px;" th:text="${park.userRatingsTotal}">Total Ratings</p>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <h5 class="labels">Reviews</h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        Stars
+                                    </th>
+                                    <th>
+                                        Park
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Date of Review
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="table-stripped" th:each="review : ${reviews}">
+                                    <td th:text="${review.getNumberOfStars()}">Stars</td>
+                                    <td><a th:href="@{~/park/{placeId}/details(placeId=${review.getPark().getPlaceId()})}" th:text="${review.getParkName()}"></a></td>
+                                    <td th:text="${review.getDescription()}">Description</td>
+                                    <td th:text="${review.getReviewDate()}">Date of Review</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -28,37 +53,6 @@
                 <a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/user/{userId}/create-event/{placeId}/details(userId=${#session.getAttribute('userId')}, placeId=${park.getPlaceId()})}" role="button">Create Event</a>
                 <a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/user/{userId}/review/create-review/{placeId}(userId=${#session.getAttribute('userId')}, placeId=${park.getPlaceId()})}" role="button">Create Review</a>
                 <a th:href="@{/user/{userId}/home(userId=${#session.getAttribute('userId')})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Home</a>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <h5 class="labels">Reviews</h5>
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>
-                                Stars
-                            </th>
-                            <th>
-                                Park
-                            </th>
-                            <th>
-                                Description
-                            </th>
-                            <th>
-                                Date of Review
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="table-stripped" th:each="review : ${reviews}">
-                            <td th:text="${review.getNumberOfStars()}">Stars</td>
-                            <td><a th:href="@{~/park/{placeId}/details(placeId=${review.getPark().getPlaceId()})}" th:text="${review.getParkName()}"></a></td>
-                            <td th:text="${review.getDescription()}">Description</td>
-                            <td th:text="${review.getReviewDate()}">Date of Review</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
