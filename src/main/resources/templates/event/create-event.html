@@ -45,14 +45,25 @@
                 </select>
                 <label for="activityLevel">Desired Dog Activity Level</label>
             </div>
-            <div class="form-floating mb-3" >
-                <div class="form-check" th:field="*{event.dogAttendees}" th:each="dog : ${user.getDogs()}">
-                    <input class="form-check-input" type="checkbox"
-                           th:text="${dog.getName()}"
-                           th:value="${dog}"
-                    >
+            <div class="form-group">
+<!--                <label>Attending Dogs</label>-->
+<!--                <select th:field="${event.dogAttendees}" multiple="multiple"  >-->
+<!--                    <div>-->
+<!--                        <option th:each="dog : ${user.getDogs()}"-->
+<!--                                th:field="${event.dogAttendees}"-->
+<!--                                th:value="${dog.getId()}"-->
+<!--                                th:text="${dog.getName()}">-->
 
-                </div>
+<!--                        </option>-->
+<!--                    </div>-->
+<!--                </select>-->
+                <fieldset>
+                    <legend>What dogs are attending this event?</legend>
+                    <div th:each="dog : ${user.getDogs()}" th:field="${dogAttendees}">
+                        <input type="checkbox" th:value="${dog.getId()}" name="dogAttendees">
+                        <label th:text="${dog.getName()}">Dog Name</label>
+                    </div>
+                </fieldset>
             </div>
             <div class="d-grid">
                 <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Create Event</button>

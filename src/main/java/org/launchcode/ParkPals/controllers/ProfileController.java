@@ -4,6 +4,7 @@ import org.launchcode.ParkPals.data.DogRepository;
 import org.launchcode.ParkPals.data.EventRepository;
 import org.launchcode.ParkPals.data.UserRepository;
 import org.launchcode.ParkPals.models.*;
+import org.launchcode.ParkPals.models.dto.EditDogFormDTO;
 import org.launchcode.ParkPals.models.dto.EditFormDTO;
 import org.launchcode.ParkPals.models.dto.UserDogDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,21 +76,21 @@ public class ProfileController {
     }
 
     @PostMapping("add-dog")
-    public String processAddDogForm(@ModelAttribute @Valid Dog newDog, UserDogDTO userDog,
+    public String processAddDogForm(@ModelAttribute @Valid Dog newDog,
                                        Errors errors, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
         if(errors.hasErrors()) {
             model.addAttribute("types", DogTemperament.values());
             model.addAttribute("activityLevels", DogActivity.values());
-            return "redirect:/user/" + user.getId();
+            return "user/add-dog";
         }
         user.addDog(newDog);
         newDog.addUser(user);
         dogRepository.save(newDog);
         userRepository.save(user);
-        model.addAttribute("user", user);
-        return "redirect:/user/{userId}/edit(userId=${user.getId()})";
+        model.addAttribute("userId", user.getId());
+        return "redirect:/user/{userId}/edit";
     }
 
 
@@ -125,13 +126,22 @@ public class ProfileController {
     }
 
     @PostMapping("{userId}/edit")
-    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request, Model model){
+    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, @RequestParam(required = false) int[] eventIds, Errors errors, HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
         if (errors.hasErrors()) {
             model.addAttribute("user", user);
             return "user/edit";
         }
+        if (eventIds != null) {
+            for (int id : eventIds) {
+                Optional<Event> optionalEvent = eventRepository.findById(id);
+                Event event = optionalEvent.get();
+                user.deleteEvents(event);
+                eventRepository.delete(event);
+            }
+        }
+
         user.setFirstName(editFormDTO.getFirstName());
         user.setLastName(editFormDTO.getLastName());
         user.setAge(editFormDTO.getAge());
@@ -143,31 +153,38 @@ public class ProfileController {
         return "redirect:/user/" + user.getId();
     }
 
-    @GetMapping("{userId}/edit-dog")
-    public String displayDeleteDogForm(Model model, HttpServletRequest request) {
+    @GetMapping("{userId}/edit-dog/{dogId}")
+    public String displayEditDogForm(Model model, @PathVariable Integer dogId, HttpServletRequest request) {
         User user = authenticationController.getUserFromSession(request.getSession());
+        Optional<Dog> optDog = dogRepository.findById(dogId);
+        Dog dog = optDog.get();
         model.addAttribute("user", user);
-        model.addAttribute("userDogs", user.getDogs());
+        model.addAttribute("dog", dog);
+        model.addAttribute("types", DogTemperament.values());
+        model.addAttribute("activityLevels", DogActivity.values());
+        model.addAttribute(new EditDogFormDTO());
         return "user/edit-dog";
     }
 
-    @PostMapping("{userId}/edit-dog")
-    public String processDeleteDogForm(@RequestParam(value = "ids" , required = false) int[] ids, HttpServletRequest request) {
+    @PostMapping("{userId}/edit-dog/{dogId}")
+    public String processEditDogForm(@RequestParam(value = "ids" , required = false) int[] ids, @ModelAttribute @Valid EditDogFormDTO editDogFormDTO, @PathVariable Integer dogId, HttpServletRequest request) {
         User user = authenticationController.getUserFromSession(request.getSession());
-            List<Dog> userDogs = user.getDogs();
-            if(ids != null) {
-                for (int id : ids) {
-                    for (Dog dog : userDogs) {
-                        if (dog.getId() == id) {
-                            dog.removeUser(user);
-                            user.removeDog(dog);
-                            dogRepository.save(dog);
-                            userRepository.save(user);
-                            break;
-                        }
-                    }
-                }
-            }
+        Optional<Dog> optDog = dogRepository.findById(dogId);
+        Dog dog = optDog.get();
+
+        dog.setName(editDogFormDTO.getName());
+        dog.setAge(editDogFormDTO.getAge());
+        dog.setBreed(editDogFormDTO.getBreed());
+        dog.setActivity(editDogFormDTO.getActivity());
+        dog.setType(editDogFormDTO.getType());
+        dogRepository.save(dog);
+
+        if(ids != null) {
+            dog.removeUser(user);
+            user.removeDog(dog);
+            dogRepository.delete(dog);
+        }
+
         return "redirect:/user/" + user.getId();
     }
 

@@ -21,14 +21,14 @@
                         <h5 style="height: 24px; font-weight: 600; padding-top: 5px; padding-bottom: 5px;">Activity Level</h5>
                         <p class="lead" style="padding-bottom: 1px; padding-top: 5px;" th:text="${dog.activity}">Activity Level</p>
                     </div>
-                    <div class="col-sm-4" style="text-decoration-color: rgb(255, 255, 255);"><h5 contenteditable="true" spellcheckker="false" style="padding-top: 5px;">Temperament</h5>
+                    <div class="col-sm-4" style="text-decoration-color: rgb(255, 255, 255);">
+                        <h5 contenteditable="true" spellcheckker="false" style="padding-top: 5px;">Temperament</h5>
                         <p class="lead" th:text="${dog.type}">Temperament</p>
                     </div>
                 </div>
                 <div class="card-body" style="text-align: center;">
                     <h4 class="card-title" style="text-align: center;" th:text="'Owner: ' + ${dog.users[0].username}">Owner</h4>
                     <a th:href="@{/user/{id}(id=${user.id})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Visit Profile</a>
-                    <a th:href="@{/user/edit-dog-profile/{dogId}(dogId=${dogId})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Edit Information</a>
                 </div>
             </div>
         </div>

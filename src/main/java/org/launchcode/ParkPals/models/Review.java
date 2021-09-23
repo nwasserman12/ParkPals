@@ -87,4 +87,8 @@ public class Review extends AbstractEntity{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String dateToString() {
+        return this.reviewDate.toString().substring(0, 10);
+    }
 }

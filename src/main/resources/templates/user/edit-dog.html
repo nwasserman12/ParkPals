@@ -4,49 +4,64 @@
 <nav th:replace="fragments :: nav"></nav>
 <body style="background-color: #ACACAC">
 <div class="page-holder bg-cover" style="padding: 20px;">
-    <div class="container rounded bg-white mt-3 mb-3">
-        <div class="row">
-            <div class="col-md-5 border-right text-center px-5 my-5">
-                <h3 th:text="${user.firstName} + '\'s Dogs'"></h3>
-                <div class="jumbotron">
-                    <div th:each="userDog : ${userDogs}">
+    <div class="container rounded bg-white mt-3 mb-3 align-items-center text-center" style="text-align: center;">
+        <form method="post" th:object="${dog}">
+            <div class="row text-center">
+                <div class="jumbotron" style="padding-bottom: 20px">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5 mt-3" style="text-align: center;"><i class="fas fa-dog" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i></div>
-                    <h1 class="display-3" style="text-align: center;" th:text="${userDog.name}">Dog Name</h1>
-                    <p class="lead" style="font-size: 30px;" th:text="${userDog.breed}">Dog Breed</p>
+                    <h1 class="display-3" style="text-align: center;" th:text="${dog.name}">Dog Name</h1>
+                    <div class="form-floating mb-3">
+                        <input th:field="${dog.name}" class="form-control"/>
+                        <label>Name</label>
+                        <p class="error" th:errors="${editDogFormDTO.name}"></p>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input th:field="${dog.breed}" class="form-control"/>
+                        <label>Breed</label>
+                        <p class="error" th:errors="${editDogFormDTO.breed}"></p>
+                    </div>
                     <div class="container" style=""></div>
                     <div class="row border border-4 mx-3">
                         <div class="col-sm-4">
-                            <h5 style="padding-top: 5px; padding-bottom: 0px; height: 20px;">Age</h5>
-                            <p class="lead"></p><p class="lead" style="padding-top: 0px;" th:text="${userDog.age} + ' Year(s) Old'">Age</p>
+                            <h5 spellcheckker="false" style="padding-top: 5px;">Age</h5>
+                            <div class="form-floating mb-3" >
+                                <input th:field="${dog.age}" class="form-control"/>
+                                <p class="error" th:errors="${editDogFormDTO.age}"></p>
+                                <label>Age</label>
+                            </div>
                         </div>
                         <div class="col-sm-4 col-5">
-                            <h5 style="height: 24px; font-weight: 600; padding-top: 5px; padding-bottom: 5px;">Activity Level</h5>
-                            <p class="lead" style="padding-bottom: 1px; padding-top: 5px;" th:text="${userDog.activity}">Activity Level</p>
+                            <h5 spellcheckker="false" style="padding-top: 5px;">Activity Level</h5>
+                            <div class="form-floating mb-3">
+                                <select th:field="${dog.activity}" class="form-select">
+                                    <option th:value="${activityLevels[0]}" th:text="${activityLevels[0].activityLevel}"></option>
+                                    <option th:value="${activityLevels[1]}" th:text="${activityLevels[1].activityLevel}"></option>
+                                    <option th:value="${activityLevels[2]}" th:text="${activityLevels[2].activityLevel}"></option>
+                                </select>
+                                <label>Activity Level</label>
+                            </div>
                         </div>
-                        <div class="col-sm-4" style="text-decoration-color: rgb(255, 255, 255);"><h5 contenteditable="true" spellcheckker="false" style="padding-top: 5px;">Temperament</h5>
-                            <p class="lead" th:text="${userDog.type}">Temperament</p>
+                        <div class="col-sm-4" style="text-decoration-color: rgb(255, 255, 255);">
+                            <h5 spellcheckker="false" style="padding-top: 5px;">Temperament</h5>
+                            <div class="form-floating mb-3">
+                                <select th:field="${dog.type}" class="form-select">
+                                    <option th:value="${types[0]}" th:text="${types[0].temperamentType}"></option>
+                                    <option th:value="${types[1]}" th:text="${types[1].temperamentType}"></option>
+                                    <option th:value="${types[2]}" th:text="${types[2].temperamentType}"></option>
+                                </select>
+                                <label>Temperament</label>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body" style="text-align: center;">
-                        <h4 class="card-title" style="text-align: center;" th:text="'Owner: ' + ${user.username}">Owner</h4>
-                        <input type="checkbox" name="ids" th:value="${userDog.id}">
-                        <label>Remove?</label>
-                        <a th:href="@{/user/{id}(id=${user.id})}" th:text="'Visit ' + ${user.username} +'\'s Profile'" class="btn btn-outline-dark" style="text-align: center; float: none;">Visit User Profile</a>
-                        <a th:href="@{/user/{id}/dog/{dogId}(id=${user.id}, dogId=${userDog.id})}" th:text="'Visit ' + ${userDog.name} +'\'s Profile'" class="btn btn-outline-dark" style="text-align: center; float: none;"></a>
-                        <a th:href="@{/user/edit-dog-profile/{dogId}(dogId=${userDog.id})}" th:text="'Edit ' + ${userDog.name} +'\'s Info'" class="btn btn-outline-dark" style="text-align: center; float: none;">Edit</a>
+                        <label><p class="lead">Delete dog?</p></label>
+                        <input type="checkbox" name="ids" style="width:20px; height:20px; border-radius:5px; border:2px solid #555;" th:value="${dog.id}">
                     </div>
-                    </div>
-                </div>
-                <div>
-                <form method="post">
-                    <a class="btn btn-primary btn-lg" th:href="@{/user/add-dog}" role="button">Add Dog</a>
                     <button class="btn btn-primary btn-lg" type="submit">Save Changes</button>
-                </form>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
-
 </body>
 </html>
