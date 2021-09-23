@@ -5,7 +5,6 @@ import org.launchcode.ParkPals.data.EventRepository;
 import org.launchcode.ParkPals.data.UserRepository;
 import org.launchcode.ParkPals.models.*;
 import org.launchcode.ParkPals.models.dto.EditFormDTO;
-import org.launchcode.ParkPals.models.dto.LoginFormDTO;
 import org.launchcode.ParkPals.models.dto.UserDogDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -140,11 +139,34 @@ public class ProfileController {
         userRepository.save(user);
         model.addAttribute("user", user);
 
-        return "redirect:/user/{userId}";
+        return "redirect:/user/" + user.getId();
     }
 
+    @GetMapping("{userId}/edit-dog")
+    public String displayDeleteDogForm(Model model, HttpServletRequest request) {
+        User user = authenticationController.getUserFromSession(request.getSession());
+        model.addAttribute("user", user);
+        model.addAttribute("userDogs", user.getDogs());
+        return "user/edit-dog";
+    }
 
-
-
-  
+    @PostMapping("{userId}/edit-dog")
+    public String processDeleteDogForm(@RequestParam(value = "ids" , required = false) int[] ids, HttpServletRequest request) {
+        User user = authenticationController.getUserFromSession(request.getSession());
+            List<Dog> userDogs = user.getDogs();
+            if(ids != null) {
+                for (int id : ids) {
+                    for (Dog dog : userDogs) {
+                        if (dog.getId() == id) {
+                            dog.removeUser(user);
+                            user.removeDog(dog);
+                            dogRepository.save(dog);
+                            userRepository.save(user);
+                            break;
+                        }
+                    }
+                }
+            }
+        return "redirect:/user/" + user.getId();
+    }
 }
