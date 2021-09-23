@@ -59,12 +59,14 @@
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <h5 class="labels">Delete Events</h5>
-                        <table class="table table-striped">
+                        <p class="lead" th:if="${user.events.size() <= 0}">No events to delete!</p>
+                        <table class="table table-striped" th:if="${user.events.size() > 0}">
+                            <tbody>
                             <tr th:each="event : ${user.events}">
                                 <td th:text="${event.getTitle()}"></td>
-                                <input type="checkbox" name="eventIds" th:value="${event.getId()}">
-
+                                <td><input type="checkbox" name="eventIds" th:value="${event.getId()}" style="width:20px; height:20px; border-radius:5px; border:2px solid #555;"></td>
                             </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>

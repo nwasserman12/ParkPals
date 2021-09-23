@@ -90,7 +90,7 @@ public class ProfileController {
         dogRepository.save(newDog);
         userRepository.save(user);
         model.addAttribute("user", user);
-        return "redirect:/user/{userId}/edit(userId=${user.getId()})";
+        return "redirect:/user/{userId}/edit(userId=${#session.getAttribute('userId')})";
     }
 
 

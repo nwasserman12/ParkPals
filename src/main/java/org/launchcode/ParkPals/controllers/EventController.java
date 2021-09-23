@@ -78,6 +78,6 @@ public class EventController {
         }
 
         eventRepository.save(event);
-        return "redirect:/user/{userId}/home(userId=${user.getId()})";
+        return "redirect:/user/{id}/home";
     }
 }
