@@ -121,6 +121,8 @@ public class User extends AbstractEntity {
         this.dogs.add(dog);
     }
 
+    public void removeDog(Dog dog) {this.dogs.remove(dog);}
+
     public List<Event> getEvents() {
         return events;
     }
