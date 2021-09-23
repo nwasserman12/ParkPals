@@ -85,6 +85,8 @@ public class Dog extends AbstractEntity {
         this.users.add(user);
     }
 
+    public void removeUser(User user) {this.users.remove(user);}
+
     public List<User> getUsers() {
 
         return users;
