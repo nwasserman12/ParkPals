@@ -181,8 +181,7 @@ public class ProfileController {
         if(ids != null) {
             dog.removeUser(user);
             user.removeDog(dog);
-            dogRepository.save(dog);
-            userRepository.save(user);
+            dogRepository.delete(dog);
         }
 
         return "redirect:/user/" + user.getId();

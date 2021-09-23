@@ -7,27 +7,27 @@
     <div class="container rounded bg-white mt-3 mb-3 align-items-center text-center" style="text-align: center;">
         <form method="post" th:object="${dog}">
             <div class="row text-center">
-                <div class="jumbotron">
+                <div class="jumbotron" style="padding-bottom: 20px">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5 mt-3" style="text-align: center;"><i class="fas fa-dog" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i></div>
                     <h1 class="display-3" style="text-align: center;" th:text="${dog.name}">Dog Name</h1>
                     <div class="form-floating mb-3">
                         <input th:field="${dog.name}" class="form-control"/>
                         <label>Name</label>
-                        <p class="error" th:errors="${editDogDTO.name}"></p>
+                        <p class="error" th:errors="${editDogFormDTO.name}"></p>
                     </div>
                     <div class="form-floating mb-3">
                         <input th:field="${dog.breed}" class="form-control"/>
                         <label>Breed</label>
-                        <p class="error" th:errors="${editDogDTO.breed}"></p>
+                        <p class="error" th:errors="${editDogFormDTO.breed}"></p>
                     </div>
                     <div class="container" style=""></div>
                     <div class="row border border-4 mx-3">
                         <div class="col-sm-4">
                             <h5 spellcheckker="false" style="padding-top: 5px;">Age</h5>
-                            <div class="form-floating mb-3">
-                                <input th:field="${dog.age}"/>
+                            <div class="form-floating mb-3" >
+                                <input th:field="${dog.age}" class="form-control"/>
+                                <p class="error" th:errors="${editDogFormDTO.age}"></p>
                                 <label>Age</label>
-                                <p class="error" th:errors="${editDogDTO.age}"></p>
                             </div>
                         </div>
                         <div class="col-sm-4 col-5">
@@ -54,10 +54,10 @@
                         </div>
                     </div>
                     <div class="card-body" style="text-align: center;">
-                        <label><p class="lead">Remove?</p></label>
+                        <label><p class="lead">Delete dog?</p></label>
                         <input type="checkbox" name="ids" style="width:20px; height:20px; border-radius:5px; border:2px solid #555;" th:value="${dog.id}">
-                        <button class="btn btn-primary btn-lg" type="submit">Save Changes</button>
                     </div>
+                    <button class="btn btn-primary btn-lg" type="submit">Save Changes</button>
                 </div>
             </div>
         </form>
