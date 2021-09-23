@@ -7,7 +7,7 @@
     <div class="container rounded bg-white mt-3 mb-3">
         <div class="row">
             <div class="col-md-5 border-right text-center px-5 my-5">
-                <h3 th:text="${user.firstName + ' Dogs'}"></h3>
+                <h3 th:text="${user.firstName} + '\'s Dogs'"></h3>
                 <div class="jumbotron">
                     <div th:each="userDog : ${userDogs}">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5 mt-3" style="text-align: center;"><i class="fas fa-dog" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i></div>
@@ -31,8 +31,9 @@
                         <h4 class="card-title" style="text-align: center;" th:text="'Owner: ' + ${user.username}">Owner</h4>
                         <input type="checkbox" name="ids" th:value="${userDog.id}">
                         <label>Remove?</label>
-                        <a th:href="@{/user/{id}(id=${user.id})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Visit Profile</a>
-                        <a th:href="@{/user/{id}/edit-dog(id=${user.id})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Edit Information</a>
+                        <a th:href="@{/user/{id}(id=${user.id})}" th:text="'Visit ' + ${user.username} +'\'s Profile'" class="btn btn-outline-dark" style="text-align: center; float: none;">Visit User Profile</a>
+                        <a th:href="@{/user/{id}/dog/{dogId}(id=${user.id}, dogId=${userDog.id})}" th:text="'Visit ' + ${userDog.name} +'\'s Profile'" class="btn btn-outline-dark" style="text-align: center; float: none;"></a>
+                        <a th:href="@{/user/edit-dog-profile/{dogId}(dogId=${userDog.id})}" th:text="'Edit ' + ${userDog.name} +'\'s Info'" class="btn btn-outline-dark" style="text-align: center; float: none;">Edit</a>
                     </div>
                     </div>
                 </div>
