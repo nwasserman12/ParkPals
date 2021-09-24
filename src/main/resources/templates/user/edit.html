@@ -8,7 +8,6 @@
     <div class="row">
         <div class="col-md-3 border-right text-center px-5 my-5">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5"><i class="fas fa-user-circle" style="font-size: 100px;"></i></div>
-            <div><a class="btn btn-primary btn-lg" th:href="@{/user/add-dog}" role="button">Add Dog</a></div>
         </div>
         <div class="col-md-5 border-right">
           <div class="p-3 py-5">
@@ -51,8 +50,8 @@
                         <p class="lead" th:if="${user.dogs.size() <= 0}">No dogs! Try adding one on the right!</p>
                         <table class="table table-striped">
                             <tr th:each="dog : ${user.dogs}">
-                                <td><a th:href="@{/user/{userId}/dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" th:text="${dog.name}"></a></td>
-                                <td><a th:href="@{/user/{userId}/edit-dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Edit</a></td>
+                                <td><a th:href="@{/dog/{dogId}(userId=${user.id})}" th:text="${dog.name}" class="lead text-align-center" style="text-align: center;"></a> </td>
+                                <td><a th:href="@{/user/{userId}/edit-dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" class="btn btn-outline-dark" style="text-align: center; float: none;"><i class="fas fa-cog"></i></a></td>
                             </tr>
                         </table>
                     </div>
