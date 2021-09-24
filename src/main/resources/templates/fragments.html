@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" th:href="@{/styles.css}">
-    <link href="/resources/static/styles.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+<!--    <link href="/resources/static/css/styles.css" rel="stylesheet">-->
 
 </head>
 
@@ -24,22 +24,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" th:href="@{~/user/{userId}/home(userId=${#session.getAttribute('userId')})}">Home</a>
+                    <a class="nav-link" style="font-family: 'Lobster', cursive; font-size: 16px; color: white; letter-spacing: 2px;" aria-current="page" th:href="@{~/user/{userId}/home(userId=${#session.getAttribute('userId')})}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{~/user/{userId}(userId=${#session.getAttribute('userId')})}">Profile</a>
+                    <a class="nav-link" style="font-family: 'Lobster', cursive; font-size: 16px; color: white; letter-spacing: 2px;" th:href="@{~/user/{userId}(userId=${#session.getAttribute('userId')})}">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{~/user/{userId}/create-event/parks(userId=${#session.getAttribute('userId')})}">Create Event</a>
+                    <a class="nav-link" style="font-family: 'Lobster', cursive; font-size: 16px; color: white; letter-spacing: 2px;" th:href="@{~/user/{userId}/create-event/parks(userId=${#session.getAttribute('userId')})}">Create Event</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Parks</a>
+                    <a class="nav-link" style="font-family: 'Lobster', cursive; font-size: 16px; color: white; letter-spacing: 2px;" href="/parkmap">Parks</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{~/user/{userId}(userId=${user.id})/review}">Reviews</a>
+                    <a class="nav-link" style="font-family: 'Lobster', cursive; font-size: 16px; color: white; letter-spacing: 2px;" th:href="@{~/user/{userId}(userId=${user.id})/review}">Reviews</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    <a class="nav-link" style="font-family: 'Lobster', cursive; font-size: 16px; color: white; letter-spacing: 2px;" th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
         </div>

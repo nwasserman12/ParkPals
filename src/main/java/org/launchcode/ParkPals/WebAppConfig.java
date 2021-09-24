@@ -15,6 +15,7 @@ public class WebAppConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/");
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
     }
 
     // Create spring-managed object to allow the app to access our filter
