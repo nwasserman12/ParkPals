@@ -47,7 +47,7 @@
                     </thead>
                     <tbody>
                     <tr class="table-stripped" th:each="park : ${results}">
-                        <td><a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/user/{userId}/create-event/{placeId}/details(userId=${user.id}, placeId=${park.getPlaceId()})}" role="button">+</a></td>
+                        <td><a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/create-event/{placeId}/details(placeId=${park.getPlaceId()})}" role="button">+</a></td>
                         <td><a th:href="@{~/park/{placeId}/details(placeId=${park.getPlaceId()})}" th:text="${park.name}"></a></td>
                         <td th:text="${park.formattedAddress}">Location</td>
                         <td th:text="${park.rating}">Rating(?/5)</td>

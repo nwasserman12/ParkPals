@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("user")
 public class EventController {
 
     @Autowired
@@ -35,7 +34,7 @@ public class EventController {
     @Autowired
     DogRepository dogRepository;
 
-    @GetMapping("{id}/create-event/{placeId}/details")
+    @GetMapping("create-event/{placeId}/details")
     public String displayCreateEventForm(@PathVariable String placeId, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -51,7 +50,7 @@ public class EventController {
         return "event/create-event";
     }
 
-    @PostMapping("{id}/create-event/{placeId}/details")
+    @PostMapping("create-event/{placeId}/details")
     public String processCreateEventForm(@ModelAttribute @Valid Event event, @PathVariable String placeId, @RequestParam(required = false) int[] dogAttendees,
                                          Errors errors, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -77,10 +76,24 @@ public class EventController {
 
         user.addEvents(event);
         park.addEvents(event);
-        event.addUserAttendees(user);
         event.setPark(park);
         event.setCreator(user);
         eventRepository.save(event);
         return "redirect:/user/{id}/home";
+    }
+
+    @GetMapping("/event/{eventId}")
+    public String viewEventProfileById(@PathVariable Integer eventId, Model model) {
+        Optional optEvent = eventRepository.findById(eventId);
+        if (optEvent.isPresent()) {
+            Event event = (Event) optEvent.get();
+            User creator = event.getCreator();
+            model.addAttribute("event", event);
+            model.addAttribute("user", creator);
+            return "event/event-profile";
+        } else {
+            return "redirect:../";
+        }
+
     }
 }

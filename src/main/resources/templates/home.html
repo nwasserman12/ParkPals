@@ -53,7 +53,7 @@
                             <td><a class="btn btn-primary btn-sml" th:value="${event.getId()}" role="button">+</a></td>
                             <td th:text="${event.getId()}">Id</td>
                             <td><a th:href="@{~/user/{userId}(userId=${event.getCreator().getId()})}" th:text="${event.getCreator().getUsername()}"></a></td>
-                            <td th:text="${event.getTitle()}">Title</td>
+                            <td><a th:href="@{~/event/{eventId}(eventId=${event.getId()})}" th:text="${event.getTitle()}"></a></td>
                             <td><a th:href="@{~/park/{placeId}/details(placeId=${event.getPark().getPlaceId()})}" th:text="${event.getParkName()}"></a></td>
                             <td th:text="${event.dateToString()}">Date</td>
                             <td th:text="${event.getUserAttendees().size()}"># of Attendees</td>

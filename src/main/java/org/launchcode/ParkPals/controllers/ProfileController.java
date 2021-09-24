@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("user")
 public class ProfileController {
 
     @Autowired
@@ -35,7 +34,7 @@ public class ProfileController {
     @Autowired
     private AuthenticationController authenticationController;
 
-    @GetMapping("profile")
+    @GetMapping("user/profile")
     public String userProfile(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -44,7 +43,7 @@ public class ProfileController {
     }
 
 
-    @GetMapping("{userId}")
+    @GetMapping("user/{userId}")
     public String viewProfileById(@PathVariable Integer userId, Model model, HttpServletRequest request) {
         Optional optUser = userRepository.findById(userId);
         HttpSession session = request.getSession();
@@ -61,7 +60,7 @@ public class ProfileController {
 
 
 
-    @GetMapping("add-dog")
+    @GetMapping("user/add-dog")
     public String displayAddDogForm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -75,7 +74,7 @@ public class ProfileController {
         return "user/add-dog";
     }
 
-    @PostMapping("add-dog")
+    @PostMapping("user/add-dog")
     public String processAddDogForm(@ModelAttribute @Valid Dog newDog,
                                        Errors errors, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -94,29 +93,23 @@ public class ProfileController {
     }
 
 
-    @GetMapping("{userId}/dog/{dogId}")
-    public String viewDogProfileById(@PathVariable Integer userId, @PathVariable Integer dogId, Model model) {
-        Optional optUser = userRepository.findById(userId);
-        if (optUser.isPresent()) {
-            Optional optDog = dogRepository.findById(dogId);
-            User user = (User) optUser.get();
-            if (optDog.isPresent() && !user.getDogs().contains(optDog)) {
-                Dog dog = (Dog) optDog.get();
-                model.addAttribute("dog", dog);
-                model.addAttribute("user", user);
-                model.addAttribute("dogId", dogId);
-                return "user/dog-profile";
-            } else {
-                return "redirect:../";
-            }
-
+    @GetMapping("dog/{dogId}")
+    public String viewDogProfileById(@PathVariable Integer dogId, Model model) {
+        Optional optDog = dogRepository.findById(dogId);
+        if (optDog.isPresent()) {
+            Dog dog = (Dog) optDog.get();
+            User owner = dog.getUsers().get(0);
+            model.addAttribute("dog", dog);
+            model.addAttribute("dogId", dogId);
+            model.addAttribute("user", owner);
+            return "user/dog-profile";
+        } else {
+            return "redirect:../";
         }
-
-        return "redirect:../";
     }
 
 
-    @GetMapping("{userId}/edit")
+    @GetMapping("user/{userId}/edit")
     public String displayEditForm(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -125,7 +118,7 @@ public class ProfileController {
         return "user/edit";
     }
 
-    @PostMapping("{userId}/edit")
+    @PostMapping("user/{userId}/edit")
     public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, @RequestParam(required = false) int[] eventIds, Errors errors, HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -153,7 +146,7 @@ public class ProfileController {
         return "redirect:/user/" + user.getId();
     }
 
-    @GetMapping("{userId}/edit-dog/{dogId}")
+    @GetMapping("user/{userId}/edit-dog/{dogId}")
     public String displayEditDogForm(Model model, @PathVariable Integer dogId, HttpServletRequest request) {
         User user = authenticationController.getUserFromSession(request.getSession());
         Optional<Dog> optDog = dogRepository.findById(dogId);
@@ -166,7 +159,7 @@ public class ProfileController {
         return "user/edit-dog";
     }
 
-    @PostMapping("{userId}/edit-dog/{dogId}")
+    @PostMapping("user/{userId}/edit-dog/{dogId}")
     public String processEditDogForm(@RequestParam(value = "ids" , required = false) int[] ids, @ModelAttribute @Valid EditDogFormDTO editDogFormDTO, @PathVariable Integer dogId, HttpServletRequest request) {
         User user = authenticationController.getUserFromSession(request.getSession());
         Optional<Dog> optDog = dogRepository.findById(dogId);

@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("user")
 public class HomeController {
 
     @Autowired
@@ -29,7 +28,7 @@ public class HomeController {
     @Autowired
     EventRepository eventRepository;
 
-    @RequestMapping("{userId}/home")
+    @RequestMapping("/home")
     public String home(Model model) {
         model.addAttribute("event", eventRepository.findAll());
         return "home";

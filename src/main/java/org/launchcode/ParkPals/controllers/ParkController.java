@@ -34,7 +34,7 @@ public class ParkController {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    @GetMapping("user/{userId}/create-event/parks")
+    @GetMapping("/create-event/parks")
     public String displayParkSearch(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -43,7 +43,7 @@ public class ParkController {
         return "park/park-selection";
     }
 
-    @PostMapping("user/{userId}/create-event/parks")
+    @PostMapping("/create-event/parks")
     public String processParkSearch(@RequestParam String searchTerm, Model model, HttpServletRequest request) throws IOException {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);

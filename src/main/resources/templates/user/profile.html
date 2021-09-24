@@ -41,7 +41,7 @@
                             <p class="lead" th:if="${user.dogs.size() <= 0}">No dogs!</p>
                             <table class="table table-striped">
                                 <tr th:each="dog : ${user.dogs}">
-                                    <td><a th:href="@{/user/{userId}/dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" th:text="${dog.name}"></a></td>
+                                    <td><a th:href="@{/dog/{dogId}(dogId=${dog.id})}" th:text="${dog.name}"></a></td>
                                 </tr>
                             </table>
                         </div>
@@ -52,7 +52,7 @@
                             <p class="lead" th:if="${user.events.size() <= 0}">No Events!</p>
                             <table class="table table-striped">
                                 <tr th:each="event : ${user.events}">
-                                    <td th:text="${event.getTitle()}"></td>
+                                    <td><a th:href="@{/event/{eventId}(eventId=${event.id})}" th:text="${event.title}"></a></td>
                                 </tr>
                             </table>
                         </div>

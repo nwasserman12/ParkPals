@@ -34,7 +34,7 @@ public class Event extends AbstractEntity {
     @NotNull
     private DogTemperament desiredTemperament;
 
-    @ManyToMany(mappedBy = "events" )
+    @ManyToMany(mappedBy = "events")
     private List<User> userAttendees = new ArrayList<>();
 
     @ManyToMany(mappedBy = "events")
