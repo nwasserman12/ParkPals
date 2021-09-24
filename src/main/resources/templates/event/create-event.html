@@ -23,7 +23,7 @@
                 <p class="error" th:errors="${event.title}"></p>
             </div>
             <div class="form-floating mb-3">
-                <input th:field="${event.date}" class="form-control" type="date" placeholder="Date"/>
+                <input th:field="${event.date}" class="form-control" type="datetime-local" placeholder="Date"/>
                 <label>Date</label>
                 <p class="error" th:errors="${event.date}"></p>
             </div>

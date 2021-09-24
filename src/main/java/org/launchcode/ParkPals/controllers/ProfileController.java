@@ -130,6 +130,17 @@ public class ProfileController {
             for (int id : eventIds) {
                 Optional<Event> optionalEvent = eventRepository.findById(id);
                 Event event = optionalEvent.get();
+
+                List<Dog> allDogAttendees = event.getDogAttendees();
+                for(Dog dog : allDogAttendees) {
+                    dog.removeEvents(event);
+                }
+                event.getDogAttendees().removeAll(allDogAttendees);
+
+                List<User> allUserAttendees = event.getUserAttendees();
+                event.getUserAttendees().removeAll(allUserAttendees);
+
+
                 user.deleteEvents(event);
                 eventRepository.delete(event);
             }

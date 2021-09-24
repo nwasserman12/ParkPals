@@ -10,12 +10,13 @@
             <div class="jumbotron">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5 mt-3" style="text-align: center;"><i class="fas fa-calendar-minus" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i></div>
                 <h1 class="display-3" style="text-align: center;" th:text="${event.title}">Event Name</h1>
-                <p class="lead"></p><p class="lead" style="padding-top: 0px;" th:text="${event.creator.username}">Park</p>
+                <h2 class="lead" th:text="${event.park.name}">Park</h2>
+                <h3 class="lead" th:text="${event.park.address}">Address</h3>
                 <div class="container" style=""></div>
                 <div class="row border border-4 mx-3">
                     <div class="col-sm-4">
-                        <h5 style="padding-top: 5px; padding-bottom: 0px; height: 20px;">Date</h5>
-                        <p class="lead"></p><p class="lead" style="padding-top: 0px;" th:text="${event.date}">Date</p>
+                        <h5 style="padding-top: 5px; padding-bottom: 0px; height: 20px;">Event Date</h5>
+                        <p class="lead"></p><p class="lead" style="padding-top: 0px;" th:text="${event.dateToString()}">Date</p>
                     </div>
                     <div class="col-sm-4">
                         <h5 style="height: 24px; font-weight: 600; padding-top: 5px; padding-bottom: 5px;">Desired Activity Level</h5>

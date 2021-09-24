@@ -112,12 +112,20 @@ public class Event extends AbstractEntity {
         this.userAttendees.add(user);
     }
 
+    public void removeUserAttendees(User user) {
+        this.userAttendees.remove(user);
+    }
+
     public List<Dog> getDogAttendees() {
         return dogAttendees;
     }
 
     public void addDogAttendee(Dog dog) {
         this.dogAttendees.add(dog);
+    }
+
+    public void removeDogAttendee(Dog dog) {
+        this.dogAttendees.remove(dog);
     }
 
     public String dateToString() {

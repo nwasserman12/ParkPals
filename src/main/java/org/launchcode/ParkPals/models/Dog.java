@@ -102,4 +102,8 @@ public class Dog extends AbstractEntity {
     public void addEvents(Event event) {
         this.events.add(event);
     }
+
+    public void removeEvents(Event event) {
+        this.events.remove(event);
+    }
 }
