@@ -47,6 +47,18 @@
              </div>
                 <div class="row mt-3">
                     <div class="col-md-12">
+                        <h5 class="labels">Edit Dogs</h5>
+                        <p class="lead" th:if="${user.dogs.size() <= 0}">No dogs! Try adding one on the right!</p>
+                        <table class="table table-striped">
+                            <tr th:each="dog : ${user.dogs}">
+                                <td><a th:href="@{/user/{userId}/dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" th:text="${dog.name}"></a></td>
+                                <td><a th:href="@{/user/{userId}/edit-dog/{dogId}(userId=${user.id}, dogId=${dog.id})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Edit</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
                         <h5 class="labels">Delete Events</h5>
                         <p class="lead" th:if="${user.events.size() <= 0}">No events to delete!</p>
                         <table class="table table-striped" th:if="${user.events.size() > 0}">

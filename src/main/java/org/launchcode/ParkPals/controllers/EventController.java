@@ -52,11 +52,12 @@ public class EventController {
     }
 
     @PostMapping("{id}/create-event/{placeId}/details")
-    public String processCreateEventForm(@ModelAttribute @Valid Event event, @PathVariable String placeId, @RequestParam("dogAttendees") String[] dogAttendees,
+    public String processCreateEventForm(@ModelAttribute @Valid Event event, @PathVariable String placeId, @RequestParam(required = false) int[] dogAttendees,
                                          Errors errors, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
         Park park = parkRepository.findByPlaceId(placeId);
+
         if(errors.hasErrors()) {
             model.addAttribute("types", DogTemperament.values());
             model.addAttribute("activityLevels", DogActivity.values());
@@ -65,18 +66,20 @@ public class EventController {
             return "event/create-event";
         }
 
+        if (dogAttendees != null) {
+            for (int id : dogAttendees) {
+                Optional<Dog> optionalDog = dogRepository.findById(id);
+                Dog dog = optionalDog.get();
+                dog.addEvents(event);
+                event.addDogAttendee(dog);
+            }
+        }
+
         user.addEvents(event);
         park.addEvents(event);
         event.addUserAttendees(user);
         event.setPark(park);
         event.setCreator(user);
-        for(String dogId : dogAttendees) {
-            int i = Integer.parseInt(dogId);
-            Optional<Dog> optionalDog = dogRepository.findById(i);
-            Dog dog = optionalDog.get();
-            event.addDogAttendee(dog);
-        }
-
         eventRepository.save(event);
         return "redirect:/user/{id}/home";
     }

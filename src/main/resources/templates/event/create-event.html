@@ -59,7 +59,7 @@
 <!--                </select>-->
                 <fieldset>
                     <legend>What dogs are attending this event?</legend>
-                    <div th:each="dog : ${user.getDogs()}" th:field="${dogAttendees}">
+                    <div th:each="dog : ${user.getDogs()}" >
                         <input type="checkbox" th:value="${dog.getId()}" name="dogAttendees">
                         <label th:text="${dog.getName()}">Dog Name</label>
                     </div>
