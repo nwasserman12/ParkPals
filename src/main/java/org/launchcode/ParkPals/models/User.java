@@ -36,7 +36,8 @@ public class User extends AbstractEntity {
     @JoinTable
     private final List<Event> events = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable
     private final List<Review> reviews = new ArrayList<>();
 
     @NotNull
@@ -141,6 +142,10 @@ public class User extends AbstractEntity {
 //
 //    public void addReviews(Review review) {
 //        this.reviews.add(review);
+//    }
+//
+//    public void deleteReviews(Review review) {
+//        this.events.remove(review);
 //    }
 
     public boolean isMatchingPassword(String password) {
