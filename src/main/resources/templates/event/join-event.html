@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<nav th:replace="fragments :: nav"></nav>
-<body style="background-color: #ACACAC">
+<body class="page-holder bg-cover">
 
 <div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container rounded bg-white mt-3 mb-3">
@@ -12,7 +11,21 @@
                 <h1 class="display-3" style="text-align: center;" th:text="${event.title}">Event Name</h1>
                 <h2 class="lead" th:text="${event.park.name}">Park</h2>
                 <h3 class="lead" th:text="${event.park.address}">Address</h3>
-                <div class="container" style=""></div>
+                <div class="container" style="">
+                    <div class="container py-5 h-100" style="padding: 20px;">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="col col-xl-10">
+                                <div class="card" style="border-radius: 1rem; background-color: #ACACAC;">
+                                    <div class="row g-0">
+                                        <div class="p-4 p-lg-5 text-black align-items-center text-center ">
+                                            <h1>Join Event?</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row border border-4 mx-3">
                     <div class="col-sm-4">
                         <h5 style="padding-top: 5px; padding-bottom: 0px; height: 20px;">Date</h5>
@@ -57,6 +70,6 @@
 
 </div>
 
-
 </body>
 </html>
+

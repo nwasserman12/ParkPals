@@ -5,6 +5,8 @@ import org.launchcode.ParkPals.data.DogRepository;
 import org.launchcode.ParkPals.data.EventRepository;
 import org.launchcode.ParkPals.data.ParkRepository;
 import org.launchcode.ParkPals.models.*;
+import org.launchcode.ParkPals.models.dto.EditDogFormDTO;
+import org.launchcode.ParkPals.models.dto.EditFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,9 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,6 +82,7 @@ public class EventController {
         park.addEvents(event);
         event.setPark(park);
         event.setCreator(user);
+
         eventRepository.save(event);
         return "redirect:/user/{id}/home";
     }
@@ -96,4 +101,38 @@ public class EventController {
         }
 
     }
+
+    @GetMapping("/event/{eventId}/join")
+    public String joinEvent(@PathVariable Integer eventId, Model model, HttpServletRequest request) {
+        Optional optEvent = eventRepository.findById(eventId);
+        HttpSession session = request.getSession();
+        if (optEvent.isPresent()) {
+            Event event = (Event) optEvent.get();
+            User creator = event.getCreator();
+            event.addUserAttendees(authenticationController.getUserFromSession(session));
+            model.addAttribute("event", event);
+            model.addAttribute("user", creator);
+            return "event/event-profile";
+        } else {
+            return "redirect:../";
+        }
+    }
+
+    @GetMapping("/event/{eventId}/join")
+    public String leaveEvent(@PathVariable Integer eventId, Model model, HttpServletRequest request) {
+        Optional optEvent = eventRepository.findById(eventId);
+        HttpSession session = request.getSession();
+        if (optEvent.isPresent()) {
+            Event event = (Event) optEvent.get();
+            User creator = event.getCreator();
+            event.removeUserAttendees(authenticationController.getUserFromSession(session));
+            model.addAttribute("event", event);
+            model.addAttribute("user", creator);
+            return "event/event-profile";
+        } else {
+            return "redirect:../";
+        }
+    }
+
+
 }

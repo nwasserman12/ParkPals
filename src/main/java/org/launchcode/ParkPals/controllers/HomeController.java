@@ -29,7 +29,9 @@ public class HomeController {
     EventRepository eventRepository;
 
     @RequestMapping("/home")
-    public String home(Model model) {
+    public String home(Model model, HttpServletRequest request) {
+        User user = authenticationController.getUserFromSession(request.getSession());
+        model.addAttribute("user", user);
         model.addAttribute("event", eventRepository.findAll());
         return "home";
     }

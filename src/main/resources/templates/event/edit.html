@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: nav"></nav>
+<body style="background-color: #ACACAC">
+
+<div class="page-holder bg-cover" style="padding: 20px;">
+    <div class="container rounded bg-white mt-3 mb-3">
+        <form method="post">
+        <div class="row text-center">
+            <div class="jumbotron">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5 mt-3" style="text-align: center;"><i class="fas fa-edit" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i></div>
+                <h1 class="display-3" style="text-align: center;" th:text="${event.title}">Event Name</h1>
+                <div class="form-floating mb-3">
+                    <input th:field="${event.title}" class="form-control" id="title" type="text" placeholder="Event Name"/>
+                    <label for="title">Name</label>
+                    <p class="error" th:errors="${event.title}"></p>
+                </div>
+<!--                <div class="form-floating mb-3">-->
+<!--                    <select th:field="${event.park}" class="form-select" id="park" aria-label="Park">-->
+<!--                        <option th:each="park : ${allParks}"-->
+<!--                                th:value="${park.id}"-->
+<!--                                th:text="${park.name}"-->
+<!--                        ></option>-->
+<!--                    </select>-->
+<!--                    <p class="error" th:errors="${event.park}"></p>-->
+<!--                </div>-->
+                <div class="container" style=""></div>
+                <div class="row border border-4 mx-3">
+                    <div class="col-sm-4">
+                        <h5 style="padding-top: 5px; padding-bottom: 0px; height: 20px;">Event Date</h5>
+                        <div class="form-floating mb-3">
+                            <input th:field="${event.date}" class="form-control" type="datetime-local"/>
+                            <label>Date</label>
+                            <p class="error" th:errors="${event.date}"></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5 style="height: 24px; font-weight: 600; padding-top: 5px; padding-bottom: 5px;">Desired Activity Level</h5>
+                        <div class="form-floating mb-3">
+                            <select th:field="${event.desiredActivity}" class="form-select" id="activityLevel" aria-label="Activity Level">
+                                <<option th:each="activity : ${activityLevels}"
+                                         th:value="${activity}"
+                                         th:text="${activity.activityLevel}"
+                            ></option>
+                            </select>
+                            <label for="activityLevel">Desired Dog Activity Level</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="text-decoration-color: rgb(255, 255, 255);">
+                        <h5 style="padding-top: 5px;">Desired Temperament</h5>
+                        <div class="form-floating mb-3">
+                        <select th:field="${event.desiredTemperament}" class="form-select" id="temperament" aria-label="Temperament">
+                            <option th:each="type : ${types}"
+                                    th:value="${type}"
+                                    th:text="${type.temperamentType}"
+                            ></option>
+                        </select>
+                        <label for="temperament">Desired Dog Temperament</label>
+                    </div>
+                    </div>
+                </div>
+                <div class="row border border-4 mx-3">
+                    <div class="col-sm-6">
+                        <h5 style="padding-top: 5px; height: 20px;">Users Attending</h5>
+                        <p class="lead" th:if="${event.userAttendees.size() <= 0}">No users are attending this event!</p>
+                        <table class="table table-striped">
+                            <tr th:each="user : ${event.userAttendees}">
+                                <td><a th:href="@{/user/{userId}(userId=${user.id})}" th:text="${user.username}"></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5 style="height: 20px; padding-top: 5px;">Dogs Attending</h5>
+                        <p class="lead" th:if="${event.dogAttendees.size() <= 0}">No dogs are attending this event!</p>
+                        <table class="table table-striped">
+                            <tr th:each="dog : ${event.dogAttendees}">
+                                <td><a th:href="@{/dog/{dogId}(dogId=${dog.id})}" th:text="${dog.name}"></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-body" style="text-align: center;">
+                    <label><p class="lead">Delete event?</p></label>
+                    <input type="checkbox" name="id" th:value="${event.getId()}" style="width:20px; height:20px; border-radius:5px; border:2px solid #555;">
+                </div>
+                <button class="btn btn-outline-dark" type="submit">Save Changes</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+</div>
+
+
+</body>
+</html>

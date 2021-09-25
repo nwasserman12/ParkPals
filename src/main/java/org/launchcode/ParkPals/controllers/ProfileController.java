@@ -2,9 +2,11 @@ package org.launchcode.ParkPals.controllers;
 
 import org.launchcode.ParkPals.data.DogRepository;
 import org.launchcode.ParkPals.data.EventRepository;
+import org.launchcode.ParkPals.data.ParkRepository;
 import org.launchcode.ParkPals.data.UserRepository;
 import org.launchcode.ParkPals.models.*;
 import org.launchcode.ParkPals.models.dto.EditDogFormDTO;
+import org.launchcode.ParkPals.models.dto.EditEventFormDTO;
 import org.launchcode.ParkPals.models.dto.EditFormDTO;
 import org.launchcode.ParkPals.models.dto.UserDogDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class ProfileController {
 
     @Autowired
     private EventRepository eventRepository;
+
+    @Autowired
+    private ParkRepository parkRepository;
 
     @Autowired
     private AuthenticationController authenticationController;
@@ -119,31 +124,12 @@ public class ProfileController {
     }
 
     @PostMapping("user/{userId}/edit")
-    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, @RequestParam(required = false) int[] eventIds, Errors errors, HttpServletRequest request, Model model){
+    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, Errors errors, HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
         if (errors.hasErrors()) {
             model.addAttribute("user", user);
             return "user/edit";
-        }
-        if (eventIds != null) {
-            for (int id : eventIds) {
-                Optional<Event> optionalEvent = eventRepository.findById(id);
-                Event event = optionalEvent.get();
-
-                List<Dog> allDogAttendees = event.getDogAttendees();
-                for(Dog dog : allDogAttendees) {
-                    dog.removeEvents(event);
-                }
-                event.getDogAttendees().removeAll(allDogAttendees);
-
-                List<User> allUserAttendees = event.getUserAttendees();
-                event.getUserAttendees().removeAll(allUserAttendees);
-
-
-                user.deleteEvents(event);
-                eventRepository.delete(event);
-            }
         }
 
         user.setFirstName(editFormDTO.getFirstName());
@@ -191,5 +177,50 @@ public class ProfileController {
 
         return "redirect:/user/" + user.getId();
     }
+
+    @GetMapping("user/{userId}/edit-event/{eventId}")
+    public String displayEditEventForm(Model model, @PathVariable Integer eventId, HttpServletRequest request) {
+        User user = authenticationController.getUserFromSession(request.getSession());
+        Optional<Event> optEvent = eventRepository.findById(eventId);
+        Event event = optEvent.get();
+        model.addAttribute("user", user);
+        model.addAttribute("event", event);
+        model.addAttribute("types", DogTemperament.values());
+        model.addAttribute("activityLevels", DogActivity.values());
+        model.addAttribute(new EditEventFormDTO());
+        return "event/edit";
+    }
+
+    @PostMapping("user/{userId}/edit-event/{eventId}")
+    public String processEditEventForm(@RequestParam(value = "id" , required = false) int[] id, @ModelAttribute @Valid EditEventFormDTO editEventFormDTO, @PathVariable Integer eventId, HttpServletRequest request) {
+        User user = authenticationController.getUserFromSession(request.getSession());
+        Optional<Event> optEvent = eventRepository.findById(eventId);
+        Event event = optEvent.get();
+
+        event.setTitle(editEventFormDTO.getTitle());
+        event.setDate(editEventFormDTO.getDate());
+        event.setDesiredActivity(editEventFormDTO.getDesiredActivity());
+        event.setDesiredTemperament(editEventFormDTO.getDesiredTemperament());
+        eventRepository.save(event);
+
+        if(id != null) {
+            List<Dog> allDogAttendees = event.getDogAttendees();
+            for(Dog dog : allDogAttendees) {
+                dog.removeEvents(event);
+            }
+            event.getDogAttendees().removeAll(allDogAttendees);
+
+            List<User> allUserAttendees = event.getUserAttendees();
+            event.getUserAttendees().removeAll(allUserAttendees);
+
+
+            user.deleteEvents(event);
+            eventRepository.delete(event);
+        }
+
+        return "redirect:/user/" + user.getId();
+    }
+
+
 
 }

@@ -14,14 +14,12 @@
         <form method = "post">
             <h2>Find Park:</h2>
             <p class="lead">Pick a location for your event!</p>
-            <div>
-                <div class="form-outline text-center input-group input-group-sml">
+                <div class="form-outline text-center input-group input-group-sml justify-content-center">
                     <input type="text" name="searchTerm" id="searchTerm" />
                     <button type="submit" value="Search" class="btn btn-primary">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-            </div>
         </form>
         <div class="row">
             <div class="col-md-12">
@@ -47,11 +45,11 @@
                     </thead>
                     <tbody>
                     <tr class="table-stripped" th:each="park : ${results}">
-                        <td><a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/create-event/{placeId}/details(placeId=${park.getPlaceId()})}" role="button">+</a></td>
-                        <td><a th:href="@{~/park/{placeId}/details(placeId=${park.getPlaceId()})}" th:text="${park.name}"></a></td>
-                        <td th:text="${park.formattedAddress}">Location</td>
-                        <td th:text="${park.rating}">Rating(?/5)</td>
-                        <td th:text="${park.userRatingsTotal}">Total Ratings</td>
+                        <td><a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/create-event/{placeId}/details(placeId=${park.getPlaceId()})}" role="button" style="font-size: 20px">+</a></td>
+                        <td><a th:href="@{~/park/{placeId}/details(placeId=${park.getPlaceId()})}" th:text="${park.name}" style="font-size: 20px"></a></td>
+                        <td th:text="${park.formattedAddress}" style="font-size: 20px">Location</td>
+                        <td th:text="${park.rating}" style="font-size: 20px">Rating(?/5)</td>
+                        <td th:text="${park.userRatingsTotal}" style="font-size: 20px">Total Ratings</td>
                     </tr>
                     </tbody>
                 </table>
