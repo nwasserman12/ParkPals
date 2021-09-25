@@ -4,9 +4,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +32,9 @@ public class Review extends AbstractEntity{
     @NotNull
     @Size(max=500, message = "Must not exceed 500 Characters")
     private String description;
+
+//    @ManyToMany(mappedBy = "reviews" )
+//    private List<User> userReviews = new ArrayList<>();
 
 
     public Review(User reviewer, Park park, Date reviewDate, ReviewStars numberOfStars, String description) {
@@ -91,4 +96,12 @@ public class Review extends AbstractEntity{
     public String dateToString() {
         return this.reviewDate.toString().substring(0, 10);
     }
+//
+//    public List<User> getUserReviews() {
+//        return userReviews;
+//    }
+//
+//    public void addUserReviews(User user) {
+//        this.userReviews.add(user);
+//    }
 }
