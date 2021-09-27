@@ -37,11 +37,8 @@ their dogs. Users can locate and commune with fellow dog enthusiasts based on th
 - Bootstrap
 - HTML/CSS
 - MySQL
-
-### What I'll Have to Learn
-
-- Implementation of specific API's
-- Embedding maps/calendars
+- Hibernate
+- Google API
 
 ## Project Tracker
 
