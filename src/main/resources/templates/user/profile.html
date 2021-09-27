@@ -5,6 +5,7 @@
 <body style="background-color: #ACACAC">
 <div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container rounded bg-white mt-3 mb-3">
+        <div class="container px-5 my-5 text-center">
         <div class="row">
             <div class="col-md-3 border-right text-center px-5 my-5">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5"><i class="fas fa-user-circle" style="font-size: 100px;"></i></div>
@@ -12,19 +13,19 @@
             </div>
             <div class="col-md-5 border-right">
                 <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h3 style="font-family: 'Lobster', cursive; color: black; -webkit-text-stroke: 2px black; letter-spacing: 6px; font-size: 50px; " class="text-right cursive-5" th:text="${user.username}"></h3>
+                    <div class="justify-content-between align-items-center mb-3">
+                        <h3 style="font-family: 'Lobster', cursive; color: crimson; -webkit-text-stroke: 2px crimson; letter-spacing: 6px; font-size: 50px; " class="cursive-5" th:text="${user.username}"></h3>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <h5 class="labels">Name</h5>
                             <p th:text="${user.firstName + ' ' + user.lastName}"></p>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <h5 class="labels">Age</h5>
                             <p th:text="${user.age}"></p>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <h5 class="labels">Zip Code</h5>
                             <p th:text="${user.zipCode}"></p>
                         </div>
@@ -70,6 +71,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 </div>

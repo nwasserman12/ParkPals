@@ -49,7 +49,9 @@
                 </div>
                 <div class="card-body" style="text-align: center;">
                     <h4 class="card-title" style="text-align: center;" th:text="'Event Creator: ' + ${event.creator.username}">Event Creator</h4>
-                    <a th:href="@{/user/{id}(id=${user.id})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Visit Profile</a>
+                    <a th:href="@{/user/{id}(id=${user.id})}" th:if="${event.creator != user}" class="btn btn-outline-dark" style="text-align: center; float: none;">Visit Profile</a>
+                    <a class="btn btn-outline-dark btn-sml" th:if="${event.getCreator == user}" th:value="${event.getId()}" th:href="@{~/user/{userId}/edit-event/{eventId}(eventId=${event.getId}, userId=${user.getId})}" role="button" style="font-size: 15px">Edit</a>
+
                 </div>
             </div>
         </div>

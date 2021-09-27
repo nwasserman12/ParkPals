@@ -84,7 +84,7 @@ public class EventController {
         event.setCreator(user);
 
         eventRepository.save(event);
-        return "redirect:/user/{id}/home";
+        return "redirect:/home";
     }
 
     @GetMapping("/event/{eventId}")

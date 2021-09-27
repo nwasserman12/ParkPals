@@ -67,6 +67,7 @@
                         <table class="table table-striped">
                             <tr th:each="user : ${event.userAttendees}">
                                 <td><a th:href="@{/user/{userId}(userId=${user.id})}" th:text="${user.username}"></a></td>
+<!--                                <td><input th:value="${user.getId()}" name="userIds" type="checkbox" style="text-align: center; float: none;"/></td>-->
                             </tr>
                         </table>
                     </div>
@@ -76,6 +77,8 @@
                         <table class="table table-striped">
                             <tr th:each="dog : ${event.dogAttendees}">
                                 <td><a th:href="@{/dog/{dogId}(dogId=${dog.id})}" th:text="${dog.name}"></a></td>
+<!--                                <td><input th:value="${dog.getId()}" name="dogIds" type="checkbox" style="text-align: center; float: none;"/></td>-->
+
                             </tr>
                         </table>
                     </div>

@@ -28,8 +28,8 @@
                                                     </div>
                                                 </fieldset>
                                                 <div class="d-grid">
-                                                    <button class="btn btn-outline-dark" th:if="${dogs.size() > 0}" id="submitButton" type="submit">Join</button>
-                                                    <button class="btn btn-outline-dark" th:href="@{~/home}" th:if="${dogs == null || dogs.size() == 0}">Back</button>
+                                                    <button class="btn btn-outline-dark btn-sm" th:if="${dogs.size() > 0}" id="submitButton" type="submit">Join</button>
+                                                    <button class="btn btn-outline-dark btn-sm" th:href="@{~/home}" th:if="${dogs == null || dogs.size() == 0}">Back</button>
                                                 </div>
                                             </div>
                                         </form>
