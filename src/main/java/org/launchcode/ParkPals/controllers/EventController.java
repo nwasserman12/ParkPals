@@ -84,17 +84,21 @@ public class EventController {
         event.setCreator(user);
 
         eventRepository.save(event);
-        return "redirect:/user/{id}/home";
+        return "redirect:/home";
     }
 
     @GetMapping("/event/{eventId}")
-    public String viewEventProfileById(@PathVariable Integer eventId, Model model) {
+    public String viewEventProfileById(@PathVariable Integer eventId, Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
         Optional optEvent = eventRepository.findById(eventId);
         if (optEvent.isPresent()) {
             Event event = (Event) optEvent.get();
             User creator = event.getCreator();
             model.addAttribute("event", event);
-            model.addAttribute("user", creator);
+            model.addAttribute("creator", creator);
+            model.addAttribute("user", user);
+
             return "event/event-profile";
         } else {
             return "redirect:../";
@@ -112,7 +116,8 @@ public class EventController {
             User creator = event.getCreator();
             model.addAttribute("dogs", event.filterUserDogs(userInSession.getDogs()));
             model.addAttribute("event", event);
-            model.addAttribute("user", creator);
+            model.addAttribute("user", userInSession);
+            model.addAttribute("creator", creator);
             eventRepository.save(event);
             return "event/join-event";
         } else {
@@ -128,18 +133,19 @@ public class EventController {
         User creator = event.getCreator();
         User userInSession = authenticationController.getUserFromSession(session);
         model.addAttribute("event", event);
-        model.addAttribute("user", creator);
+        model.addAttribute("user", userInSession);
+        model.addAttribute("creator", creator);
         if (dogAttendees != null) {
             for (int id : dogAttendees) {
                 Optional<Dog> optionalDog = dogRepository.findById(id);
                 Dog dog = optionalDog.get();
                 if(!event.getDogAttendees().contains(dog)) {
+                    userInSession.addEvents(event);
                     dog.addEvents(event);
                     event.addDogAttendee(dog);
                 }
             }
         }
-        userInSession.addEvents(event);
         eventRepository.save(event);
         return "event/event-profile";
     }
@@ -163,7 +169,8 @@ public class EventController {
             event.removeAllDogAttendees(userDogsInEvent);
             user.deleteEvents(event);
             model.addAttribute("event", event);
-            model.addAttribute("user", creator);
+            model.addAttribute("user", user);
+            model.addAttribute("creator", creator);
             eventRepository.save(event);
             return "event/event-profile";
         } else {

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="page-holder bg-cover">
+<nav th:replace="fragments :: nav"></nav>
+<body class="page-holder bg-cover" style="background-color: #406343;">
 
 <div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container rounded bg-white mt-3 mb-3">
@@ -28,7 +29,8 @@
                                                     </div>
                                                 </fieldset>
                                                 <div class="d-grid">
-                                                    <button class="btn btn-outline-dark" id="submitButton" type="submit">Join</button>
+                                                    <button class="btn btn-outline-dark btn-sm" th:if="${dogs.size() > 0}" id="submitButton" type="submit">Join</button>
+                                                    <button class="btn btn-outline-dark btn-sm" th:href="@{~/home}" th:if="${dogs == null || dogs.size() == 0}">Back</button>
                                                 </div>
                                             </div>
                                         </form>

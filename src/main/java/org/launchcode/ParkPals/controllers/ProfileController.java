@@ -192,7 +192,7 @@ public class ProfileController {
     }
 
     @PostMapping("user/{userId}/edit-event/{eventId}")
-    public String processEditEventForm(@RequestParam(value = "id" , required = false) int[] id, @ModelAttribute @Valid EditEventFormDTO editEventFormDTO, @PathVariable Integer eventId, HttpServletRequest request) {
+    public String processEditEventForm(@RequestParam(value = "id" , required = false) int[] id, @RequestParam(value = "userIds" , required = false) int[] userIds, @RequestParam(value = "dogIds" , required = false) int[] dogIds, @ModelAttribute @Valid EditEventFormDTO editEventFormDTO, @PathVariable Integer eventId, HttpServletRequest request) {
         User user = authenticationController.getUserFromSession(request.getSession());
         Optional<Event> optEvent = eventRepository.findById(eventId);
         Event event = optEvent.get();
@@ -203,19 +203,36 @@ public class ProfileController {
         event.setDesiredTemperament(editEventFormDTO.getDesiredTemperament());
         eventRepository.save(event);
 
+        List<Dog> allDogAttendees = event.getDogAttendees();
+        List<User> allUserAttendees = event.getUserAttendees();
+
         if(id != null) {
-            List<Dog> allDogAttendees = event.getDogAttendees();
             for(Dog dog : allDogAttendees) {
                 dog.removeEvents(event);
             }
+            for(User thisUser : allUserAttendees) {
+                thisUser.deleteEvents(event);
+            }
             event.getDogAttendees().removeAll(allDogAttendees);
-
-            List<User> allUserAttendees = event.getUserAttendees();
             event.getUserAttendees().removeAll(allUserAttendees);
-
-
             user.deleteEvents(event);
             eventRepository.delete(event);
+        }
+
+        if(userIds != null) {
+            for(Integer userId : userIds) {
+                Optional<User> optUser = userRepository.findById(userId);
+                User thisUser = optUser.get();
+                thisUser.deleteEvents(event);
+            }
+        }
+
+        if(dogIds != null) {
+            for(Integer dogId : dogIds) {
+                Optional<Dog> optDog = dogRepository.findById(dogId);
+                Dog thisDog = optDog.get();
+                thisDog.removeEvents(event);
+            }
         }
 
         return "redirect:/user/" + user.getId();

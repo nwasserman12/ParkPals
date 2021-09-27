@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: nav"></nav>
-<body style="background-color: #ACACAC">
+<body style="background-color: #406343;">
 
 <div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container rounded bg-white mt-3 mb-3">
@@ -67,6 +67,7 @@
                         <table class="table table-striped">
                             <tr th:each="user : ${event.userAttendees}">
                                 <td><a th:href="@{/user/{userId}(userId=${user.id})}" th:text="${user.username}"></a></td>
+<!--                                <td><input th:value="${user.getId()}" name="userIds" type="checkbox" style="text-align: center; float: none;"/></td>-->
                             </tr>
                         </table>
                     </div>
@@ -76,6 +77,8 @@
                         <table class="table table-striped">
                             <tr th:each="dog : ${event.dogAttendees}">
                                 <td><a th:href="@{/dog/{dogId}(dogId=${dog.id})}" th:text="${dog.name}"></a></td>
+<!--                                <td><input th:value="${dog.getId()}" name="dogIds" type="checkbox" style="text-align: center; float: none;"/></td>-->
+
                             </tr>
                         </table>
                     </div>
@@ -83,8 +86,10 @@
                 <div class="card-body" style="text-align: center;">
                     <label><p class="lead">Delete event?</p></label>
                     <input type="checkbox" name="id" th:value="${event.getId()}" style="width:20px; height:20px; border-radius:5px; border:2px solid #555;">
+                    <div>
+                        <button class="btn btn-outline-dark" type="submit">Save Changes</button>
+                    </div>
                 </div>
-                <button class="btn btn-outline-dark" type="submit">Save Changes</button>
             </div>
         </div>
         </form>
