@@ -103,36 +103,72 @@ public class EventController {
     }
 
     @GetMapping("/event/{eventId}/join")
-    public String joinEvent(@PathVariable Integer eventId, Model model, HttpServletRequest request) {
-        Optional optEvent = eventRepository.findById(eventId);
+    public String displayJoinEvent(@PathVariable Integer eventId, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
+        User userInSession = authenticationController.getUserFromSession(session);
+        Optional<Event> optEvent = eventRepository.findById(eventId);
         if (optEvent.isPresent()) {
             Event event = (Event) optEvent.get();
             User creator = event.getCreator();
-            event.addUserAttendees(authenticationController.getUserFromSession(session));
+            model.addAttribute("dogs", event.filterUserDogs(userInSession.getDogs()));
             model.addAttribute("event", event);
             model.addAttribute("user", creator);
-            return "event/event-profile";
+            eventRepository.save(event);
+            return "event/join-event";
         } else {
             return "redirect:../";
         }
     }
 
-    @GetMapping("/event/{eventId}/join")
+    @PostMapping("/event/{eventId}/join")
+    public String processJoinEvent(@PathVariable Integer eventId, Model model, @RequestParam(required = false) int[] dogAttendees, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Optional<Event> optEvent = eventRepository.findById(eventId);
+        Event event = (Event) optEvent.get();
+        User creator = event.getCreator();
+        User userInSession = authenticationController.getUserFromSession(session);
+        model.addAttribute("event", event);
+        model.addAttribute("user", creator);
+        if (dogAttendees != null) {
+            for (int id : dogAttendees) {
+                Optional<Dog> optionalDog = dogRepository.findById(id);
+                Dog dog = optionalDog.get();
+                if(!event.getDogAttendees().contains(dog)) {
+                    dog.addEvents(event);
+                    event.addDogAttendee(dog);
+                }
+            }
+        }
+        userInSession.addEvents(event);
+        eventRepository.save(event);
+        return "event/event-profile";
+    }
+
+    @GetMapping("/event/{eventId}/leave")
     public String leaveEvent(@PathVariable Integer eventId, Model model, HttpServletRequest request) {
-        Optional optEvent = eventRepository.findById(eventId);
+        Optional<Event> optEvent = eventRepository.findById(eventId);
         HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        List<Dog> userDogsInEvent = new ArrayList<>();
         if (optEvent.isPresent()) {
             Event event = (Event) optEvent.get();
             User creator = event.getCreator();
+            for(Dog dog : event.getDogAttendees()) {
+                if(user.getDogs().contains(dog)) {
+                    userDogsInEvent.add(dog);
+                    dog.removeEvents(event);
+                }
+            }
             event.removeUserAttendees(authenticationController.getUserFromSession(session));
+            event.removeAllDogAttendees(userDogsInEvent);
+            user.deleteEvents(event);
             model.addAttribute("event", event);
             model.addAttribute("user", creator);
+            eventRepository.save(event);
             return "event/event-profile";
         } else {
             return "redirect:../";
         }
     }
-
 
 }

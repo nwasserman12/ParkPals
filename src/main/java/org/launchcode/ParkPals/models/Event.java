@@ -132,6 +132,28 @@ public class Event extends AbstractEntity {
         this.dogAttendees.remove(dog);
     }
 
+    public void removeAllDogAttendees(List<Dog> allDogAttendees) {
+        for(Dog dog : allDogAttendees) {
+            removeDogAttendee(dog);
+        }
+    }
+
+    public List<Dog> filterUserDogs(List<Dog> dogs) {
+        List<Dog> filteredDogs = new ArrayList<>();
+        for(Dog dog : dogs) {
+            if(this.desiredActivity == dog.getActivity() && this.desiredTemperament == dog.getType()) {
+                filteredDogs.add(dog);
+            } else if(this.desiredActivity == DogActivity.ALL && this.desiredTemperament == dog.getType()) {
+                filteredDogs.add(dog);
+            } else if(this.desiredTemperament == DogTemperament.ALL && this.desiredActivity == dog.getActivity()) {
+                filteredDogs.add(dog);
+            } else if(this.desiredTemperament == DogTemperament.ALL && this.desiredActivity == DogActivity.ALL) {
+                filteredDogs.add(dog);
+            }
+        }
+        return filteredDogs;
+    }
+
     public String dateToString() {
         int hour = Integer.parseInt(date.substring(11,13));
         int minute = Integer.parseInt(this.date.substring(14,16));

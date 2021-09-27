@@ -17,9 +17,21 @@
                             <div class="col col-xl-10">
                                 <div class="card" style="border-radius: 1rem; background-color: #ACACAC;">
                                     <div class="row g-0">
-                                        <div class="p-4 p-lg-5 text-black align-items-center text-center ">
-                                            <h1>Join Event?</h1>
-                                        </div>
+                                        <form method="post">
+                                            <div class="p-4 p-lg-5 text-black align-items-center text-center ">
+                                                <fieldset>
+                                                    <legend>What dogs are attending this event?</legend>
+                                                    <p class="lead" th:if="${dogs == null || dogs.size() == 0}">Oops! Your dogs don't meet the event requirements!</p>
+                                                    <div th:each="dog : ${dogs}" >
+                                                        <input type="checkbox" th:value="${dog.getId()}" name="dogAttendees">
+                                                        <label th:text="${dog.getName()}">Dog Name</label>
+                                                    </div>
+                                                </fieldset>
+                                                <div class="d-grid">
+                                                    <button class="btn btn-outline-dark" id="submitButton" type="submit">Join</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
