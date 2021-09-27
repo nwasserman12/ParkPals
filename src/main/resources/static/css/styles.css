@@ -36,6 +36,8 @@ li a:hover {
 
 a {
     font-size: 16px;
+    color: blue;
+    letter-spacing: 2px;
 }
 
 /* Always set the map height explicitly to define the size of the div
