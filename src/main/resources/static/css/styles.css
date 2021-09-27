@@ -30,13 +30,12 @@
 }
 
 li a:hover {
-  background-color: #ACACAC;
+  background-color: #406343;
   opacity: 1.0;
 }
 
 a {
     font-size: 16px;
-    color: blue;
     letter-spacing: 2px;
 }
 
@@ -68,7 +67,7 @@ table {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #ACACAC;
+  background: #406343;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -103,7 +102,7 @@ table {
 #findparks {
   font-size: 20px;
   font-family: 'Lobster', cursive;
-  color: crimson;
+  color: #ECE7B4;
 }
 
 #locationField {

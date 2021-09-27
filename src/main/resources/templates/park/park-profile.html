@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: nav"></nav>
-<body style="background-color: #ACACAC">
+<body style="background-color: #406343;">
 
 <div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container rounded bg-white mt-3 mb-3">
@@ -51,7 +51,7 @@
             <div class="card-body" style="text-align: center;">
                 <h4 class="card-title" style="text-align: center;"></h4>
                 <a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/create-event/{placeId}/details(placeId=${park.getPlaceId()})}" role="button">Create Event</a>
-                <a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/review/create-review/{placeId}(userId=${#session.getAttribute('userId')}, placeId=${park.getPlaceId()})}" role="button">Create Review</a>
+                <a class="btn btn-primary btn-sml" th:value="${park.getPlaceId()}" th:href="@{/review/create-review/{placeId}(placeId=${park.getPlaceId()})}" role="button">Create Review</a>
                 <a th:href="@{/user/{userId}/home(userId=${#session.getAttribute('userId')})}" class="btn btn-outline-dark" style="text-align: center; float: none;">Home</a>
             </div>
         </div>

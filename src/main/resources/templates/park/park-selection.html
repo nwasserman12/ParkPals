@@ -3,16 +3,16 @@
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: nav"></nav>
 
-<body style="background-color: #ACACAC">
+<body style="background-color: #406343;">
 <div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container px-5 my-5 text-center">
         <form method = "post">
-            <h1 class="cursive-5" style="font-family: 'Lobster', cursive; color: crimson; -webkit-text-stroke: 2px crimson; letter-spacing: 6px; font-size: 75px; ">
+            <h1 class="cursive-5" style="font-family: 'Lobster', cursive; color: crimson; -webkit-text-stroke: 1px white; letter-spacing: 6px; font-size: 75px; ">
                 <i class="fas fa-map-marker-alt" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
                 Find Parks
                 <i class="fas fa-map-marker-alt" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
             </h1>
-            <p class="lead">Pick a location for your event!</p>
+            <p class="lead" style="color: #ECE7B4">Pick a location for your event!</p>
                 <div class="form-outline text-center input-group input-group-sml justify-content-center">
                     <input type="text" name="searchTerm" id="searchTerm" />
                     <button type="submit" value="Search" class="btn btn-primary">
@@ -20,9 +20,10 @@
                     </button>
                 </div>
         </form>
+        <div class="container rounded bg-white mt-3 mb-3" style="padding-top: 20px">
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-bordered ">
+                <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th>
@@ -53,6 +54,7 @@
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     </div>
 </div>

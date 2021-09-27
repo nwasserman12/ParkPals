@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: nav"></nav>
-<body style="background-color: #ACACAC">
+<body style="background-color: #406343;">
 
 <div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container rounded bg-white mt-3 mb-3">
@@ -49,9 +49,12 @@
                 </div>
                 <div class="card-body" style="text-align: center;">
                     <h4 class="card-title" style="text-align: center;" th:text="'Event Creator: ' + ${event.creator.username}">Event Creator</h4>
-                    <a th:href="@{/user/{id}(id=${user.id})}" th:if="${event.creator != user}" class="btn btn-outline-dark" style="text-align: center; float: none;">Visit Profile</a>
+                    <a th:href="@{/user/{id}(id=${creator.id})}" th:if="${event.creator != user}" class="btn btn-outline-dark" style="text-align: center; float: none;">Visit Profile</a>
                     <a class="btn btn-outline-dark btn-sml" th:if="${event.getCreator == user}" th:value="${event.getId()}" th:href="@{~/user/{userId}/edit-event/{eventId}(eventId=${event.getId}, userId=${user.getId})}" role="button" style="font-size: 15px">Edit</a>
-
+                    <div style="padding: 5px;">
+                        <a class="btn btn-outline-dark btn-sml" th:if="${!event.getUserAttendees.contains(user) && event.getCreator != user}" th:value="${event.getId()}" th:href="@{~/event/{eventId}/join(eventId=${event.getId})}" role="button" style="font-size: 15px">Join</a>
+                        <a class="btn btn-outline-dark btn-sml" th:if="${user.events.contains(event) && event.getCreator != user}" th:value="${event.getId()}" th:href="@{~/event/{eventId}/leave(eventId=${event.getId})}" role="button" style="font-size: 15px">Leave</a>
+                    </div>
                 </div>
             </div>
         </div>

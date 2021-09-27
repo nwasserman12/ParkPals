@@ -210,6 +210,9 @@ public class ProfileController {
             for(Dog dog : allDogAttendees) {
                 dog.removeEvents(event);
             }
+            for(User thisUser : allUserAttendees) {
+                thisUser.deleteEvents(event);
+            }
             event.getDogAttendees().removeAll(allDogAttendees);
             event.getUserAttendees().removeAll(allUserAttendees);
             user.deleteEvents(event);
