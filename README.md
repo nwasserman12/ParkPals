@@ -19,14 +19,14 @@ their dogs. Users can locate and commune with fellow dog enthusiasts based on th
 - Dog Events: Create unique dog-inspired events and invite desired companions.
 - Dog Profiles: Create tailored profiles for each of your dogs based around their personality.
 - Home Page: Registered users will have the ability to view local dog events in their area.
+- Park Page: Users can view available parks stored in our database.
+- Reviews: Write reviews about recently visited parks to inform other users about your experience.
 
 ### Future Features
 - Calendar Integrations: Add events to calendar for convenient planning.
 - Weather: View potential weather conditions based on your general location.
 - Search (Categories): Sort events based on potential playmates (size, age, temperament, etc.)
-- Search (Location): Sort events and parks based on location.
-- Reviews: Write reviews about recently visited parks to inform other users about your experience.
-- Park Page: Users can view available parks stored in our database.
+- Search (Location): Sort events based on location.
 - Location Suggestions: Users will have the ability to suggest potential parks and locations for our team to review. 
 
 ## Technologies
