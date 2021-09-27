@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+<ul class="cb-slideshow" style="list-style-type:none;">
+    <li>
+        <span>Image 01</span>
+    </li>
+    <li>
+        <span>Image 02</span>
+    </li>
+    <li>
+        <span>Image 03</span>
+    </li>
+    <li>
+        <span>Image 04</span>
+    </li>
+</ul>
 <nav th:replace="fragments :: nav"></nav>
 <body>
-<div class="page-holder bg-cover" style="padding: 20px; background-color: #406343;">
+<div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container rounded bg-white mt-3 mb-3 align-items-center text-center" style="text-align: center;">
         <form method="post" th:object="${dog}">
             <div class="row text-center">
