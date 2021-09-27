@@ -134,12 +134,12 @@ public class EventController {
                 Optional<Dog> optionalDog = dogRepository.findById(id);
                 Dog dog = optionalDog.get();
                 if(!event.getDogAttendees().contains(dog)) {
+                    userInSession.addEvents(event);
                     dog.addEvents(event);
                     event.addDogAttendee(dog);
                 }
             }
         }
-        userInSession.addEvents(event);
         eventRepository.save(event);
         return "event/event-profile";
     }

@@ -55,8 +55,10 @@
                         <tbody>
                         <tr class="table-stripped" th:each="event : ${event}">
                             <td>
-                                <a class="btn btn-outline-dark btn-sml" th:if="${!event.getUserAttendees.contains(user)}" th:value="${event.getId()}" th:href="@{~/event/{eventId}/join(eventId=${event.getId})}" role="button" style="font-size: 15px">Join</a>
-                                <a class="btn btn-primary btn-sml" th:if="${user.events.contains(event)}" th:value="${event.getId()}" th:href="@{~/event/{eventId}/leave(eventId=${event.getId})}" role="button" style="font-size: 15px">Leave</a>
+                                <a class="btn btn-outline-dark btn-sml" th:if="${!event.getUserAttendees.contains(user) && event.getCreator != user}" th:value="${event.getId()}" th:href="@{~/event/{eventId}/join(eventId=${event.getId})}" role="button" style="font-size: 15px">Join</a>
+                                <a class="btn btn-primary btn-sml" th:if="${user.events.contains(event) && event.getCreator != user}" th:value="${event.getId()}" th:href="@{~/event/{eventId}/leave(eventId=${event.getId})}" role="button" style="font-size: 15px">Leave</a>
+                                <a class="btn btn-primary btn-sml" th:if="${event.getCreator == user}" th:value="${event.getId()}" th:href="@{~/user/{userId}/edit-event/{eventId}(eventId=${event.getId}, userId=${user.getId})}" role="button" style="font-size: 15px">Edit</a>
+
                             </td>
                             <td th:text="${event.getId()}" style="color: black; font-size: 20px">Id</td>
                             <td><a th:href="@{~/user/{userId}(userId=${event.getCreator().getId()})}" th:text="${event.getCreator().getUsername()}" style="font-size: 20px"></a></td>
