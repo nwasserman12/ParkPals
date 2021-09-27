@@ -1,5 +1,6 @@
 package org.launchcode.ParkPals.controllers;
 
+import antlr.StringUtils;
 import org.launchcode.ParkPals.data.DogRepository;
 import org.launchcode.ParkPals.data.EventRepository;
 import org.launchcode.ParkPals.data.UserRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -126,7 +128,7 @@ public class ProfileController {
     }
 
     @PostMapping("{userId}/edit")
-    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, @RequestParam(required = false) int[] eventIds, Errors errors, HttpServletRequest request, Model model){
+    public String processEditForm(@PathVariable Integer userId, @ModelAttribute @Valid EditFormDTO editFormDTO, @RequestParam(required = false) int[] eventIds, Errors errors, HttpServletRequest request, @RequestParam("image") MultipartFile multipartFile, Model model){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
         if (errors.hasErrors()) {
@@ -141,6 +143,9 @@ public class ProfileController {
                 eventRepository.delete(event);
             }
         }
+
+        String fileName = multipartFile.getOriginalFilename();
+        user.setPhoto(fileName);
 
         user.setFirstName(editFormDTO.getFirstName());
         user.setLastName(editFormDTO.getLastName());
