@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("user")
 public class ReviewController {
 
     @Autowired
@@ -26,13 +25,13 @@ public class ReviewController {
     @Autowired
     private ParkRepository parkRepository;
 
-    @GetMapping("{userId}/review")
+    @GetMapping("/review")
     public String ListOfReviews(Model model){
         model.addAttribute("review", reviewRepository.findAll());
         return "review/review";
     }
 
-    @GetMapping("{userId}/review/create-review/{placeId}")
+    @GetMapping("{/review/create-review/{placeId}")
     public String displayCreateReviewForm(@PathVariable String placeId, Model model, HttpServletRequest request, Review review){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -45,7 +44,7 @@ public class ReviewController {
         return "review/create-review";
     }
 
-    @PostMapping("{userId}/review/create-review/{placeId}")
+    @PostMapping("/review/create-review/{placeId}")
     public String processCreateReviewForm(@ModelAttribute @Valid Review review, @PathVariable String placeId,
                                           Errors errors, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -60,7 +59,7 @@ public class ReviewController {
         review.setPark(park);
         review.setReviewer(user);
         reviewRepository.save(review);
-        return "redirect:/user/{userId}/review";
+        return "redirect:/review";
     }
 
 }

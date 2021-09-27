@@ -1,5 +1,6 @@
 package org.launchcode.ParkPals.models;
 
+import org.apache.tomcat.jni.Local;
 import org.launchcode.ParkPals.data.ParkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -7,6 +8,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,9 +29,8 @@ public class Event extends AbstractEntity {
     @ManyToOne
     private Park park;
 
-    @NotNull(message= "What is today's date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    @NotNull
+    private String date;
 
     @NotNull
     private DogActivity desiredActivity;
@@ -34,13 +38,13 @@ public class Event extends AbstractEntity {
     @NotNull
     private DogTemperament desiredTemperament;
 
-    @ManyToMany(mappedBy = "events" )
+    @ManyToMany(mappedBy = "events")
     private List<User> userAttendees = new ArrayList<>();
 
     @ManyToMany(mappedBy = "events")
     private List<Dog> dogAttendees = new ArrayList<>();
 
-    public Event(String title, Park park, Date date, DogActivity desiredActivity, DogTemperament desiredTemperament) {
+    public Event(String title, Park park, String date, DogActivity desiredActivity, DogTemperament desiredTemperament) {
         this.title = title;
         this.park = park;
         this.date = date;
@@ -80,11 +84,11 @@ public class Event extends AbstractEntity {
         return name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -112,6 +116,10 @@ public class Event extends AbstractEntity {
         this.userAttendees.add(user);
     }
 
+    public void removeUserAttendees(User user) {
+        this.userAttendees.remove(user);
+    }
+
     public List<Dog> getDogAttendees() {
         return dogAttendees;
     }
@@ -120,8 +128,40 @@ public class Event extends AbstractEntity {
         this.dogAttendees.add(dog);
     }
 
-    public String dateToString() {
-        return this.date.toString().substring(0, 10);
+    public void removeDogAttendee(Dog dog) {
+        this.dogAttendees.remove(dog);
     }
 
+    public void removeAllDogAttendees(List<Dog> allDogAttendees) {
+        for(Dog dog : allDogAttendees) {
+            removeDogAttendee(dog);
+        }
+    }
+
+    public List<Dog> filterUserDogs(List<Dog> dogs) {
+        List<Dog> filteredDogs = new ArrayList<>();
+        for(Dog dog : dogs) {
+            if(this.desiredActivity == dog.getActivity() && this.desiredTemperament == dog.getType()) {
+                filteredDogs.add(dog);
+            } else if(this.desiredActivity == DogActivity.ALL && this.desiredTemperament == dog.getType()) {
+                filteredDogs.add(dog);
+            } else if(this.desiredTemperament == DogTemperament.ALL && this.desiredActivity == dog.getActivity()) {
+                filteredDogs.add(dog);
+            } else if(this.desiredTemperament == DogTemperament.ALL && this.desiredActivity == DogActivity.ALL) {
+                filteredDogs.add(dog);
+            }
+        }
+        return filteredDogs;
+    }
+
+    public String dateToString() {
+        int hour = Integer.parseInt(date.substring(11,13));
+        int minute = Integer.parseInt(this.date.substring(14,16));
+        if(hour > 12) {
+            hour = hour - 12;
+            return date = this.date.toString().substring(5, 10) + "-" + this.date.substring(0,4) + " at " + hour + ":" + minute + " PM";
+
+        }
+        return date = this.date.toString().substring(5, 10) + "-" + this.date.substring(0,4) + " at " + hour + ":" + minute + " AM";
+    }
 }

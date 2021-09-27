@@ -10,7 +10,7 @@
 .cursive {
     font-family: 'Lobster', cursive;
     color: crimson;
-    -webkit-text-stroke: 2px crimson;
+    -webkit-text-stroke: 2p x crimson;
     letter-spacing: 6px;
     font-size: 125px;
 }
@@ -35,7 +35,6 @@ li a:hover {
 }
 
 a {
-    font-family: 'Lobster', cursive;
     font-size: 16px;
     color: blue;
     letter-spacing: 2px;

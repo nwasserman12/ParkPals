@@ -7,7 +7,11 @@
 <div class="page-holder bg-cover" style="padding: 20px;">
     <div class="container rounded bg-white mt-3 mb-3">
         <div align="center" style="padding: 20px;">
-            <h1 class="text-center" style="text-align: center;">Park Events:</h1>
+            <h1 class="cursive-5" style="font-family: 'Lobster', cursive; color: crimson; -webkit-text-stroke: 2px crimson; letter-spacing: 6px; font-size: 75px; ">
+                <i class="fas fa-calendar-week" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
+                Events
+                <i class="fas fa-calendar-week" style="-webkit-text-stroke: 1px white; font-size: 50px;"></i>
+            </h1>
         </div>
         <div class="container-fluid my-5">
 <!--            <form method = "post">-->
@@ -50,13 +54,16 @@
                         </thead>
                         <tbody>
                         <tr class="table-stripped" th:each="event : ${event}">
-                            <td><a class="btn btn-primary btn-sml" th:value="${event.getId()}" role="button">+</a></td>
-                            <td th:text="${event.getId()}">Id</td>
-                            <td><a th:href="@{~/user/{userId}(userId=${event.getCreator().getId()})}" th:text="${event.getCreator().getUsername()}"></a></td>
-                            <td th:text="${event.getTitle()}">Title</td>
-                            <td><a th:href="@{~/park/{placeId}/details(placeId=${event.getPark().getPlaceId()})}" th:text="${event.getParkName()}"></a></td>
-                            <td th:text="${event.dateToString()}">Date</td>
-                            <td th:text="${event.getUserAttendees().size()}"># of Attendees</td>
+                            <td>
+                                <a class="btn btn-outline-dark btn-sml" th:if="${!event.getUserAttendees.contains(user)}" th:value="${event.getId()}" th:href="@{~/event/{eventId}/join(eventId=${event.getId})}" role="button" style="font-size: 15px">Join</a>
+                                <a class="btn btn-primary btn-sml" th:if="${user.events.contains(event)}" th:value="${event.getId()}" th:href="@{~/event/{eventId}/leave(eventId=${event.getId})}" role="button" style="font-size: 15px">Leave</a>
+                            </td>
+                            <td th:text="${event.getId()}" style="color: black; font-size: 20px">Id</td>
+                            <td><a th:href="@{~/user/{userId}(userId=${event.getCreator().getId()})}" th:text="${event.getCreator().getUsername()}" style="font-size: 20px"></a></td>
+                            <td><a th:href="@{~/event/{eventId}(eventId=${event.getId()})}" th:text="${event.getTitle()}" style="font-size: 20px"></a></td>
+                            <td><a th:href="@{~/park/{placeId}/details(placeId=${event.getPark().getPlaceId()})}" th:text="${event.getParkName()}" style="font-size: 20px"></a></td>
+                            <td th:text="${event.dateToString()}" style="color: black; font-size: 20px">Date</td>
+                            <td th:text="${event.getUserAttendees().size()}" style="font-size: 20px"># of Attendees</td>
                         </tr>
                         </tbody>
                     </table>
