@@ -35,7 +35,7 @@ test {
 jar {
 	manifest {
 		attributes(
-				'Main-Class': 'com.parkpals.ParkPalsApplication'
+				'Main-Class': 'com.park-pals.ParkPalsApplication'
 		)
 	}
 }
