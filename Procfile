@@ -1,1 +1,1 @@
-web: java -jar build/libs/gradle-getting-started-1.0.jar
+web: java -jar build/libs/parkpals-0.0.1-SNAPSHOT.jar
